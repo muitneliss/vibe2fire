@@ -2,6 +2,9 @@
 # Reference for every field: .agents/skills/comic-pipeline/references/config.md
 title: The Night Shift
 lang: en
+date: 2026-10-30 # YYYY-MM-DD; the library lists the newest first
+summary: "A lighthouse keeper sleeps; her *robot* keeps the light." # shown on the library card
+# cover: p1                   # panel id used as the thumbnail; default is the first panel
 
 style:
   preset: ligne-claire # graphic-novel | noir | ligne-claire | fantasy | manga | pop-art | storybook

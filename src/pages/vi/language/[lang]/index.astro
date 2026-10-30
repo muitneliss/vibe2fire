@@ -1,0 +1,10 @@
+---
+import type { GetStaticPaths } from "astro";
+import Library from "../../../../components/Library.astro";
+import { listComics } from "../../../../lib/comic";
+
+// Every comic in one language, Vietnamese chrome.
+export const getStaticPaths = (() =>
+  [...new Set(listComics().map((c) => c.config.lang ?? "en"))].map((lang) => ({ params: { lang } }))) satisfies GetStaticPaths;
+---
+<Library locale="vi" only={Astro.params.lang} />

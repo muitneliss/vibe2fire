@@ -8,7 +8,9 @@ A comic lives at `comics/<slug>/comic.yaml`; paths in it are relative to that fo
 |---|---|---|
 | `title` | yes | Comic title; the default page title, wordmark and footer |
 | `lang` | no | `<html lang>`; default `en` |
-| `home` | no | `true` on exactly one comic: it becomes the site's front page. Others are served at `/<slug>/` |
+| `date` | no | Release date, `YYYY-MM-DD`. The library at `/` lists the newest comic first; comics without a date come last |
+| `summary` *md* | no | One or two sentences shown on the comic's card in the library, and in the feed as plain text |
+| `cover` | no | Panel id used as the comic's thumbnail in the library and the feed. Default: the first panel |
 | `style` | no | Art style, below; default preset `graphic-novel` |
 | `reader` | no | Reader theme, lettering preset, UI labels |
 | `page` | no | Masthead, opening section, end card, write-up, footer |
@@ -35,7 +37,7 @@ A comic lives at `comics/<slug>/comic.yaml`; paths in it are relative to that fo
 |---|---|
 | `theme` | `dark` (black gutters on a dark reader, like calif.io/php2shell) or `light` (white gutters on paper). Default from the preset |
 | `lettering` | `ink` (black brush captions, white capitals), `pop` (yellow boxes), `manga` (white boxes, sentence case), `parchment` (aged scroll, serif italic). Default from the preset |
-| `labels` | UI strings: `pages`, `panels`, `chapters`, `mode`, `readScene`, `skip`, `start`. Translate them for non-English comics |
+| `labels` | UI strings: `pages`, `panels`, `chapters`, `mode`, `readScene`, `skip`, `start`, `library` (the link back to the library). Translate them for non-English comics |
 
 ## page
 
@@ -102,4 +104,4 @@ chapters:
 
 - PNG masters, the cast sheet, prompts, Codex logs and review sheets: `comics/<slug>/.work/` (gitignored).
 - Panel images the site serves: `public/comics/<slug>/panels/<id>.webp` (committed), written by `bun run comic webp`.
-- The page: `/` for the `home` comic, `/<slug>/` for the others; the feed: `/content.json`.
+- The page: every comic is at `/<slug>/` and listed in the library at `/` (`/vi/` for Vietnamese site chrome); the feed: `/content.json`. A folder name cannot be a locale code (`en`, `vi`) or a route name (`language`, `comics`, `content.json`, `404`).

@@ -3,7 +3,9 @@
 # After editing: bun run check && bun run build. Panels are generated with: bun run comic panels comics/vibe2fire
 title: Vibe2Fire
 lang: vi
-home: true
+date: 2026-10-30
+summary: Truyện châm biếm về *một ông sếp tự học AI* và phòng Marketing không còn nữa, kèm nhật ký kỹ thuật thật.
+cover: c01-p1
 style:
   preset: graphic-novel
 reader:
@@ -17,12 +19,12 @@ reader:
     readScene: Đọc cảnh này
     skip: Bỏ qua truyện, đọc nhật ký
     start: Bắt đầu đọc
+    library: Tất cả truyện
 page:
   pageTitle: "Vibe2Fire: sếp tự học AI, phòng Marketing giải tán"
   description: Truyện tranh châm biếm nội bộ về cách Omninoise ra đời, kèm nhật ký kỹ thuật thật.
   robots: noindex, nofollow
   wordmark: Vibe*2*Fire
-  home: /
   credit:
     text: Omninoise, nội bộ ↗
     href: /

@@ -3,11 +3,9 @@ import type { GetStaticPaths } from "astro";
 import ComicPage from "../../components/ComicPage.astro";
 import { listComics, type Comic } from "../../lib/comic";
 
-// Every other comic lives at /<slug>/.
+// Every comic lives at /<slug>/; the library at / lists them.
 export const getStaticPaths = (() =>
-  listComics()
-    .filter((comic) => !comic.config.home)
-    .map((comic) => ({ params: { slug: comic.slug }, props: { comic } }))) satisfies GetStaticPaths;
+  listComics().map((comic) => ({ params: { slug: comic.slug }, props: { comic } }))) satisfies GetStaticPaths;
 
 const { comic } = Astro.props as { comic: Comic };
 ---
