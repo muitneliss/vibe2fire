@@ -1,0 +1,22 @@
+title: Fixture
+home: true
+style: { preset: noir }
+characters:
+  - id: hero
+    name: Ana
+    tag: the woman in the red coat
+    look: "tall woman in her 40s, short black hair, long red coat"
+chapters:
+  - id: one
+    title: One
+    intro: "Set in `1999`."
+    panels:
+      - id: p1
+        span: 6
+        shape: wide
+        scene: "{hero} waits under a streetlight in the rain."
+        alt: "Ana in the rain"
+        text:
+          - { cap: "Midnight.", at: tl }
+          - { say: "He is *late*.", at: br, tail: up }
+          - { sfx: "DRIP", at: tr }

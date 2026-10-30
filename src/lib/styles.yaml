@@ -1,0 +1,73 @@
+# Art style presets for comic.yaml `style.preset`.
+# art:      the style paragraph appended to every image prompt (cast sheet and panels).
+# sheet:    how the character model sheet is staged.
+# reader:   default reader theme, dark or light (comic.yaml `reader.theme` overrides).
+# lettering: default lettering preset, ink | pop | manga | parchment (comic.yaml `reader.lettering` overrides).
+# Add a preset here, or put a one-off `style.art` in comic.yaml.
+
+graphic-novel:
+  label: Graphic novel (the Vibe2Fire look, after calif.io/php2shell)
+  art: >-
+    A single panel from a modern indie graphic novel. Hand-inked black linework, muted watercolor
+    and gouache colouring, halftone dot shading and paper grain, cinematic lighting and framing,
+    desaturated palette with one accent colour, realistic adult proportions (not anime, not chibi).
+  sheet: plain warm paper background, full body, front three-quarter view
+  reader: dark
+  lettering: ink
+
+noir:
+  label: Noir, black and white with one spot colour
+  art: >-
+    A single panel from a noir graphic novel. Stark black-and-white brush ink with heavy shadows and
+    high-contrast chiaroscuro, rain and wet reflections, venetian-blind light, a single spot colour
+    (deep red) used sparingly, dramatic low and high camera angles, realistic adult proportions.
+  sheet: plain grey paper background, full body, front three-quarter view, black-and-white ink
+  reader: dark
+  lettering: ink
+
+ligne-claire:
+  label: Light, clean ligne claire (Franco-Belgian)
+  art: >-
+    A single panel in the Franco-Belgian ligne claire tradition. Clean uniform-weight black outlines,
+    flat bright colours with little shading, crisp daylight, detailed tidy backgrounds, gentle
+    humour in the poses, realistic but slightly simplified proportions.
+  sheet: plain white background, full body, front three-quarter view, flat colours
+  reader: light
+  lettering: pop
+
+fantasy:
+  label: Painterly epic fantasy
+  art: >-
+    A single panel from a painterly epic-fantasy graphic novel. Rich jewel-tone colours, dramatic
+    volumetric light and glowing magic, ornate costume and architecture detail, storybook grandeur,
+    visible brushwork over confident ink lines, realistic heroic proportions.
+  sheet: parchment background, full body, front three-quarter view, painterly
+  reader: dark
+  lettering: parchment
+
+manga:
+  label: Black-and-white manga
+  art: >-
+    A single panel from a black-and-white Japanese manga. Crisp pen lines, screentone shading,
+    speed lines and impact effects, expressive faces, dynamic camera angles, no colour at all.
+  sheet: plain white background, full body, front three-quarter view, black-and-white with screentone
+  reader: light
+  lettering: manga
+
+pop-art:
+  label: 1960s pop-art comic
+  art: >-
+    A single panel in the style of a 1960s American pop-art comic. Bold black outlines, flat primary
+    colours, visible Ben-Day dot shading, dramatic close-ups and melodramatic expressions.
+  sheet: flat pale-yellow background, full body, front three-quarter view, Ben-Day dots
+  reader: light
+  lettering: pop
+
+storybook:
+  label: Soft watercolour storybook (light)
+  art: >-
+    A single illustration from a soft watercolour picture book. Loose pencil lines, pastel washes
+    with soft edges, warm gentle light, cosy details, slightly rounded friendly proportions.
+  sheet: plain cream paper background, full body, front three-quarter view, soft watercolour
+  reader: light
+  lettering: parchment

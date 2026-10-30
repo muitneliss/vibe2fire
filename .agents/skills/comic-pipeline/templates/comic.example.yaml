@@ -1,0 +1,65 @@
+# A comic for the comic-pipeline skill. Copy to comics/<slug>/comic.yaml and edit.
+# Reference for every field: .agents/skills/comic-pipeline/references/config.md
+title: The Night Shift
+lang: en
+
+style:
+  preset: ligne-claire # graphic-novel | noir | ligne-claire | fantasy | manga | pop-art | storybook
+  # art: "..."                  # replace the preset's style paragraph entirely
+  # extra: "..."                # or add to it (palette, era, mood)
+
+reader:
+  theme: light # dark | light (default comes from the preset)
+  lettering: pop # ink | pop | manga | parchment
+
+page:
+  wordmark: "Night*Shift*" # *...* is drawn in the accent colour
+  heading: "A short story about *one robot* and one very long night"
+  invitation: "A lighthouse keeper falls asleep. Their robot does not."
+  note: "AI-generated art (Codex); lettering written by hand."
+  end: { text: "The end." }
+  footer: "The Night Shift"
+
+characters:
+  - id: keeper
+    name: Ana
+    tag: the lighthouse keeper in the yellow raincoat
+    look: "woman in her 60s, short grey hair, round glasses, yellow raincoat over a navy knit sweater, rubber boots"
+    props: "carries a brass lantern"
+    # refs: [refs/ana-photo.png]  # optional reference images for this character
+  - id: bolt
+    name: Bolt
+    tag: the small round white robot
+    look: "small round white robot on one wheel, single large blue camera eye, two thin arms, a red stripe across its body"
+
+chapters:
+  - id: dusk
+    nav: Dusk
+    date: "Chapter 1"
+    title: The keeper falls asleep
+    intro: "The storm is coming in. The keeper has been awake for two days."
+    panels:
+      - id: c01-p1
+        span: 6
+        shape: wide
+        cast: [keeper, bolt]
+        scene: "A lighthouse on a rocky coast at dusk with storm clouds rolling in; through the lit lantern-room window {keeper} sits asleep in a chair while {bolt} watches the sea."
+        alt: "A lighthouse at dusk; the keeper dozes in the lantern room while the robot watches."
+        text:
+          - { cap: "Dusk. The storm arrives early.", at: tl }
+          - { say: "Rest. I have the light.", at: br, tail: up }
+      - id: c01-p2
+        span: 3
+        shape: square
+        cast: [bolt]
+        scene: "Close-up of {bolt} reaching for the big brass lever that turns the lighthouse lamp, rain streaking the glass behind it."
+        alt: "The robot reaches for the lamp lever."
+        text:
+          - { sfx: "KLUNK!", at: tr, color: yel }
+      - id: c01-p3
+        span: 3
+        shape: square
+        scene: "A beam of light sweeping across a dark stormy sea, a small fishing boat safe in its path."
+        alt: "The lighthouse beam finds a small boat in the storm."
+        text:
+          - { cap: "One boat comes home.", at: bl }

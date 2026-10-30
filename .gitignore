@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.DS_Store
+.env
+.env.*
+# Generation scratch per comic: PNG masters, prompts, logs, review sheets (only the webp copies are committed)
+comics/*/.work/

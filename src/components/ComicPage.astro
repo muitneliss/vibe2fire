@@ -1,0 +1,112 @@
+---
+// One comic as a full reader page: masthead, opening, chapters of panels with HTML lettering, end card, write-up.
+// No JavaScript and no inline styles, so it runs under the strict CSP in public/_headers.
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import "../styles/fonts.css";
+import "../styles/reader.css";
+import { inlineMarkdown, paragraphs, SHAPES, TAILS, transcriptOf, type Comic, type Lettering } from "../lib/comic";
+
+interface Props { comic: Comic }
+const { comic } = Astro.props;
+const { config, labels } = comic;
+const page = config.page ?? {};
+const total = config.chapters.length;
+const first = config.chapters[0]?.id;
+const writeup = page.writeup ? readFileSync(resolve(comic.dir, page.writeup), "utf8") : "";
+const wordmark = String(page.wordmark ?? config.title)
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+  .replace(/\*([^*]+)\*/g, "<span>$1</span>");
+
+const lettering = (t: Lettering) => {
+  const at = `at-${t.at ?? "tl"}`;
+  if ("stack" in t) return `<div class="cap-stack ${at}">${t.stack.map((s) => `<p class="cap">${inlineMarkdown(s)}</p>`).join("")}</div>`;
+  if ("cap" in t) return `<p class="cap ${at}">${inlineMarkdown(t.cap)}</p>`;
+  if ("say" in t) return `<p class="${["bubble", at, TAILS[t.tail ?? "l"]].filter(Boolean).join(" ")}">${inlineMarkdown(t.say)}</p>`;
+  const cls = ["sfx", t.size === "xl" ? "sfx-xl" : "", t.color ? `sfx-${t.color}` : "", at].filter(Boolean).join(" ");
+  return `<p class="${cls}">${inlineMarkdown(t.sfx)}</p>`;
+};
+const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `f-${focus}` : ""].filter(Boolean).join(" ");
+---
+<!doctype html>
+<html lang={config.lang ?? "en"}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {page.robots && <meta name="robots" content={page.robots}>}
+  <meta name="theme-color" content={comic.theme === "light" ? "#ece6d8" : "#f4f0e7"}>
+  <title>{page.pageTitle ?? config.title}</title>
+  {page.description && <meta name="description" content={page.description}>}
+  {page.description && <meta property="og:description" content={page.description}>}
+  <meta property="og:title" content={page.pageTitle ?? config.title}>
+  <meta property="og:type" content="article">
+  <link rel="alternate" type="application/json" href="/content.json" title="Content feed">
+</head>
+<body class={`theme-${comic.theme} lettering-${comic.lettering}`}>
+  {writeup && <a class="skip" href={`#${page.writeupId ?? "writeup"}`}>{labels.skip}</a>}
+
+  <header class="masthead">
+    <a class="wordmark" href={page.home ?? comic.path} set:html={wordmark} />
+    {page.credit && <a class="credit" href={page.credit.href ?? "/"}>{page.credit.text}</a>}
+  </header>
+
+  <main>
+    <section class="cold-open" aria-labelledby="opening">
+      <h1 id="opening" set:html={inlineMarkdown(page.heading ?? config.title)} />
+      {page.invitation && <p class="invitation" set:html={inlineMarkdown(page.invitation)} />}
+      <nav class="shortcuts" aria-label={labels.start}>
+        {(page.shortcuts ?? [{ text: "↓", href: `#${first}` }]).map((s: { text: string; href: string }) => <a href={s.href}>{s.text}</a>)}
+      </nav>
+      {page.note && <p class="satire" set:html={inlineMarkdown(page.note)} />}
+    </section>
+
+    <section class="comic" aria-label={config.title}>
+      <input class="mode-input" type="radio" name="reader-mode" id="mode-pages" checked>
+      <input class="mode-input" type="radio" name="reader-mode" id="mode-panels">
+      <div class="reader-toolbar"><div class="reader-toolbar-inner">
+        <nav class="era-links" aria-label={labels.chapters}>
+          {config.chapters.map((c) => <a href={`#${c.id}`}>{c.nav ?? c.date ?? c.title}</a>)}
+        </nav>
+        <div class="mode-switch" role="group" aria-label={labels.mode}>
+          <label for="mode-pages">{labels.pages}</label>
+          <label for="mode-panels">{labels.panels}</label>
+        </div>
+      </div></div>
+
+      {config.chapters.map((ch, i) => (
+        <section class="chapter" id={ch.id} aria-labelledby={`chapter-${i + 1}`}>
+          <div class="chapter-heading">
+            <h2 id={`chapter-${i + 1}`}>{ch.date && <span>{ch.date}</span>}{ch.title}</h2>
+            <small>{i + 1} / {total}</small>
+          </div>
+          {ch.intro && <div class="chapter-description">{paragraphs(ch.intro).map((p) => <p set:html={inlineMarkdown(p)} />)}</div>}
+          <div class="page">
+            {ch.panels.map((p) => (
+              <figure class={panelClass(p.span, p.focus)}>
+                <img src={`${comic.panelsPath}${p.id}.webp`} width={SHAPES[p.shape ?? "wide"][0]} height={SHAPES[p.shape ?? "wide"][1]} alt={p.alt ?? ""} loading="lazy" decoding="async">
+                <Fragment set:html={(p.text ?? []).map(lettering).join("")} />
+              </figure>
+            ))}
+          </div>
+          {transcriptOf(ch) && <details class="transcript"><summary>{labels.readScene}</summary><p set:html={inlineMarkdown(transcriptOf(ch))} /></details>}
+          {ch.context && <div class="chapter-description chapter-context">{paragraphs(ch.context).map((p) => <p set:html={inlineMarkdown(p)} />)}</div>}
+        </section>
+      ))}
+
+      {page.end && (
+        <div class="comic-end">
+          <p set:html={inlineMarkdown(page.end.text)} />
+          {page.end.link && <a href={page.end.link.href}>{page.end.link.text}</a>}
+        </div>
+      )}
+    </section>
+
+    <Fragment set:html={writeup} />
+  </main>
+
+  <footer class="site-foot">
+    <span set:html={inlineMarkdown(page.footer ?? config.title)} />
+    <a href="#opening">{page.backToTop ?? "↑"}</a>
+  </footer>
+</body>
+</html>

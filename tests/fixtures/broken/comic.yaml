@@ -1,0 +1,10 @@
+title: Broken
+characters:
+  - id: hero
+    look: "tall woman in a red coat"
+chapters:
+  - id: one
+    title: One
+    panels:
+      - { id: p1, span: 4, shape: wide, scene: "{hero} meets {villain} on a bridge." }
+      - { id: p2, span: 4, shape: wide, scene: "A long fall." }

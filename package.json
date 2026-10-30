@@ -1,0 +1,27 @@
+{
+  "name": "vibe2fire",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "wrangler dev",
+    "check": "vp check && astro check",
+    "test": "vp test run",
+    "comic": "bun scripts/comic.ts",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "dependencies": {
+    "astro": "^7.4.4",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/bun": "^1.4.4",
+    "@types/node": "^26.6.6",
+    "typescript": "^6",
+    "vite-plus": "^1.4.0",
+    "wrangler": "^4.156.0"
+  },
+  "packageManager": "bun@1.4.2"
+}

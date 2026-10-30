@@ -1,0 +1,65 @@
+    <div class="writeup-shell" id="nhat-ky">
+      <aside class="contents" aria-label="Trong nhật ký"><p>Nhật ký thật</p><nav>
+        <a href="#la-gi">Omninoise là gì</a>
+        <a href="#dong-thoi-gian">Dòng thời gian</a>
+        <a href="#nhung-con-trum">Những con trùm</a>
+        <a href="#do-nghe">Đồ nghề</a>
+        <a href="#con-so">Con số</a>
+        <a href="#bai-hoc">Bài học thật</a>
+        <a href="#ghi-chu">Ghi chú</a>
+      </nav></aside>
+      <article class="prose" aria-label="Nhật ký kỹ thuật">
+        <h2 id="la-gi">Omninoise là gì</h2>
+        <p>Omninoise là studio nội bộ. Nó lấy tài liệu của chính sếp (các dự án, bài viết, truyện Waaworld), dựng thành video ngắn có giọng đọc AI, rồi đăng dưới tên Tech Life Insights lên Facebook, TikTok, YouTube Shorts, Instagram Reels và Threads. Việc đăng chạy qua một bản Postiz tự host; video dựng bằng Remotion; giọng đọc từ ElevenLabs.</p>
+        <p>Cái tên Omninoise chỉ dùng nội bộ. Công khai, kênh chỉ trỏ về trancuong.me và multnelis.org (ADR 0004).</p>
+
+        <h2 id="dong-thoi-gian">Dòng thời gian</h2>
+        <ul>
+          <li><strong>28/10:</strong> chốt kế hoạch mười giai đoạn. Postiz 2.25.3 lên HTTPS trên Dokploy. App Meta “Omninoise” chuyển Live; trang “AI Không Khó” đổi thành Tech Life Insights. TikTok sandbox nhận bản nháp đầu tiên. Logo “terminal spark” được chọn từ ba phương án của Codex.</li>
+          <li><strong>29/10:</strong> lập Instagram @techlifeinsightsai, nộp kiểm duyệt TikTok kèm video demo 174 giây, nối Instagram và Threads. Ngày 1 lên sớm lúc 13:55. Postiz được fork để bỏ Redis (khoảng 18:00), rồi bỏ Temporal và Elasticsearch (cắt chuyển 20:13, xong lúc 20:45): sáu container còn hai. Ngày 2 đến 7 được dựng và lên lịch, ba video mỗi ngày, 30 bài.</li>
+          <li><strong>30/10:</strong> hàng đợi Postgres đăng ngày 2 lúc 07:00, lần đầu tiên không ai bấm. YouTube được xác minh để đặt thumbnail. Repo code được đổi tên, gộp lịch sử, và từ đó mỗi lần merge vào <code>main</code> là tự deploy.</li>
+        </ul>
+
+        <h2 id="nhung-con-trum">Những con trùm</h2>
+        <table>
+          <thead><tr><th>Trùm</th><th>Cách qua</th></tr></thead>
+          <tbody>
+            <tr><td>Upload qua vault trên 1 MB bị 413</td><td>Tải media từ tab Postiz đã đăng nhập trong trình duyệt (ADR 0011)</td></tr>
+            <tr><td>TikTok chưa duyệt app: không được đăng công khai</td><td>Gửi vào hộp nháp (<code>UPLOAD</code>) đến khi qua kiểm duyệt (ADR 0007)</td></tr>
+            <tr><td>Instagram 409 “Invalid API key”</td><td>Thêm tài khoản làm Instagram Tester (ADR 0014)</td></tr>
+            <tr><td>Redis, Temporal, Elasticsearch</td><td>Fork Postiz, chạy mọi thứ trên Postgres (ADR 0018)</td></tr>
+            <tr><td>Kênh YouTube thương hiệu kẹt “in between steps”</td><td>Chọn kênh trong hộp thoại Configure Channel</td></tr>
+            <tr><td>Cloudflare chặn curl và Node trên máy CI</td><td>Gọi API deploy bằng fetch của Bun (ADR 0020)</td></tr>
+            <tr><td>Lịch Postiz quay khoảng 60 giây</td><td>Chờ, hoặc dùng API; thiếu <code>OPENAI_API_KEY</code> cho khung chat</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="do-nghe">Đồ nghề</h2>
+        <ul>
+          <li>Claude Code và Codex, cùng đọc một file luật <code>AGENTS.md</code>.</li>
+          <li>Postiz tự host (bản fork chỉ dùng Postgres) trên Dokploy; GitHub Actions dựng image và deploy.</li>
+          <li>Remotion để dựng video, ElevenLabs cho giọng đọc, một cổng kiểm tra 42 bước trước khi render.</li>
+          <li>Chrome thật qua CDP và iPhone Mirroring để thao tác những màn hình không có API.</li>
+          <li>Vault giữ mọi khoá; agent không bao giờ thấy giá trị bí mật.</li>
+        </ul>
+
+        <h2 id="con-so">Con số</h2>
+        <table>
+          <tbody>
+            <tr><td>Kênh</td><td>5</td></tr>
+            <tr><td>Dự án video giải thích</td><td>7</td></tr>
+            <tr><td>Khung giờ mỗi ngày</td><td>3 (07:00, 12:00, 20:00)</td></tr>
+            <tr><td>Bài lên lịch cho ngày 2 đến 7</td><td>30</td></tr>
+            <tr><td>Tiền giọng đọc mỗi video</td><td>khoảng 0,1 USD</td></tr>
+            <tr><td>Container Postiz</td><td>6 xuống 2</td></tr>
+            <tr><td>ADR</td><td>20</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="bai-hoc">Bài học thật</h2>
+        <p>Phần châm biếm có một hạt sự thật: AI không làm được việc này nếu không ai học cách giao việc cho nó. Những thứ làm nên khác biệt đều nhàm chán: luật viết ra giấy, cổng kiểm tra cứng thay vì hy vọng, mọi câu nói phải có nguồn, khoá nằm trong vault, mọi quyết định thành ADR, và agent tự merge PR của mình khi kiểm tra đã xanh.</p>
+
+        <h2 id="ghi-chu">Ghi chú</h2>
+        <p>Truyện châm biếm; phòng Marketing trong truyện là hư cấu, cuộc họp ngày thứ Hai cũng vậy. Nhật ký lấy từ repo omninoise-ops: <code>docs/log.md</code>, <code>docs/status.md</code> và <code>docs/adr/</code>. Tranh do Codex vẽ bằng công cụ tạo ảnh, lấy một bảng nhân vật làm mẫu; lời thoại viết bằng HTML, chữ Bangers và Patrick Hand (SIL Open Font License). Trang được dựng bằng Astro từ <code>comics/vibe2fire/comic.yaml</code> trong repo vibe2fire, chạy trên Cloudflare Workers. Bố cục đọc truyện phỏng theo trang PHP2Shell của Calif.</p>
+      </article>
+    </div>

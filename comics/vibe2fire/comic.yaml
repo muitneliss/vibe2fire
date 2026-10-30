@@ -1,0 +1,701 @@
+# Vibe2Fire: the satire comic about how the Omninoise studio was built (10 chapters, 46 panels).
+# Field reference: .agents/skills/comic-pipeline/references/config.md
+# After editing: bun run check && bun run build. Panels are generated with: bun run comic panels comics/vibe2fire
+title: Vibe2Fire
+lang: vi
+home: true
+style:
+  preset: graphic-novel
+reader:
+  theme: dark
+  lettering: ink
+  labels:
+    pages: Trang
+    panels: Từng khung
+    chapters: Các chương
+    mode: Cách đọc
+    readScene: Đọc cảnh này
+    skip: Bỏ qua truyện, đọc nhật ký
+    start: Bắt đầu đọc
+page:
+  pageTitle: "Vibe2Fire: sếp tự học AI, phòng Marketing giải tán"
+  description: Truyện tranh châm biếm nội bộ về cách Omninoise ra đời, kèm nhật ký kỹ thuật thật.
+  robots: noindex, nofollow
+  wordmark: Vibe*2*Fire
+  home: /
+  credit:
+    text: Omninoise, nội bộ ↗
+    href: /
+  heading: Chuyện về *một ông sếp tự học AI* và một phòng Marketing không còn nữa
+  invitation: Omninoise là studio nội bộ biến tài liệu của chính sếp thành video ngắn về AI, rồi đăng lên năm nền tảng dưới tên Tech Life Insights. Nó được dựng trong ba ngày, bởi một người và hai con agent. Trước khi đọc nhật ký kỹ thuật, mời bạn quay về quý 3 năm 2026…
+  shortcuts:
+    - text: Bắt đầu từ quý 3 ↓
+      href: "#sa-mac"
+    - text: Đọc thẳng nhật ký thật ↘
+      href: "#nhat-ky"
+  note: Truyện châm biếm nội bộ, mười chương. Phòng Marketing trong truyện là nhân vật hư cấu. Tranh do AI vẽ (Codex), lời thoại do người viết. Mọi thứ trong phần nhật ký đều có thật và lấy từ `docs/log.md`, `docs/status.md` và `docs/adr/`.
+  end:
+    text: Hết. Phòng Marketing cũng vậy.
+    link:
+      text: Đọc nhật ký thật ↘
+      href: "#nhat-ky"
+  writeup: writeup.html
+  writeupId: nhat-ky
+  footer: Vibe2Fire · trang nội bộ, không liên kết công khai
+  backToTop: Về đầu trang ↑
+characters:
+  - id: boss
+    name: Sếp
+    tag: the boss, the man in the navy hoodie and black glasses
+    look: Vietnamese man in his mid 30s, short black hair swept up, rectangular black-framed glasses, light stubble, navy hoodie with white drawstrings, dark jeans, sneakers
+    props: often carries a laptop
+  - id: linh
+    name: Linh
+    tag: the woman in the magenta blazer
+    look: Vietnamese woman in her late 20s, long dark-brown wavy hair, magenta blazer over a white blouse, small gold earrings
+    props: holds a tablet
+  - id: mai
+    name: Mai
+    tag: the young woman with the top bun and lanyard
+    look: young Vietnamese woman, black hair in a top bun, light-blue button shirt, yellow lanyard with an ID badge
+    props: holds a takeaway coffee
+  - id: khoa
+    name: Khoa
+    tag: the curly-haired bearded man in the mustard shirt
+    look: Vietnamese man with curly black hair and a full short beard, mustard-yellow shirt, no glasses, sleepy expression
+  - id: claude
+    name: Claude
+    tag: the small coral-orange robot
+    look: small friendly retro robot about waist height, rounded coral-orange body, dark visor face with two mint-green pill-shaped eyes, thin antenna with a yellow bulb
+  - id: codex
+    name: Codex
+    tag: the small teal-blue robot
+    look: the same small retro robot design with a teal-blue body
+chapters:
+  - id: sa-mac
+    nav: Quý 3
+    date: Quý 3/2026
+    title: Sa mạc nội dung
+    intro: Phòng Marketing có ngân sách, có kế hoạch, có cả slide. Thứ duy nhất họ không có là bài đăng.
+    transcript: "Quý 3/2026, Sài Gòn, mùa mưa. Phòng Marketing họp giao ban tuần thứ mười hai liên tiếp. Linh: “Quý này mình đăng hai bài, nếu agency gửi bản kịp.” Mai hỏi AI và nhận về “Trong thời đại số phát triển như vũ bão…”. Linh cấm AI, quay về quy trình cũ. Khoa ngủ gục và nói mớ: một video mất sáu tuần."
+    panels:
+      - id: c01-p1
+        span: 6
+        shape: wide
+        scene: "Establishing shot of a Saigon street in the rainy-season morning: wet asphalt reflecting light, a stream of motorbikes with riders in raincoats, street-food stall under a tarp, a mid-rise glass office building in the background. Grey-blue overcast light."
+        alt: Phố Sài Gòn buổi sáng mùa mưa, dòng xe máy, tòa văn phòng kính phía xa.
+        text:
+          - cap: Quý 3/2026 – Sài Gòn
+            at: tl
+          - cap: Mùa mưa. Phòng Marketing họp giao ban, tuần thứ mười hai liên tiếp.
+            at: bl
+      - id: c01-p2
+        span: 4
+        shape: wide
+        cast:
+          - linh
+          - mai
+          - khoa
+        scene: Inside a cramped office meeting room. {linh} (magenta blazer) stands at a whiteboard covered in tiny vague doodles and one very small sad chart, presenting with forced confidence. {mai} (top bun, light-blue shirt, lanyard) sips coffee and scrolls her phone. {khoa} (curly hair, beard, mustard shirt) is asleep in his chair, head tilted back. Fluorescent light, beige walls.
+        alt: "Phòng họp: Linh thuyết trình trước bảng trắng gần như trống, Mai lướt điện thoại, Khoa ngủ gật."
+        text:
+          - say: Quý này mình đăng… hai bài. Nếu agency gửi bản kịp.
+            at: tl
+            tail: r
+      - id: c01-p3
+        span: 2
+        shape: square
+        cast:
+          - mai
+        scene: Medium close-up of {mai} (not the woman in the magenta blazer). She sits at her laptop, the screen glow showing a chat window filled with an endless wall of generic grey text blocks. She looks bored, chin on her hand, holding a takeaway coffee cup.
+        alt: Mai chống cằm chán nản trước màn hình chat AI đầy chữ chung chung.
+        text:
+          - say: "Em hỏi AI rồi. Nó viết: “Trong thời đại số phát triển như vũ bão…”"
+            at: tl
+      - id: c01-p4
+        span: 2
+        shape: square
+        cast:
+          - linh
+        scene: "{linh} with arms crossed, stern, standing next to an office wall where a sheet of paper with a red crossed-out cartoon robot drawing has been taped. Slight low angle."
+        alt: Linh khoanh tay, bên cạnh tờ giấy vẽ con robot bị gạch chéo đỏ.
+        text:
+          - say: Thôi, cấm AI. Làm theo quy trình cũ.
+            at: tr
+            tail: c
+      - id: c01-p5
+        span: 4
+        shape: wide
+        cast:
+          - khoa
+        scene: "{khoa} (no glasses, no hoodie) slumped over his desk asleep beside a towering stack of paper documents with sticky tabs, a wall calendar behind him with many days crossed out in red, an unfinished storyboard on the desk. Late afternoon light through blinds."
+        alt: Khoa ngủ gục bên chồng giấy duyệt cao ngất, lịch treo tường gạch đỏ kín.
+        text:
+          - say: "Một video: kịch bản, thu âm, dựng, duyệt ba vòng… sáu tuần là nhanh…"
+            at: tl
+          - sfx: ZZZ
+            at: tr
+  - id: bon-muoi-mot
+    nav: Cuối tháng
+    date: Cuối tháng
+    title: Bốn mươi mốt
+    intro: Sếp không cần một báo cáo dài. Một con số là đủ.
+    transcript: "Cuối tháng, sếp mở báo cáo: 41 lượt xem. “Tính luôn mẹ anh.” Bên kia vách kính, phòng Marketing đang họp bàn về cuộc họp tiếp theo. Sếp bước ra ngoài trời mưa: nếu họ không chịu học công cụ, thì mình học."
+    panels:
+      - id: c02-p1
+        span: 4
+        shape: wide
+        cast:
+          - boss
+        scene: "{boss} alone in a small glass-walled office at dusk, seen from behind and slightly to the side, looking at a large monitor that shows a nearly flat line chart hugging the bottom. City lights starting to glow outside the window."
+        alt: Sếp một mình trong phòng kính lúc chạng vạng, nhìn biểu đồ gần như nằm sát đáy.
+        text:
+          - cap: Cuối tháng. Sếp mở báo cáo.
+            at: tl
+      - id: c02-p2
+        span: 2
+        shape: square
+        cast:
+          - boss
+        scene: Extreme close-up of {boss}'s eyes behind his rectangular black-framed glasses, a monitor's tiny glowing chart reflected in the lenses, one bead of sweat on his forehead, deadpan disbelief. Tight framing, dramatic.
+        alt: Cận cảnh mắt sếp sau cặp kính, biểu đồ phản chiếu trong tròng kính, một giọt mồ hôi.
+        text:
+          - cap: Bốn mươi mốt lượt xem.
+            at: tl
+          - say: Tính luôn mẹ anh.
+            at: br
+            tail: up
+      - id: c02-p3
+        span: 4
+        shape: square
+        cast:
+          - boss
+          - linh
+          - mai
+          - khoa
+        scene: "View through a glass office wall: {boss} in the foreground, blurred and out of focus on the left, watching the marketing team ({linh}, {mai}, {khoa}) in the background chatting around a table with snacks and phones, laughing, a meeting that clearly never ends."
+        alt: Qua vách kính, cả phòng Marketing đang cười nói quanh bàn đồ ăn vặt.
+        text:
+          - cap: "Bên kia vách kính: cuộc họp bàn về cuộc họp tiếp theo."
+            at: tl
+      - id: c02-p4
+        span: 2
+        shape: tall
+        cast:
+          - boss
+        scene: "Tall panel: {boss} walking alone out of the office building at night in the rain, hood of his navy hoodie up, laptop bag on his shoulder, neon reflections on the wet pavement, determined stride, seen from a low angle."
+        alt: Sếp trùm mũ áo hoodie bước ra khỏi tòa nhà trong mưa đêm.
+        text:
+          - cap: Nếu họ không chịu học công cụ…
+            at: tl
+          - cap: …thì mình học.
+            at: bl
+  - id: tu-hoc
+    nav: Những đêm
+    date: Những đêm
+    title: Tự học
+    intro: "Sếp không mua khoá học “Làm giàu với ChatGPT”. Sếp mở terminal và học thứ khó nhất trước: giao việc cho rõ."
+    transcript: "Hai giờ sáng, ly cà phê thứ tư. Sếp giao repo cho Claude đọc và nhờ Codex phản biện. Hai robot hỏi: mình xây gì? Lần đầu agent làm sai, lần hai cũng sai; sếp nhận ra lỗi là ở cách giao việc. Mỗi quyết định thành một ADR. Ba luật: mọi câu nói có nguồn, mọi video qua cổng kiểm tra, mọi khoá nằm trong vault."
+    context: "Đoạn này là thật: mọi quyết định của dự án nằm trong `docs/adr/`, và Claude Code với Codex cùng đọc một file luật duy nhất là `AGENTS.md`. Không có khoá nào nằm trong file hay trong chat; agent gọi API qua vault và không bao giờ thấy giá trị bí mật."
+    panels:
+      - id: c03-p1
+        span: 6
+        shape: wide
+        cast:
+          - boss
+        scene: "A small apartment at 2 a.m.: {boss} hunched at a desk in front of a laptop whose screen casts a cool glow on his face, four empty coffee cups lined up, city lights through the window, a cat asleep on a stack of books."
+        alt: Căn hộ lúc hai giờ sáng, sếp cúi bên laptop, bốn ly cà phê rỗng, con mèo ngủ trên chồng sách.
+        text:
+          - cap: 2 giờ sáng. Ly cà phê thứ tư.
+            at: tl
+          - say: Claude, đọc repo. Codex, cho anh ý kiến thứ hai.
+            at: tr
+            tail: c
+      - id: c03-p2
+        span: 3
+        shape: square
+        cast:
+          - boss
+          - claude
+          - codex
+        scene: "Close on the laptop screen at night: {claude} (coral-orange) and {codex} (teal-blue) materialise out of the screen light like friendly holograms, waving at {boss}, whose face is lit from below, surprised."
+        alt: Hai robot cam và xanh hiện ra từ ánh sáng màn hình laptop, vẫy tay chào sếp.
+        text:
+          - say: Em đọc repo rồi. Mình xây gì vậy sếp?
+            at: tr
+      - id: c03-p3
+        span: 3
+        shape: square
+        cast:
+          - boss
+        scene: "{boss} frustrated, one hand in his hair, the laptop screen glowing red with error light, crumpled paper balls around the desk, the two robots looking sheepish beside the laptop."
+        alt: Sếp vò đầu trước màn hình đỏ báo lỗi, giấy vo tròn khắp bàn, hai robot ngượng ngùng.
+        text:
+          - cap: Lần đầu, agent làm sai. Lần hai cũng sai.
+            at: tl
+          - say: Không phải lỗi của nó. Anh giao việc mơ hồ.
+            at: br
+            tail: up
+      - id: c03-p4
+        span: 4
+        shape: wide
+        cast:
+          - boss
+        scene: "{boss} standing at a wall covered with dozens of index cards and sticky notes connected by string, like a detective board, marker in hand, organising decisions. The two robots sit on the desk watching attentively. Warm lamp light."
+        alt: Sếp đứng trước bức tường đầy thẻ ghi chú nối bằng dây, hai robot ngồi trên bàn quan sát.
+        text:
+          - cap: "Bài học cả phòng chưa từng học: AI là đồng đội, và đồng đội cần luật chơi. Mỗi quyết định thành một ADR."
+            at: tl
+      - id: c03-p5
+        span: 2
+        shape: square
+        cast:
+          - boss
+        scene: Over-the-shoulder shot of {boss} pinning three blank white cards in a neat vertical row on a cork board, the robots handing him push pins. Calm, focused mood.
+        alt: Sếp ghim ba tấm thẻ trắng thành một cột trên bảng gỗ bần, hai robot đưa đinh ghim.
+        text:
+          - stack:
+              - 1. Mọi câu nói phải có nguồn.
+              - 2. Mọi video qua cổng kiểm tra.
+              - 3. Mọi khoá nằm trong vault.
+            at: tr
+  - id: ngay-so-khong
+    nav: 28/10
+    date: 28/10/2026
+    title: Ngày số không
+    intro: Một ngày. Một máy chủ có sẵn. Không agency, không báo giá.
+    transcript: 28/10. Máy chủ có 22,9 GB RAM và đang chạy 13 dự án; robot nói còn chỗ cho thêm một. Postiz tự host lên HTTPS trong ngày. Trang Facebook cũ “AI Không Khó” đổi thành Tech Life Insights. Codex vẽ ba phương án logo, sếp chọn “terminal spark”. Bản nháp TikTok đầu tiên vào hộp thư.
+    panels:
+      - id: c04-p1
+        span: 4
+        shape: wide
+        cast:
+          - boss
+          - claude
+        scene: A server room aisle with racks of blinking green and amber lights, cables everywhere. {boss} kneels plugging in a network cable while {claude} holds a flashlight. Cool blue light.
+        alt: Lối đi trong phòng máy chủ, sếp quỳ cắm dây mạng, robot cam soi đèn pin.
+        text:
+          - cap: "28/10. Máy chủ: 22,9 GB RAM, đã chạy sẵn 13 dự án."
+            at: tl
+          - say: Còn chỗ cho thêm một.
+            at: br
+            tail: up
+      - id: c04-p2
+        span: 2
+        shape: square
+        cast:
+          - boss
+          - codex
+        scene: "{boss} pumping his fist in triumph in front of a monitor glowing bright green with a success screen (no readable text), {codex} cheering with raised arms. Energetic diagonal composition with motion lines."
+        alt: Sếp giơ nắm đấm ăn mừng trước màn hình xanh lá, robot xanh giơ hai tay reo.
+        text:
+          - sfx: DEPLOY!
+            at: tr
+            color: mint
+          - cap: Postiz tự host, lên HTTPS ngay trong ngày.
+            at: bl
+      - id: c04-p3
+        span: 2
+        shape: square
+        cast:
+          - boss
+          - claude
+        scene: "Metaphor: a giant smartphone standing like a shop sign; {claude} on a small ladder repaints its old faded shop-style page with a fresh dark-green and mint coat using a paint roller, {boss} watching from below with arms crossed and a smile."
+        alt: Robot cam đứng trên thang sơn lại trang cũ trên chiếc điện thoại khổng lồ, sếp đứng dưới mỉm cười.
+        text:
+          - cap: "Trang Facebook cũ “AI Không Khó” khoác áo mới: Tech Life Insights."
+            at: tl
+      - id: c04-p4
+        span: 2
+        shape: square
+        cast:
+          - boss
+          - codex
+        scene: "The {codex} presenting three square canvases on easels: a plain circle, a terminal prompt symbol with a small mint spark, and a triangle. {boss} points decisively at the middle canvas."
+        alt: Robot xanh giới thiệu ba bức tranh logo trên giá vẽ, sếp chỉ vào bức ở giữa.
+        text:
+          - cap: Codex vẽ ba phương án logo.
+            at: bl
+          - say: Số hai. “Terminal spark”.
+            at: tr
+            tail: c
+      - id: c04-p5
+        span: 2
+        shape: square
+        scene: A smartphone lying on a dark desk at night lighting up with a notification glow, vibration motion lines around it, a hand reaching in from the edge of the frame.
+        alt: Điện thoại sáng lên trên bàn tối, rung vì thông báo.
+        text:
+          - sfx: TING!
+            at: tr
+            color: yel
+          - cap: "TikTok sandbox: bản nháp đầu tiên vào hộp thư."
+            at: bl
+  - id: video-dau-tien
+    nav: 29/10 sáng
+    date: 29/10, sáng
+    title: Video đầu tiên
+    intro: Video được dựng bằng code, đọc bằng giọng AI, và phải qua một cổng kiểm tra 42 bước trước khi lên sóng. Kể cả video của sếp.
+    transcript: "Bản video đầu tiên đúng nhưng nhạt: không phụ đề, mở bài chậm, dài 51 giây. Cổng kiểm tra đánh trượt. Giọng đọc AI tốn khoảng 0,1 USD mỗi video, và chú thích luôn ghi rõ là giọng AI. Bản hai dài 38,4 giây, qua đủ 42/42 bước. Ngày 1 lên sóng lúc 13:55."
+    context: Video dựng bằng Remotion, giọng đọc từ ElevenLabs. Cổng `nv validate` chạy 42 bước kiểm tra trước khi render; mọi câu nói trong video phải truy được về một nguồn trong `content/sources.yaml`, câu nào không có nguồn thì cắt.
+    panels:
+      - id: c05-p1
+        span: 6
+        shape: wide
+        cast:
+          - boss
+        scene: "A dim editing room: {boss} and both robots sit watching a vertical video playing on a big monitor; the video looks plain and static. {boss} has a flat, unimpressed expression, chin on fist."
+        alt: Phòng dựng tối, sếp và hai robot xem một video dọc nhạt nhẽo trên màn hình lớn.
+        text:
+          - cap: "Bản đầu: đúng, nhưng nhạt. Không phụ đề, mở bài chậm, 51 giây."
+            at: bl
+          - say: Chán. Chính anh còn lướt qua.
+            at: tl
+      - id: c05-p2
+        span: 3
+        shape: square
+        cast:
+          - codex
+        scene: The {codex} holding up a large red rubber stamp, about to stamp a printed storyboard sheet, a bright red warning light washing over the scene.
+        alt: Robot xanh giơ con dấu đỏ to sắp đóng lên tờ storyboard, ánh đèn cảnh báo đỏ.
+        text:
+          - say: "Cổng kiểm tra: trượt."
+            at: tl
+            tail: r
+          - sfx: BỘP!
+            at: br
+            color: red
+      - id: c05-p3
+        span: 3
+        shape: square
+        cast:
+          - claude
+        scene: A small recording booth with a professional microphone and pop filter; a glowing mint-green sound waveform floats in the air in front of it, {claude} adjusting the mic stand. No person speaking.
+        alt: Buồng thu âm với micro, sóng âm xanh bạc hà lơ lửng, robot cam chỉnh chân micro.
+        text:
+          - cap: "Giọng đọc AI: khoảng 0,1 USD mỗi video. Chú thích luôn ghi rõ “giọng AI”."
+            at: tl
+      - id: c05-p4
+        span: 6
+        shape: wide
+        cast:
+          - boss
+          - claude
+        scene: "{boss} and both robots celebrating in front of a large screen glowing with a huge green check mark shape, confetti of paper scraps, high-five between {boss} and {claude}, dynamic speed lines."
+        alt: Sếp và hai robot ăn mừng trước màn hình có dấu tích xanh khổng lồ, giấy vụn bay.
+        text:
+          - cap: "Bản hai: 38,4 giây, qua đủ 42/42 bước kiểm tra."
+            at: tl
+          - sfx: QUA!
+            at: tr
+            color: mint
+          - cap: 13:55. Ngày 1 lên sóng sớm hơn lịch.
+            at: bl
+  - id: danh-trum
+    nav: 29/10 chiều
+    date: 29/10, chiều
+    title: Đánh trùm
+    intro: Mỗi nền tảng có một con trùm riêng. Phòng Marketing sẽ mở ticket rồi chờ. Sếp đánh từng con, trong cùng một buổi chiều.
+    transcript: Quái vật 413 chặn mọi file lớn hơn 1 MB đi qua vault; sếp tải video lên bằng trình duyệt. TikTok chưa duyệt app thì cấm đăng công khai; sếp nộp video demo 174 giây và gửi bài vào hộp nháp trong lúc chờ. Instagram báo 409 “Invalid API key”; thêm tài khoản làm Tester là qua. App Meta ở chế độ Development thì bài chỉ người trong app thấy; sếp chuyển sang Live.
+    panels:
+      - id: c06-p1
+        span: 6
+        shape: wide
+        cast:
+          - boss
+        scene: A huge round red one-eyed blob monster with horns and a wide toothy mouth blocks a narrow corridor. {boss} stands facing it, holding a film reel under his arm, glaring back. Dramatic red lighting, comic speed lines.
+        alt: Quái vật đỏ một mắt to lớn chặn hành lang, sếp cầm cuộn phim đứng đối diện.
+        text:
+          - say: Quá 1 MB là chặn hả? Được, anh tải qua trình duyệt.
+            at: tl
+            tail: r
+          - sfx: 413!
+            at: tr
+            size: xl
+            color: red
+      - id: c06-p2
+        span: 3
+        shape: square
+        cast:
+          - boss
+        scene: A futuristic border checkpoint lit in neon pink and cyan with a lowered red-and-white barrier arm; a stern guard robot in a booth holds up one hand. {boss} waits on the other side holding a film canister.
+        alt: Trạm kiểm soát đèn neon hồng xanh, barie hạ xuống, robot gác giơ tay chặn.
+        text:
+          - cap: "TikTok: app chưa qua kiểm duyệt thì cấm đăng công khai. Nộp video demo 174 giây, rồi chờ."
+            at: tl
+      - id: c06-p3
+        span: 3
+        shape: square
+        cast:
+          - boss
+        scene: "{boss} calmly sliding a film canister into the slot of a large old-fashioned metal mailbox / inbox, a small knowing smile, the barrier visible far behind him."
+        alt: Sếp bình thản bỏ hộp phim vào khe hộp thư kim loại.
+        text:
+          - say: Thì vào hộp nháp. Anh chờ được.
+            at: tl
+            tail: r
+      - id: c06-p4
+        span: 3
+        shape: square
+        cast:
+          - boss
+          - claude
+        scene: A massive round bank-vault door with a pink-orange-purple gradient finish and a blinking red error light. The {claude} holds up a small blank yellow badge on a lanyard toward the vault's keypad, {boss} behind it nodding.
+        alt: Cửa hầm sắt tròn màu hồng cam tím nháy đèn lỗi đỏ, robot cam giơ thẻ vàng về phía bàn phím.
+        text:
+          - cap: "Instagram: 409 “Invalid API key”."
+            at: tl
+          - say: Thêm tài khoản làm Tester là qua.
+            at: br
+            tail: up
+      - id: c06-p5
+        span: 3
+        shape: square
+        cast:
+          - boss
+        scene: "A room with a one-way mirror: on one side the two robots wearing blank ID badges can see a glowing post on a screen; on the other side ordinary people see only a blank wall. {boss} reaching for a big lever switch on the wall."
+        alt: "Căn phòng gương một chiều: robot đeo thẻ thấy bài đăng, người ngoài chỉ thấy tường trống. Sếp với tay kéo cần gạt."
+        text:
+          - cap: "App Meta còn ở chế độ Development: bài đăng chỉ người trong app thấy."
+            at: tl
+          - say: Chuyển Live.
+            at: br
+            tail: up
+  - id: con-rong
+    nav: 29/10 tối
+    date: 29/10, tối
+    title: Con rồng ba đầu
+    intro: Postiz chính chủ cần sáu container. Sếp đọc youjustneedpostgres.com, rồi quyết định không nuôi rồng nữa.
+    transcript: "Con rồng ba đầu Redis, Temporal, Elasticsearch quấn quanh máy chủ. “Ba cái đầu, ba thứ phải nuôi. Mình chỉ cần Postgres.” Con voi Postgres hạ rồng: Postiz được fork, hàng đợi viết lại trên Postgres, qua bốn vòng review và 29 bài test. 20:13, sao lưu xong thì cắt chuyển. Sếp gõ “from now, just auto merge for me”. 20:45, sáu container còn hai."
+    context: "Tất cả có thật, trong `docs/log.md` ngày 29/10 và ADR 0018. Trước khi cắt chuyển: một bản sao lưu cơ sở dữ liệu, 33 bài đang chờ, không bài nào đến hạn trong 11 giờ tới. Sau đó: vẫn 33 bài chờ, 0 lỗi, năm kênh còn nguyên."
+    panels:
+      - id: c07-p1
+        span: 6
+        shape: wide
+        cast:
+          - boss
+        scene: A gigantic three-headed dragon (one head red, one purple, one orange) coiled around towers of server racks, roaring. {boss} stands small in the foreground, seen from behind, looking up. Epic scale, dark stormy light.
+        alt: Con rồng ba đầu đỏ, tím, cam quấn quanh các tháp máy chủ, sếp đứng nhỏ bé phía trước.
+        text:
+          - cap: Redis. Temporal. Elasticsearch.
+            at: tl
+          - say: Ba cái đầu, ba thứ phải nuôi.
+            at: bl
+      - id: c07-p2
+        span: 2
+        shape: square
+        cast:
+          - boss
+        scene: "{boss} standing beside a giant gentle steel-blue elephant, his hand resting on its trunk, both looking ahead with calm determination. Light breaking through clouds behind them."
+        alt: Sếp đứng cạnh con voi xanh thép khổng lồ, tay đặt lên vòi voi.
+        text:
+          - say: Mình chỉ cần Postgres.
+            at: tl
+            tail: r
+      - id: c07-p3
+        span: 4
+        shape: wide
+        scene: The giant steel-blue elephant charges forward, scattering the three dragon heads which recoil and collapse; dust, debris and heavy speed lines, impact burst in the centre. Explosive action panel.
+        alt: Con voi lao tới, ba đầu rồng ngã gục giữa bụi và mảnh vỡ.
+        text:
+          - sfx: RẦM!
+            at: tr
+            size: xl
+          - cap: Fork Postiz. Hàng đợi viết lại trên Postgres, qua bốn vòng review và 29 bài test.
+            at: bl
+      - id: c07-p4
+        span: 3
+        shape: square
+        cast:
+          - boss
+        scene: "A control console at night: {boss}'s hand gripping a big lever, an analog wall clock reading about a quarter past eight, a reel-to-reel backup tape spinning beside him, the two robots watching tensely."
+        alt: Bảng điều khiển ban đêm, tay sếp nắm cần gạt, đồng hồ chỉ hơn tám giờ, cuộn băng sao lưu đang quay.
+        text:
+          - cap: 20:13. Sao lưu xong. Cắt chuyển.
+            at: tl
+      - id: c07-p5
+        span: 3
+        shape: square
+        cast:
+          - boss
+          - codex
+        scene: "Late night: {boss} leaning back in his chair with a relaxed smirk, typing one-handed on his laptop, {codex} giving a thumbs up next to the keyboard. Warm desk lamp."
+        alt: Sếp ngả lưng cười nửa miệng, gõ laptop một tay, robot xanh giơ ngón cái.
+        text:
+          - say: from now, just auto merge for me.
+            at: tl
+            tail: r
+          - cap: 20:45. Sáu container còn hai. Câu kia thành luôn ADR 0013.
+            at: bl
+  - id: co-may
+    nav: 30/10
+    date: 30/10/2026
+    title: Cỗ máy tự chạy
+    intro: 07:00 sáng. Sếp đang ngủ. Bài vẫn lên.
+    transcript: "07:00, sếp vẫn ngủ. Hàng đợi Postgres tự đăng bài ngày 2 lên năm kênh: Facebook, TikTok, YouTube, Instagram, Threads. Máy CI bị Cloudflare chặn: curl và Node không qua, fetch của Bun thì lọt. Lịch Postiz quay 60 giây mỗi lần mở; API vẫn chạy. Từ giờ mỗi lần merge vào main là tự deploy."
+    panels:
+      - id: c08-p1
+        span: 6
+        shape: wide
+        cast:
+          - boss
+        scene: "Dawn light through the window: {boss} asleep on a couch with his glasses pushed up on his forehead, an alarm clock on the side table showing seven o'clock, while the two robots work at the desk on the laptop in the background."
+        alt: Ánh bình minh, sếp ngủ trên sofa, đồng hồ báo thức bảy giờ, hai robot làm việc bên laptop.
+        text:
+          - cap: 07:00. Sếp vẫn ngủ.
+            at: tl
+          - sfx: ZZZ…
+            at: tr
+            color: mint
+      - id: c08-p2
+        span: 4
+        shape: wide
+        cast:
+          - claude
+        scene: Five smartphones standing upright in a row on a table, each screen lighting up with a different colourful video glow (blue, pink-red, red, purple-orange gradient, black and white), light beams rising from them. The {claude} stands at the end of the row pressing a big round button.
+        alt: Năm chiếc điện thoại xếp hàng sáng màn hình nhiều màu, robot cam bấm nút tròn lớn.
+        text:
+          - cap: Hàng đợi Postgres tự đăng ngày 2 lên năm kênh. Không ai bấm nút.
+            at: tl
+      - id: c08-p3
+        span: 2
+        shape: square
+        scene: A tall orange-lit brick wall; a cheerful round bread-bun mascot with a tiny smiling face bursts through it, bricks flying, while a curled-up cable and a small green hexagon bounce off the wall unharmed. Comic impact lines.
+        alt: Chiếc bánh bao tròn mỉm cười xuyên thủng bức tường gạch cam, gạch văng tung tóe.
+        text:
+          - cap: "Máy CI bị Cloudflare chặn: curl không qua, Node không qua."
+            at: tl
+          - sfx: BỤP!
+            at: mr
+            color: yel
+          - cap: Bun thì lọt.
+            at: bl
+      - id: c08-p4
+        span: 3
+        shape: square
+        cast:
+          - boss
+          - codex
+        scene: "{boss} holding a coffee mug, deadpan, staring at a monitor showing only a large circular loading spinner. The {codex} beside him tapping its foot. Static, comedic waiting mood."
+        alt: Sếp cầm cốc cà phê, mặt không cảm xúc, nhìn vòng tải xoay trên màn hình; robot xanh gõ chân chờ.
+        text:
+          - cap: Lịch Postiz quay 60 giây mỗi lần mở.
+            at: tl
+          - say: Kệ nó quay. API vẫn chạy.
+            at: br
+            tail: up
+      - id: c08-p5
+        span: 3
+        shape: square
+        cast:
+          - claude
+        scene: "A small factory conveyor belt: neatly wrapped parcels enter on the left and come out as shipping containers loaded onto a toy cargo ship on the right, {claude} supervising with a clipboard. Bright clean morning light."
+        alt: "Băng chuyền: gói hàng đi vào, ra thành container chất lên tàu, robot cam cầm bảng kẹp giám sát."
+        text:
+          - cap: Từ giờ, mỗi lần merge vào main là tự deploy.
+            at: tl
+  - id: thu-hai
+    nav: Thứ Hai
+    date: Thứ Hai
+    title: Cuộc họp cuối cùng
+    intro: Lần này, sếp là người làm slide.
+    transcript: "Thứ Hai, họp toàn phòng. Slide: phòng Marketing đăng 2 bài một quý; sếp và agent làm 3 video một ngày trên 5 kênh. Linh: “Nhưng ai sẽ làm marketing?” Mai: “Tụi em học AI được mà!” Sếp: “Anh mời ba quý rồi. Không phải AI thay các em. Là các em không chịu học nó.” Giải tán. Chiều hôm đó, thang máy đông hơn mọi ngày."
+    panels:
+      - id: c09-p1
+        span: 6
+        shape: wide
+        cast:
+          - boss
+          - linh
+          - mai
+          - khoa
+        scene: "The office meeting room again: {boss} stands beside a projector screen showing a bar chart with one tiny bar and one enormous bar. {linh}, {mai} and {khoa} sit at the table looking up at it, stunned. Projector light beam."
+        alt: Phòng họp, sếp đứng cạnh màn chiếu có biểu đồ một cột tí hon và một cột khổng lồ, ba nhân viên ngồi sững sờ.
+        text:
+          - cap: Thứ Hai. Họp toàn phòng.
+            at: tl
+      - id: c09-p2
+        span: 2
+        shape: square
+        scene: "Close-up of the projector screen: a bar chart with one tiny grey bar on the left and one huge mint-green bar on the right that goes off the top of the screen. No text on the chart."
+        alt: "Cận cảnh biểu đồ: một cột xám tí hon và một cột xanh bạc hà vượt khỏi màn hình."
+        text:
+          - cap: "Phòng Marketing: 2 bài một quý."
+            at: tl
+          - cap: "Sếp + agent: 3 video một ngày, 5 kênh."
+            at: bl
+      - id: c09-p3
+        span: 2
+        shape: square
+        cast:
+          - linh
+        scene: Close-up of {linh} (magenta blazer) looking nervous, a bead of sweat on her temple, hands clasped tightly, forced smile cracking.
+        alt: Linh lo lắng, giọt mồ hôi trên thái dương, nụ cười gượng.
+        text:
+          - say: Nhưng… ai sẽ làm marketing?
+            at: tl
+            tail: r
+      - id: c09-p4
+        span: 2
+        shape: square
+        cast:
+          - mai
+          - khoa
+        scene: "{mai} (top bun, lanyard) leaning forward pleadingly with both hands up, {khoa} (curly hair, beard) wide-eyed and suddenly very awake beside her."
+        alt: Mai chồm người giơ hai tay năn nỉ, Khoa tròn mắt tỉnh hẳn.
+        text:
+          - say: Tụi em học AI được mà sếp!
+            at: tl
+            tail: r
+      - id: c09-p5
+        span: 4
+        shape: wide
+        focus: bottom
+        cast:
+          - boss
+        scene: "{boss} standing firm, arms crossed, stern, against a dramatic red background with radiating comic speed lines, light glinting off his glasses. Powerful low-angle hero shot."
+        alt: Sếp khoanh tay đứng vững trên nền đỏ với các vạch tốc độ, ánh sáng loé trên kính.
+        text:
+          - say: Anh mời ba quý rồi. Không phải AI thay các em. Là các em không chịu học nó.
+            at: tl
+            tail: r
+          - sfx: GIẢI TÁN!
+            at: br
+            size: xl
+            color: yel
+      - id: c09-p6
+        span: 2
+        shape: square
+        cast:
+          - linh
+          - mai
+          - khoa
+        scene: "{linh}, {mai} and {khoa} carrying cardboard boxes with desk plants and mugs, walking toward an open elevator in an office corridor, seen from behind. Melancholic afternoon light."
+        alt: Ba nhân viên ôm thùng các-tông đi về phía thang máy.
+        text:
+          - cap: Chiều thứ Hai, thang máy đông hơn mọi ngày.
+            at: tl
+  - id: gio-thi
+    nav: …và giờ thì
+    date: Hôm nay
+    title: …và giờ thì
+    transcript: "Văn phòng vắng lúc hoàng hôn. Sếp làm việc với hai robot; vài thùng các-tông còn ở góc. Phòng Marketing giờ là một file markdown: AGENTS.md. Khung cuối: một màn hình trong phòng tối, biểu tượng “terminal spark” toả sáng."
+    panels:
+      - id: c10-p1
+        span: 6
+        shape: wide
+        cast:
+          - boss
+          - claude
+          - codex
+        scene: "An empty open-plan office at golden hour: {boss} alone at a desk with his laptop, {claude} and {codex} working beside him, a few leftover cardboard boxes in the corner, long warm shadows across the empty desks."
+        alt: Văn phòng vắng lúc hoàng hôn, sếp ngồi với laptop và hai robot, vài thùng các-tông còn ở góc.
+        text:
+          - cap: "…và giờ thì: phòng Marketing là một file markdown."
+            at: tl
+          - cap: AGENTS.md
+            at: br
+      - id: c10-p2
+        span: 6
+        shape: wide
+        scene: A dark room; a single monitor glows with a large terminal prompt symbol and a mint-green spark that radiates branching light rays across the walls, like a mystical artifact. No people. Quiet, reverent final image.
+        alt: Căn phòng tối, một màn hình duy nhất phát sáng biểu tượng dấu nhắc lệnh và tia sáng xanh bạc hà toả khắp tường.
