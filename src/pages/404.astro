@@ -2,11 +2,12 @@
 // One 404 for the whole site (Workers serves it for every unknown path), so it speaks every interface language.
 import "../styles/fonts.css";
 import "../styles/reader.css";
+import BrandHead from "../components/BrandHead.astro";
 import { DEFAULT_LOCALE, libraryPath, LOCALES, UI } from "../lib/i18n";
 ---
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>{UI.en.notFoundTitle}</title></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>{UI.en.notFoundTitle}</title><BrandHead share={false} /></head>
 <body class="theme-dark lettering-ink">
   <header class="masthead"><a class="wordmark" href={libraryPath(DEFAULT_LOCALE)}>Vibe<span>2</span>Fire</a></header>
   <main class="cold-open">

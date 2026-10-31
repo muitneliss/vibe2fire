@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'none'; style-src 'self'; img-src 'self'; font-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; style-src 'self'; img-src 'self'; manifest-src 'self'; font-src data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
@@ -9,4 +9,7 @@
   Cache-Control: public, max-age=300
 
 /comics/*
+  Cache-Control: public, max-age=86400
+
+/brand/*
   Cache-Control: public, max-age=86400

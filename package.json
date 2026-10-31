@@ -9,6 +9,7 @@
     "check": "vp check && astro check",
     "test": "vp test run",
     "comic": "bun scripts/comic.ts",
+    "brand": "bun scripts/brand.ts",
     "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {
