@@ -14,3 +14,5 @@ brand/.work/
 .impeccable/review/
 .impeccable/build/
 assets/
+# Local Worker secrets for wrangler dev (BASIC_AUTH_USER, BASIC_AUTH_PASSWORD)
+.dev.vars

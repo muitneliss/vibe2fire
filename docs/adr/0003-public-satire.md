@@ -1,6 +1,6 @@
 # 0003. The site is public and names the Omninoise studio
 
-- **Status:** Accepted
+- **Status:** Accepted; the "public" part is superseded by 0007
 - **Date:** 2026-10-30
 - **Deciders:** Cuong Tran (owner)
 

@@ -3,7 +3,8 @@
 The site publishes every comic as one JSON document so other studios can reuse it without scraping HTML. The first consumer is Omninoise (repo `cuongtranba/omninoise-ops`), which lists this feed in its `content/sources.yaml`.
 
 - **Schema id:** `vibe2fire.content/v1` (the `schema` field). Built by `buildFeed()` in `src/lib/comic.ts`; the shape is pinned by `tests/comic.test.ts`.
-- **Freshness:** regenerated on every deploy; `Cache-Control: public, max-age=300`. `generatedAt` is the build time.
+- **Freshness:** regenerated on every deploy; `Cache-Control: private, max-age=300` once served through the Worker. `generatedAt` is the build time.
+- **Access:** the feed and the image URLs in it require HTTP Basic credentials (ADR 0007); a request without them gets `401`. The schema is unchanged.
 - **CORS:** `Access-Control-Allow-Origin: *`.
 - **Compatibility:** fields may be added within v1. Renaming or removing a field, or changing its meaning, ships as `vibe2fire.content/v2` at the same URL, announced in this file.
 
