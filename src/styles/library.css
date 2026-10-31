@@ -18,7 +18,7 @@
     "folio folio";
   min-height: calc(100svh - 32px);
   border: 2px solid var(--k);
-  background: var(--paper) url("/art/newsprint-v1.webp");
+  background: var(--paper) url("/art/newsprint-v2.webp");
   box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
 }
 /* The fold: the paper dips into the binding */
@@ -45,7 +45,7 @@
   position: absolute;
   inset: 0 0 auto;
   aspect-ratio: 1536 / 404;
-  background: url("/art/speedlines-top-v1.webp") top center / 100% auto no-repeat;
+  background: url("/art/speedlines-top-v2.webp") top center / 100% auto no-repeat;
   mix-blend-mode: multiply;
   pointer-events: none;
 }
@@ -223,7 +223,7 @@
   z-index: 1;
   width: 34%;
   aspect-ratio: 520 / 444;
-  background: url("/art/speedlines-corner-v1.webp") top right / 100% auto no-repeat;
+  background: url("/art/speedlines-corner-v2.webp") top right / 100% auto no-repeat;
   mix-blend-mode: multiply;
   pointer-events: none;
 }
@@ -339,25 +339,24 @@
   border: var(--rule);
 }
 
-/* The folio: the site's notice and credit along the foot of the last spread */
+/* The folio: the site's notice under the left page, the feed under the right, as a magazine prints its folios */
 .folio {
   grid-area: folio;
-  position: relative;
-  z-index: 5;
-  background: var(--paper);
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 10px 2vw 12px;
-  border-top: 2px solid var(--k);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: end;
+  padding: 4px 0 12px;
   font-size: 13px;
   color: var(--muted);
 }
 .folio p {
   margin: 0;
-  max-width: 90ch;
+  padding: 0 3vw 0 2vw;
+  max-width: 78ch;
 }
 .folio a {
+  justify-self: end;
+  padding: 0 2vw;
   font-weight: 700;
   color: var(--ink);
 }
@@ -414,8 +413,14 @@
     border-top: var(--rule);
   }
   .folio {
-    flex-direction: column;
-    gap: 6px;
-    padding: 12px 16px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding: 12px 0 14px;
+    border-top: var(--rule);
+  }
+  .folio p,
+  .folio a {
+    justify-self: start;
+    padding: 0 16px;
   }
 }

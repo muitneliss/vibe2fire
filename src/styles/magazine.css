@@ -1,17 +1,17 @@
 @charset "UTF-8";
 /* The weekly manga magazine (ADR 0006), shared by every page: newsprint, black ink, screentone, speed lines.
-   Comic art is the only colour on a page. Sedgwick Ave Display is the brush for titles; Be Vietnam Pro sets
+   Comic art is the only colour on a page. Protest Revolution is the dry brush for titles; Be Vietnam Pro sets
    everything else. The art under public/art/ was painted by Codex; each file's prompt sits beside it as .json. */
 :root {
   color-scheme: light;
-  --paper: #f4f3ef;
+  --paper: #fafaf7;
   --ink: #0e0e0d;
   --k: #111111;
   --muted: #4a4945;
   --tone-10: #e3e2dd;
   --tone-30: #b4b3ae;
   --tone-60: #6a6965;
-  --brush: "Sedgwick Ave Display", "Bangers", "Arial Narrow", sans-serif;
+  --brush: "Protest Revolution", "Bangers", "Arial Narrow", sans-serif;
   --sans: "Be Vietnam Pro", system-ui, sans-serif;
   --hand: "Patrick Hand", "Comic Sans MS", "Chalkboard SE", cursive;
   --bang: "Bangers", "Arial Narrow", sans-serif;
@@ -32,7 +32,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--paper) url("/art/newsprint-v1.webp");
+  background: var(--paper) url("/art/newsprint-v2.webp");
   -webkit-font-smoothing: antialiased;
 }
 ::selection {

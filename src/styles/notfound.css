@@ -1,0 +1,96 @@
+@charset "UTF-8";
+/* The 404 in the weekly manga magazine's world (ADR 0006): the masthead strip (reader.css), then one centred page
+   where the number is struck inside Codex's ink burst under speed lines. Tokens and the burst live in magazine.css. */
+body {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+.lost {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 20px 56px;
+  text-align: center;
+}
+/* One manga panel: speed lines close in on the burst from two corners */
+.lost-panel {
+  position: relative;
+  container-type: inline-size;
+  overflow: hidden;
+  width: min(100%, 860px);
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border: var(--rule);
+  background: var(--paper);
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
+}
+.lost-panel::before,
+.lost-panel::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  aspect-ratio: 520 / 444;
+  background: url("/art/speedlines-corner-v2.webp") top right / 100% 100% no-repeat;
+  mix-blend-mode: multiply;
+}
+.lost-panel::before {
+  top: 0;
+  right: 0;
+}
+.lost-panel::after {
+  bottom: 0;
+  left: 0;
+  rotate: 180deg;
+}
+.lost-number {
+  position: relative;
+  z-index: 1;
+  width: 62cqi;
+  margin: 0;
+  /* The brush 4 reads as an A, so the number is set in the grotesk, heavy and slanted like the headlines */
+  font-family: var(--sans);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 21cqi;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.lost-note {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+.lost-note h1 {
+  margin: 0;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.lost-note a {
+  padding: 10px 18px;
+  border: 2px solid var(--k);
+  background: var(--k);
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+}
+.lost-note a:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lost-note a {
+    transition:
+      background-color 160ms var(--pull),
+      color 160ms var(--pull);
+  }
+}

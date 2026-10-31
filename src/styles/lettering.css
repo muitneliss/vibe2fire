@@ -237,25 +237,6 @@
 
 /* Phones: lettering moves into a strip above the art so nothing covers the picture */
 @media (max-width: 719px) {
-  .mode-switch {
-    display: none;
-  }
-  .reader-toolbar-inner {
-    min-height: 48px;
-    padding: 8px 16px;
-  }
-  .era-links {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
-  }
-  .chapter {
-    padding-top: 40px;
-  }
-  .chapter-description {
-    font-size: 17px;
-  }
   .page {
     display: flex;
     flex-direction: column;

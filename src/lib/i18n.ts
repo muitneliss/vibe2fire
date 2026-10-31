@@ -18,12 +18,12 @@ export interface UiStrings {
   languageLead: (language: string) => string;
   /** The jump link from a language's page back to the whole library. */
   allLanguages: string;
-  /** Label of the jump links to each language drawer. */
+  /** Label of the jump links to each language spread. */
   filterBy: string;
   /** Label of the interface-language switcher. */
   interface: string;
   newest: string;
-  /** The link from a full drawer to that language's own page. */
+  /** The link from a full contents page to that language's own page. */
   allIn: (n: number, language: string) => string;
   chapters: (n: number) => string;
   panels: (n: number) => string;
@@ -109,7 +109,7 @@ export const UI: Record<Locale, UiStrings> = {
 /** URL prefix of a locale: "" for the default locale, "/vi" otherwise. */
 export const localePrefix = (locale: Locale) => (locale === DEFAULT_LOCALE ? "" : `/${locale}`);
 
-/** Library URL for an interface locale (each comic language is a drawer on it, at #lang-<code>),
+/** Library URL for an interface locale (each comic language is a spread on it, at #lang-<code>),
  *  or with `lang`, the page listing every comic in that language. */
 export const libraryPath = (locale: Locale, lang?: string) => `${localePrefix(locale)}/${lang ? `language/${lang}/` : ""}`;
 

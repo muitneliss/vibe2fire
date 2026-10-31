@@ -1,0 +1,4 @@
+{
+  "prompt": "Use your image generation tool to create ONE square image at size 1024x1024. Then copy the generated PNG into the current directory as paper.png and reply only with its path.\n\nA flat, evenly lit scan of plain cheap newsprint paper as used in a weekly manga magazine: near-white neutral grey-white (#f8f8f5), very faint paper fibres and tiny specks, extremely low contrast, perfectly uniform with no gradient, vignette, fold, shadow, stain, texture variation across the image, or edge. It will be tiled as a background behind text, so it must be subtle and even everywhere. Strictly no text, letters, glyphs, print show-through, ink marks, numbers, watermark or signature.\n",
+  "createdAt": "2026-10-31T07:08:16.109Z"
+}

@@ -4,10 +4,12 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import "../styles/fonts.css";
-import "../styles/reader.css";
+import "../styles/fonts-magazine.css";
+import "../styles/magazine.css";
 import "../styles/lettering.css";
+import "../styles/reader.css";
 import BrandHead from "./BrandHead.astro";
-import { inlineMarkdown, paragraphs, SHAPES, TAILS, transcriptOf, type Comic, type Lettering } from "../lib/comic";
+import { coverPanel, inlineMarkdown, paragraphs, SHAPES, TAILS, transcriptOf, type Comic, type Lettering } from "../lib/comic";
 import { DEFAULT_LOCALE, libraryPath, LOCALES, type Locale } from "../lib/i18n";
 
 interface Props { comic: Comic }
@@ -17,7 +19,7 @@ const page = config.page ?? {};
 const total = config.chapters.length;
 const first = config.chapters[0]?.id;
 const lang = config.lang ?? "en";
-// Back to the library in the comic's language when the site speaks it, opened at this comic's drawer.
+// Back to the library in the comic's language when the site speaks it, opened at this comic's language spread.
 const library = `${libraryPath((LOCALES as readonly string[]).includes(lang) ? (lang as Locale) : DEFAULT_LOCALE)}#lang-${lang}`;
 const writeup = page.writeup ? readFileSync(resolve(comic.dir, page.writeup), "utf8") : "";
 const wordmark = String(page.wordmark ?? config.title)
@@ -32,6 +34,13 @@ const lettering = (t: Lettering) => {
   const cls = ["sfx", t.size === "xl" ? "sfx-xl" : "", t.color ? `sfx-${t.color}` : "", at].filter(Boolean).join(" ");
   return `<p class="${cls}">${inlineMarkdown(t.sfx)}</p>`;
 };
+// The cover panel opens the page in colour, carrying its first caption in the comic's own lettering (as on the library's covers).
+const cover = coverPanel(comic);
+const coverCaption = (() => {
+  const text = (cover?.text ?? []).find((x: Lettering) => "cap" in x || "stack" in x);
+  if (!text) return "";
+  return `<p class="cap cover-cap">${inlineMarkdown("cap" in text ? text.cap : "stack" in text ? text.stack[0] : "")}</p>`;
+})();
 const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `f-${focus}` : ""].filter(Boolean).join(" ");
 ---
 <!doctype html>
@@ -40,7 +49,7 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {page.robots && <meta name="robots" content={page.robots}>}
-  <meta name="theme-color" content={comic.theme === "light" ? "#ece6d8" : "#f4f0e7"}>
+  <meta name="theme-color" content="#fafaf7">
   <title>{page.pageTitle ?? config.title}</title>
   {page.description && <meta name="description" content={page.description}>}
   {page.description && <meta property="og:description" content={page.description}>}
@@ -49,7 +58,7 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
   <BrandHead />
   <link rel="alternate" type="application/json" href="/content.json" title="Content feed">
 </head>
-<body class={`theme-${comic.theme} lettering-${comic.lettering}`}>
+<body class={`mag theme-${comic.theme} lettering-${comic.lettering}`}>
   {writeup && <a class="skip" href={`#${page.writeupId ?? "writeup"}`}>{labels.skip}</a>}
 
   <header class="masthead">
@@ -62,12 +71,20 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
 
   <main>
     <section class="cold-open" aria-labelledby="opening">
-      <h1 id="opening" set:html={inlineMarkdown(page.heading ?? config.title)} />
-      {page.invitation && <p class="invitation" set:html={inlineMarkdown(page.invitation)} />}
-      <nav class="shortcuts" aria-label={labels.start}>
-        {(page.shortcuts ?? [{ text: "↓", href: `#${first}` }]).map((s: { text: string; href: string }) => <a href={s.href}>{s.text}</a>)}
-      </nav>
-      {page.note && <p class="satire" set:html={inlineMarkdown(page.note)} />}
+      <div class="cold-text">
+        <h1 id="opening" set:html={inlineMarkdown(page.heading ?? config.title)} />
+        {page.invitation && <p class="invitation" set:html={inlineMarkdown(page.invitation)} />}
+        <nav class="shortcuts" aria-label={labels.start}>
+          {(page.shortcuts ?? [{ text: "↓", href: `#${first}` }]).map((s: { text: string; href: string }) => <a href={s.href}>{s.text}</a>)}
+        </nav>
+        {page.note && <p class="satire" set:html={inlineMarkdown(page.note)} />}
+      </div>
+      {cover && (
+        <div class={`cover-art lettering-${comic.lettering}`}>
+          <img class={cover.focus ? `f-${cover.focus}` : ""} src={`${comic.panelsPath}${cover.id}.webp`} width={SHAPES[cover.shape ?? "wide"][0]} height={SHAPES[cover.shape ?? "wide"][1]} alt={cover.alt ?? ""} fetchpriority="high" decoding="async">
+          <Fragment set:html={coverCaption} />
+        </div>
+      )}
     </section>
 
     <section class="comic" aria-label={config.title}>
@@ -75,7 +92,7 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
       <input class="mode-input" type="radio" name="reader-mode" id="mode-panels">
       <div class="reader-toolbar"><div class="reader-toolbar-inner">
         <nav class="era-links" aria-label={labels.chapters}>
-          {config.chapters.map((c) => <a href={`#${c.id}`}>{c.nav ?? c.date ?? c.title}</a>)}
+          {config.chapters.map((c, i) => <a href={`#${c.id}`}><b aria-hidden="true">{i + 1}</b><span>{c.nav ?? c.date ?? c.title}</span></a>)}
         </nav>
         <div class="mode-switch" role="group" aria-label={labels.mode}>
           <label for="mode-pages">{labels.pages}</label>
@@ -86,8 +103,9 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
       {config.chapters.map((ch, i) => (
         <section class="chapter" id={ch.id} aria-labelledby={`chapter-${i + 1}`}>
           <div class="chapter-heading">
-            <h2 id={`chapter-${i + 1}`}>{ch.date && <span>{ch.date}</span>}{ch.title}</h2>
-            <small>{i + 1} / {total}</small>
+            <span class="chapter-no" aria-hidden="true">{i + 1}</span>
+            <h2 id={`chapter-${i + 1}`}>{ch.title}</h2>
+            <small>{ch.date && <span>{ch.date}</span>}{i + 1} / {total}</small>
           </div>
           {ch.intro && <div class="chapter-description">{paragraphs(ch.intro).map((p) => <p set:html={inlineMarkdown(p)} />)}</div>}
           <div class="page">
@@ -105,7 +123,7 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
 
       {page.end && (
         <div class="comic-end">
-          <p set:html={inlineMarkdown(page.end.text)} />
+          <p class="burst" set:html={inlineMarkdown(page.end.text)} />
           {page.end.link && <a href={page.end.link.href}>{page.end.link.text}</a>}
         </div>
       )}
