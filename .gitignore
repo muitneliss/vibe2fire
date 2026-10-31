@@ -7,3 +7,6 @@ dist/
 .env.*
 # Generation scratch per comic: PNG masters, prompts, logs, review sheets (only the webp copies are committed)
 comics/*/.work/
+# Impeccable design scratch: decision sketches and review captures (the surface brief and DESIGN files are committed)
+.impeccable/mocks/
+.impeccable/review/

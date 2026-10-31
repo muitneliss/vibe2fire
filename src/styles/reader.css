@@ -100,6 +100,21 @@ code {
 .wordmark span {
   color: var(--red);
 }
+.masthead-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 8px 22px;
+}
+.masthead .library-link {
+  font:
+    14px/1.3 Arial,
+    Helvetica,
+    sans-serif;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
 .masthead .credit {
   font: 12px/1.3 var(--mono);
   color: var(--muted);
@@ -121,6 +136,11 @@ code {
 }
 .cold-open h1 em {
   color: var(--red);
+}
+.cold-open > section + section {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
 }
 .invitation {
   margin: 36px 0 0;

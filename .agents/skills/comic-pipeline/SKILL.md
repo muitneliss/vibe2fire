@@ -30,7 +30,7 @@ Generation skips PNGs already on disk, so `panels` and `all` resume after a fail
 ## A new comic
 
 1. **Agree the story first**: arc, chapter list, who the characters are. A chapter is one printed page of 2–6 panels in rows that fill 6 columns.
-2. **Scaffold**: copy `templates/comic.example.yaml` to `comics/<slug>/comic.yaml`. Set `home: true` only on the comic that should be the front page; the others are served at `/<slug>/`. Every field: `references/config.md`.
+2. **Scaffold**: copy `templates/comic.example.yaml` to `comics/<slug>/comic.yaml`. Every comic is served at `/<slug>/` and listed in the library at `/`; set `date`, `summary` and `cover` (a panel id) so its library card is right. Every field: `references/config.md`.
 3. **Pick the look**: `style.preset` (see `src/lib/styles.yaml`) sets the art plus a default reader `theme` and `lettering`; override either, add mood with `style.extra`, or write a whole `style.art`. Add a preset to `styles.yaml` when a look should be reusable.
 4. **Cast**: concrete visual `look`s and a short `tag` per character; `refs` for anyone who must resemble a real person, product or earlier art. Run `cast`, open the sheet and fix it before any panel: every panel copies it.
 5. **Panels**: English `scene` with `{id}` placeholders, lettering in the comic's language under `text`. `check`, then `prompts --only` one panel and read it.

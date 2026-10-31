@@ -17,6 +17,10 @@ describe("comic model", () => {
     expect(errors).toContain("one/p2: row overflows 6 columns (the spans in a row must add up to exactly 6)");
   });
 
+  test("validate rejects a comic folder name reserved for a site route", () => {
+    expect(validate(loadComic("vi", fixtures))).toContain("folder name vi is reserved for a site route");
+  });
+
   // Regression: the image model swapped characters when prompts named them ("LINH", "THE BOSS").
   test("panel prompts identify characters by looks and sheet number, never by name", () => {
     const comic = loadComic("ok", fixtures);
@@ -30,7 +34,8 @@ describe("comic model", () => {
     const feed = buildFeed([loadComic("ok", fixtures)], "https://vibe2fire.dev", "2026-10-30T00:00:00.000Z");
     const chapter = feed.comics[0].chapters[0];
     expect(feed.schema).toBe("vibe2fire.content/v1");
-    expect(chapter).toMatchObject({ title: "One", url: "https://vibe2fire.dev/#one", intro: ["Set in 1999."] });
+    expect(feed.comics[0].cover).toBe("https://vibe2fire.dev/comics/ok/panels/p1.webp");
+    expect(chapter).toMatchObject({ title: "One", url: "https://vibe2fire.dev/ok/#one", intro: ["Set in 1999."] });
     expect(chapter.panels[0]).toMatchObject({
       image: "https://vibe2fire.dev/comics/ok/panels/p1.webp",
       text: [

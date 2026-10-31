@@ -3,6 +3,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { parse } from "yaml";
+import { RESERVED_SLUGS } from "./i18n";
 
 // The repo root. Astro bundles this module into dist/ before prerendering, so import.meta.url is not
 // stable; every entry point (astro, bun run comic, vitest) runs from the repo root instead.
@@ -64,7 +65,12 @@ export interface Chapter {
 export interface ComicConfig {
   title: string;
   lang?: string;
-  home?: boolean;
+  /** Release date (YYYY-MM-DD); the library lists the newest first. */
+  date?: string;
+  /** One or two sentences for the library listing; inline markdown. */
+  summary?: string;
+  /** Panel id shown as the comic's cover in the library; default the first panel. */
+  cover?: string;
   style?: { preset?: string; art?: string; extra?: string; sheet?: string; headroom?: string };
   reader?: { theme?: "dark" | "light"; lettering?: string; labels?: Record<string, string> };
   page?: Record<string, any>;
@@ -81,7 +87,7 @@ export interface Comic {
   theme: string;
   lettering: string;
   labels: Record<string, string>;
-  /** URL path of the comic's page: "/" for the home comic, "/<slug>/" otherwise. */
+  /** URL path of the comic's page, "/<slug>/". */
   path: string;
   /** URL path of the folder holding the panel webp files. */
   panelsPath: string;
@@ -96,6 +102,7 @@ const DEFAULT_LABELS = {
   readScene: "Read the scene",
   skip: "Skip to the write-up",
   start: "Start reading",
+  library: "All comics",
 };
 
 export function loadStyles(): Record<string, any> {
@@ -123,7 +130,7 @@ export function loadComic(slug: string, comicsDir = COMICS_DIR): Comic {
     theme: config.reader?.theme ?? preset?.reader ?? "dark",
     lettering: config.reader?.lettering ?? preset?.lettering ?? "ink",
     labels: { ...DEFAULT_LABELS, ...config.reader?.labels },
-    path: config.home ? "/" : `/${slug}/`,
+    path: `/${slug}/`,
     panelsPath: `/comics/${slug}/panels/`,
     work: {
       dir: workDir,
@@ -141,15 +148,26 @@ export function listComics(comicsDir = COMICS_DIR): Comic[] {
   return readdirSync(comicsDir, { withFileTypes: true })
     .filter((d) => d.isDirectory() && existsSync(join(comicsDir, d.name, "comic.yaml")))
     .map((d) => loadComic(d.name, comicsDir))
-    .sort((a, b) => Number(Boolean(b.config.home)) - Number(Boolean(a.config.home)) || a.slug.localeCompare(b.slug));
+    .sort((a, b) => String(b.config.date ?? "").localeCompare(String(a.config.date ?? "")) || a.slug.localeCompare(b.slug));
 }
 
 export const allPanels = (comic: Comic) => comic.config.chapters.flatMap((c) => c.panels.map((p) => ({ ...p, chapter: c.id })));
+
+/** The panel that stands for the comic in the library and the feed: `cover` if set, else the first panel. */
+export const coverPanel = (comic: Comic) => {
+  const panels = allPanels(comic);
+  return panels.find((p) => p.id === comic.config.cover) ?? panels[0];
+};
 
 /** Every problem in a comic's config, as readable sentences. An empty list means the comic is valid. */
 export function validate(comic: Comic): string[] {
   const { config } = comic;
   const errors: string[] = [];
+  if (!/^[a-z0-9-]+$/.test(comic.slug))
+    errors.push(`folder name ${comic.slug} must be lowercase letters, digits and hyphens (it is the URL)`);
+  if (RESERVED_SLUGS.has(comic.slug)) errors.push(`folder name ${comic.slug} is reserved for a site route`);
+  if (config.date !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(config.date))) errors.push(`date must be YYYY-MM-DD`);
+  if (config.cover && !allPanels(comic).some((p) => p.id === config.cover)) errors.push(`cover ${config.cover} is not a panel id`);
   const charIds = new Set<string>();
   (config.characters ?? []).forEach((c, i) => {
     if (!c.id) errors.push(`characters[${i}] has no id`);
@@ -299,6 +317,9 @@ export function buildFeed(comics: Comic[], site = SITE, generatedAt = new Date()
         title: config.title,
         lang: config.lang ?? "en",
         url,
+        date: config.date ?? null,
+        summary: config.summary ? plainText(config.summary) : null,
+        cover: new URL(`${comic.panelsPath}${coverPanel(comic).id}.webp`, site).href,
         style: config.style?.preset ?? "graphic-novel",
         characters: config.characters.map((c) => ({ id: c.id, name: c.name ?? c.id })),
         chapters: config.chapters.map((ch, i) => ({

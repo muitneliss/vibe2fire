@@ -1,5 +1,4 @@
 title: Fixture
-home: true
 style: { preset: noir }
 characters:
   - id: hero

@@ -1,10 +1,18 @@
 ---
+// One 404 for the whole site (Workers serves it for every unknown path), so it speaks every interface language.
+import "../styles/fonts.css";
 import "../styles/reader.css";
+import { DEFAULT_LOCALE, libraryPath, LOCALES, UI } from "../lib/i18n";
 ---
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Not found · Vibe2Fire</title></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>{UI.en.notFoundTitle}</title></head>
 <body class="theme-dark lettering-ink">
-  <main class="cold-open"><h1>This page got laid off.</h1><p class="invitation"><a href="/">Back to the comic</a></p></main>
+  <header class="masthead"><a class="wordmark" href={libraryPath(DEFAULT_LOCALE)}>Vibe<span>2</span>Fire</a></header>
+  <main class="cold-open">
+    {LOCALES.map((l) => (
+      <section lang={l}><h1>{UI[l].notFoundHeading}</h1><p class="invitation"><a href={libraryPath(l)}>{UI[l].notFoundLink}</a></p></section>
+    ))}
+  </main>
 </body>
 </html>

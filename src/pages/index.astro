@@ -1,9 +1,5 @@
 ---
-import ComicPage from "../components/ComicPage.astro";
-import { listComics } from "../lib/comic";
-
-// The home comic (home: true in its comic.yaml) is the front page.
-const home = listComics().find((c) => c.config.home);
-if (!home) throw new Error("no comic has home: true in comics/*/comic.yaml");
+import Library from "../components/Library.astro";
+import { DEFAULT_LOCALE } from "../lib/i18n";
 ---
-<ComicPage comic={home} />
+<Library locale={DEFAULT_LOCALE} />

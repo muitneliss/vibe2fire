@@ -1,0 +1,141 @@
+---
+// The comic library: every comic filed behind a divider card for its language, like a comic-shop longbox.
+// One page per interface locale (/ and /vi/), plus one page per comic language (/language/<code>/, /vi/language/<code>/)
+// so a drawer on the library can stay two rows long however many comics it holds.
+// No JavaScript and no inline styles (CSP in public/_headers).
+import "../styles/fonts.css";
+import "../styles/reader.css";
+import "../styles/library.css";
+import { coverPanel, inlineMarkdown, listComics, SITE, type Comic, type Lettering } from "../lib/comic";
+import { languageName, libraryPath, LOCALES, UI, type Locale } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  /** Show only this comic language, every comic in it. */
+  only?: string;
+}
+const { locale, only } = Astro.props;
+const t = UI[locale];
+const all = listComics();
+const comics = only ? all.filter((c) => (c.config.lang ?? "en") === only) : all;
+// Two rows of five on a wide screen. A fuller drawer shows nine and a card opening the language's own page.
+const DRAWER_LIMIT = 10;
+
+// Group by comic language: the reader's own language first, then the biggest drawers.
+const byLang = new Map<string, Comic[]>();
+for (const c of comics) {
+  const lang = c.config.lang ?? "en";
+  byLang.set(lang, [...(byLang.get(lang) ?? []), c]);
+}
+const drawers = [...byLang.entries()].sort(
+  ([a, x], [b, y]) => Number(b === locale) - Number(a === locale) || y.length - x.length || a.localeCompare(b),
+);
+const newest = all.length > 1 ? all[0] : undefined;
+const languages = [...new Set(all.map((c) => c.config.lang ?? "en"))];
+const title = only ? `${languageName(only, locale)} · ${t.libraryTitle}` : t.libraryTitle;
+const heading = only ? t.languageHeading(languageName(only, only)) : t.libraryHeading;
+const lead = only ? t.languageLead(languageName(only, locale)) : t.libraryLead;
+
+// The cover carries the cover panel's first caption or balloon, set in the comic's own lettering.
+const coverText = (comic: Comic) => {
+  const text = (coverPanel(comic)?.text ?? []).find((x: Lettering) => "cap" in x || "say" in x || "stack" in x);
+  if (!text) return "";
+  if ("say" in text) return `<p class="bubble cover-say">${inlineMarkdown(text.say)}</p>`;
+  return `<p class="cap cover-cap">${inlineMarkdown("cap" in text ? text.cap : "stack" in text ? text.stack[0] : "")}</p>`;
+};
+const counts = (comic: Comic) => {
+  const panels = comic.config.chapters.reduce((n, ch) => n + ch.panels.length, 0);
+  return `${t.chapters(comic.config.chapters.length)} · ${t.panels(panels)}`;
+};
+const focusClass = (comic: Comic) => (coverPanel(comic)?.focus ? `f-${coverPanel(comic)?.focus}` : "");
+---
+<!doctype html>
+<html lang={locale}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <title>{title}</title>
+  <meta name="description" content={t.libraryDescription}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={t.libraryDescription}>
+  <meta property="og:type" content="website">
+  <link rel="canonical" href={new URL(libraryPath(locale, only), SITE).href}>
+  {LOCALES.map((l) => <link rel="alternate" hreflang={l} href={new URL(libraryPath(l, only), SITE).href}>)}
+  <link rel="alternate" type="application/json" href="/content.json" title="Content feed">
+</head>
+<body class="library">
+  <div class="lib-top">
+    <header class="masthead">
+      <a class="wordmark" href={libraryPath(locale)}>Vibe<span>2</span>Fire</a>
+      <nav class="ui-switch" aria-label={t.interface}>
+        {LOCALES.map((l) => (
+          <a href={libraryPath(l, only)} hreflang={l} lang={l} aria-current={l === locale ? "page" : undefined}>{l.toUpperCase()}</a>
+        ))}
+      </nav>
+    </header>
+  </div>
+
+  <main class="longbox">
+    <section class="lib-intro" aria-labelledby="library-heading">
+      <div>
+        <h1 id="library-heading" set:html={inlineMarkdown(heading)} />
+        <p class="lib-lead">{lead}</p>
+      </div>
+      {languages.length > 0 && (
+        <nav class="lib-jump" aria-label={t.filterBy}>
+          <p>{t.filterBy}</p>
+          <ul role="list">
+            {only && <li><a href={libraryPath(locale)}>{t.allLanguages}</a></li>}
+            {(only ? languages.map((l) => [l, all.filter((c) => (c.config.lang ?? "en") === l)] as const) : drawers).map(([lang, list]) => (
+              <li>
+                <a href={only ? libraryPath(locale, lang) : `#lang-${lang}`} aria-current={lang === only ? "page" : undefined}>
+                  <span lang={lang}>{languageName(lang, lang)}</span><b>{list.length}</b>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </section>
+
+    {drawers.length === 0 && <p class="lib-empty">{t.empty}</p>}
+
+    {drawers.map(([lang, list]) => (
+      <section class="drawer" id={`lang-${lang}`} aria-labelledby={`drawer-${lang}`}>
+        <header class="divider">
+          <h2 id={`drawer-${lang}`} lang={lang}>{languageName(lang, lang)}</h2>
+          {lang !== locale && <p class="divider-local">{languageName(lang, locale)}</p>}
+          <p class="divider-count">{t.comics(list.length)}</p>
+        </header>
+        <ul class="covers" role="list">
+          {(only || list.length <= DRAWER_LIMIT ? list : list.slice(0, DRAWER_LIMIT - 1)).map((comic) => (
+            <li>
+              <a class="cover" href={comic.path} lang={comic.config.lang ?? "en"}>
+                <span class={`cover-art lettering-${comic.lettering}`}>
+                  {coverPanel(comic) && (
+                    <img class={focusClass(comic)} src={`${comic.panelsPath}${coverPanel(comic)?.id}.webp`} alt="" width="600" height="800" loading="lazy" decoding="async">
+                  )}
+                  <Fragment set:html={coverText(comic)} />
+                  {comic === newest && <span class="cover-new" lang={locale}>{t.newest}</span>}
+                </span>
+                <span class="cover-title">{comic.config.title}</span>
+                <span class="cover-meta" lang={locale}>{counts(comic)}</span>
+                {comic.config.summary && <span class="cover-summary" set:html={inlineMarkdown(comic.config.summary)} />}
+              </a>
+            </li>
+          ))}
+          {!only && list.length > DRAWER_LIMIT && (
+            <li><a class="cover-more" href={libraryPath(locale, lang)}>{t.allIn(list.length, languageName(lang, locale))}</a></li>
+          )}
+        </ul>
+      </section>
+    ))}
+  </main>
+
+  <footer class="site-foot lib-foot">
+    <span>{t.aiNotice}</span>
+    <a href="/content.json">content.json</a>
+  </footer>
+</body>
+</html>

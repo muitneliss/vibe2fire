@@ -16,7 +16,10 @@ The site publishes every comic as one JSON document so other studios can reuse i
     "slug": "vibe2fire",
     "title": "Vibe2Fire",
     "lang": "vi",
-    "url": "https://vibe2fire.dev/",
+    "url": "https://vibe2fire.dev/vibe2fire/",
+    "date": "2026-10-30",                       // release date, or null
+    "summary": "…",                             // plain text, or null
+    "cover": "https://vibe2fire.dev/comics/vibe2fire/panels/c01-p1.webp",  // thumbnail panel; default the first
     "style": "graphic-novel",                 // style preset name
     "characters": [{ "id": "boss", "name": "Sếp" }],
     "chapters": [{
@@ -24,7 +27,7 @@ The site publishes every comic as one JSON document so other studios can reuse i
       "number": 1,
       "date": "Quý 3/2026",                    // or null
       "title": "Sa mạc nội dung",
-      "url": "https://vibe2fire.dev/#sa-mac",
+      "url": "https://vibe2fire.dev/vibe2fire/#sa-mac",
       "intro": ["…"],                          // plain-text paragraphs
       "transcript": "…",                       // plain text: the whole chapter's story in prose
       "context": ["…"],                        // plain-text factual notes, may be empty
@@ -43,3 +46,7 @@ The site publishes every comic as one JSON document so other studios can reuse i
 ```
 
 Images carry no lettering: `text` is the lettering, in reading order, so a consumer can re-letter panels, write captions, or build a carousel. The art is AI-generated (Codex image generation); label it as such wherever it is republished.
+
+## Changes within v1
+
+- 2026-10-30: comics moved from `/` to `/<slug>/`; `url` values changed, field meanings unchanged; added `date`, `summary`, `cover`.

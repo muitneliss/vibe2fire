@@ -21,10 +21,13 @@ comics/<slug>/writeup.html optional HTML fragment shown after the comic
 comics/<slug>/.work/       gitignored: PNG masters, cast sheet, prompts, Codex logs, review sheets
 public/comics/<slug>/panels/*.webp   committed panel images the site serves
 src/lib/comic.ts           the comic model: load, validate, image prompts, content feed
+src/lib/i18n.ts          interface languages for the site chrome (library, 404)
 src/lib/styles.yaml        art style presets (graphic-novel, noir, ligne-claire, fantasy, manga, pop-art, storybook)
 src/components/ComicPage.astro   the reader page
-src/pages/                 / (home comic), /<slug>/ (other comics), /content.json, 404
+src/components/Library.astro     the library page
+src/pages/                 / and /vi/ (library), /[vi/]language/<code>/ (one comic language), /<slug>/ (each comic), /content.json, 404
 src/styles/reader.css      reader layout, themes (dark, light) and lettering presets (ink, pop, manga, parchment)
+src/styles/library.css     library layout (language drawers, divider cards, covers)
 src/styles/fonts.css       embedded Bangers + Patrick Hand (Latin and Vietnamese)
 scripts/comic.ts           generation CLI (bun run comic ...)
 public/_headers            CSP and caching for Workers static assets
