@@ -28,6 +28,7 @@ src/components/ComicPage.astro   the reader page
 src/components/Library.astro     the library page
 src/components/BrandHead.astro   favicon, touch icon, manifest and og:image tags for every <head>
 src/lib/library.ts         library pages: filters (all, language, tag) x locales x pages of 24, and their URLs
+src/worker.ts              Worker in front of the assets: HTTP Basic Auth on every request (ADR 0007)
 src/pages/                 [...lib] (every library page: /, /vi/, /language/<code>/, /tag/<tag>/, /page/<n>/), /<slug>/ (each comic), /content.json, 404
 src/styles/reader.css      reader page chrome: masthead strip, title page, toolbar, chapters, end burst, write-up, folio
 src/styles/lettering.css   comic mechanics: printed page, lettering, Pages/Panels, themes (dark, light), presets (ink, pop, manga, parchment)
@@ -52,7 +53,7 @@ bun run dev                      # astro dev
 bun run check                    # vp check (Oxfmt, Oxlint, type checks) + astro check
 bun run test                     # vp test run (Vitest)
 bun run build                    # astro build -> dist/
-bun run preview                  # wrangler dev: dist/ with _headers, as Workers serves it
+bun run preview                  # wrangler dev: dist/ behind the Worker; needs .dev.vars with BASIC_AUTH_USER and BASIC_AUTH_PASSWORD
 bun run comic check|prompts|cast|panels|review|webp|status|all <slug> [--only ids] [--force] [--jobs N] [--dry-run]
 bun run brand prompts|mark|review|pick|og|icons|status [n] [--variants N] [--force]   # site icon + share image; costs Codex images
 
@@ -71,7 +72,7 @@ Run `bun run check && bun run test && bun run build` before every commit; CI run
 - **Review every generated panel** on the contact sheets (`bun run comic review`) before converting and shipping: wrong character, stray text, cropped faces, style drift.
 - **The page stays script-free.** No `<script>`, no inline `style=` attributes, no external fonts or images: `public/_headers` sets `default-src 'none'`. Astro is set to never inline stylesheets.
 - **The feed is a contract.** `/content.json` (schema `vibe2fire.content/v1`) is read by omninoise-ops. Adding fields is fine; renaming or removing one needs `vibe2fire.content/v2` and a note in `docs/content-feed.md`.
-- **The site is public.** It names the Omninoise studio by the owner's decision (ADR 0003). The marketing team in Vibe2Fire is fictional, and the page says so; keep that notice. Facts in write-ups must trace to the omninoise-ops log or ADRs.
+- **The site is behind HTTP Basic Auth** (ADR 0007, `src/worker.ts`), the feed and images included; credentials are the Worker secrets `BASIC_AUTH_USER` and `BASIC_AUTH_PASSWORD`, never in a file. It names the Omninoise studio by the owner's decision (ADR 0003). The marketing team in Vibe2Fire is fictional, and the page says so; keep that notice. Facts in write-ups must trace to the omninoise-ops log or ADRs.
 - **Secrets.** No key, token or password in a file, commit, argument or log. Cloudflare calls go through `kanna-vault-run --vault cloudflare-lowbit --`; GitHub through `gh`.
 - **Git.** One branch per change, never commit to `main`; open a PR, merge it with `gh pr merge --squash --delete-branch` once CI is green; the merge deploys to vibe2fire.dev. Never commit `comics/*/.work/`, `dist/` or `.wrangler/`.
 
