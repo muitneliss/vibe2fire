@@ -1,18 +1,36 @@
 ---
 // One 404 for the whole site (Workers serves it for every unknown path), so it speaks every interface language.
 import "../styles/fonts.css";
+import "../styles/fonts-magazine.css";
+import "../styles/magazine.css";
 import "../styles/reader.css";
+import "../styles/notfound.css";
 import BrandHead from "../components/BrandHead.astro";
 import { DEFAULT_LOCALE, libraryPath, LOCALES, UI } from "../lib/i18n";
 ---
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>{UI.en.notFoundTitle}</title><BrandHead share={false} /></head>
-<body class="theme-dark lettering-ink">
-  <header class="masthead"><a class="wordmark" href={libraryPath(DEFAULT_LOCALE)}>Vibe<span>2</span>Fire</a></header>
-  <main class="cold-open">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#fafaf7">
+  <title>{UI.en.notFoundTitle}</title>
+  <BrandHead share={false} />
+</head>
+<body class="mag">
+  <header class="masthead">
+    <a class="wordmark" href={libraryPath(DEFAULT_LOCALE)}>Vibe<span>2</span>Fire</a>
+  </header>
+  <main class="lost">
+    <div class="lost-panel">
+      <p class="burst lost-number">404</p>
+    </div>
     {LOCALES.map((l) => (
-      <section lang={l}><h1>{UI[l].notFoundHeading}</h1><p class="invitation"><a href={libraryPath(l)}>{UI[l].notFoundLink}</a></p></section>
+      <section class="lost-note" lang={l}>
+        <h1>{UI[l].notFoundHeading}</h1>
+        <a href={libraryPath(l)}>{UI[l].notFoundLink}</a>
+      </section>
     ))}
   </main>
 </body>

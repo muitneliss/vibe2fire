@@ -9,7 +9,7 @@ export default defineConfig({
   },
   fmt: {
     printWidth: 140,
-    ignorePatterns: ["dist/**", ".astro/**", "comics/**", "public/**", "src/styles/fonts.css", "*.md"],
+    ignorePatterns: ["dist/**", ".astro/**", "comics/**", "public/**", "src/styles/fonts.css", "src/styles/fonts-magazine.css", "*.md"],
   },
   test: {
     include: ["tests/**/*.test.ts"],

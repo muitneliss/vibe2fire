@@ -1,30 +1,16 @@
 ---
 name: Vibe2Fire
-description: A comic studio and library; painted panels, real HTML lettering, filed by language in a dark reader's longbox.
+description: A comic studio and library printed as a weekly manga magazine; black ink on newsprint, screentone greys, and painted comic art as the only colour.
 colors:
-  stamp-red: "#a8321f"
-  ember-coral: "#e8775e"
-  longbox-board: "#e4dac6"
-  lamplight: "#f1d3aa"
-  newsprint-paper: "#f4f0e7"
-  press-ink: "#25251f"
-  pencil-muted: "#67655b"
-  paper-rule: "#d5cfc0"
-  reader-night: "#191a18"
-  night-text: "#e6dfcf"
-  night-body: "#ded6c5"
-  night-muted: "#aaa79b"
-  night-rule: "#54544a"
-  toolbar-rule: "#44443e"
-  gutter-black: "#111111"
+  key-black: "#111111"
+  ink: "#0e0e0d"
+  newsprint-white: "#fafaf7"
+  press-grey: "#4a4945"
+  tone-10: "#e3e2dd"
+  tone-30: "#b4b3ae"
+  tone-60: "#6a6965"
   panel-void: "#2a2a26"
-  box-floor: "#1f201d"
-  box-wall: "#2c2d28"
-  board-pencil: "#4a4740"
-  brass-date: "#c1a685"
-  kiln-focus: "#c16b44"
-  light-reader-ground: "#ece6d8"
-  caption-white: "#f6f1e6"
+  caption-cream: "#f6f1e6"
   balloon-white: "#ffffff"
   pop-yellow: "#ffe680"
   sfx-red: "#ff5a4a"
@@ -33,51 +19,90 @@ colors:
   parchment: "#efe0bd"
   parchment-ink: "#3b2a14"
   parchment-rule: "#6b4f26"
+  parchment-balloon: "#fffaf0"
+  parchment-sfx: "#ffd98a"
 typography:
-  display:
-    fontFamily: "Bangers, Arial Narrow, sans-serif"
-    fontSize: "40px"
-    fontWeight: 400
-    lineHeight: 0.95
-    letterSpacing: "0.03em"
   wordmark:
-    fontFamily: "Bangers, Arial Narrow, sans-serif"
-    fontSize: "30px"
+    fontFamily: "Protest Revolution, Bangers, Arial Narrow, sans-serif"
+    fontSize: "clamp(44px, 6.3vw, 104px)"
     fontWeight: 400
-    lineHeight: 1
-    letterSpacing: "0.02em"
-  headline:
-    fontFamily: "Georgia, Times New Roman, serif"
-    fontSize: "clamp(30px, 4.1vw, 54px)"
-    fontWeight: 400
-    lineHeight: 1.2
-    letterSpacing: "-0.02em"
-  headline-library:
-    fontFamily: "Georgia, Times New Roman, serif"
-    fontSize: "clamp(32px, 3.6vw, 48px)"
+    lineHeight: 0.9
+  display:
+    fontFamily: "Protest Revolution, Bangers, Arial Narrow, sans-serif"
+    fontSize: "clamp(60px, 8.6vw, 176px)"
     fontWeight: 400
     lineHeight: 1.12
-    letterSpacing: "-0.02em"
-  title:
-    fontFamily: "Georgia, Times New Roman, serif"
-    fontSize: "26px"
+  title-brush:
+    fontFamily: "Protest Revolution, Bangers, Arial Narrow, sans-serif"
+    fontSize: "clamp(38px, 4.7vw, 76px)"
     fontWeight: 400
-  title-cover:
-    fontFamily: "Bangers, Arial Narrow, sans-serif"
-    fontSize: "23px"
+    lineHeight: 0.95
+  chapter-title:
+    fontFamily: "Protest Revolution, Bangers, Arial Narrow, sans-serif"
+    fontSize: "clamp(36px, 4.2vw, 64px)"
     fontWeight: 400
+    lineHeight: 1.15
+  end-line:
+    fontFamily: "Protest Revolution, Bangers, Arial Narrow, sans-serif"
+    fontSize: "clamp(26px, min(5vw, 10.5cqi), 72px)"
+    fontWeight: 400
+    lineHeight: 1.12
+  headline:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "clamp(34px, 4.4vw, 72px)"
+    fontWeight: 900
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
+  headline-library:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "clamp(26px, 3.05vw, 58px)"
+    fontWeight: 900
+    lineHeight: 1.02
+    letterSpacing: "-0.025em"
+  numeral:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "48px"
+    fontWeight: 900
     lineHeight: 1
-    letterSpacing: "0.03em"
+    fontFeature: "\"tnum\""
+  numeral-cell:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "clamp(18px, 2vw, 34px)"
+    fontWeight: 900
+    lineHeight: 1.1
+    fontFeature: "\"tnum\""
+  heading:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "clamp(26px, 2.4vw, 34px)"
+    fontWeight: 900
+    lineHeight: 1.2
+    letterSpacing: "-0.015em"
   body:
-    fontFamily: "Georgia, Times New Roman, serif"
-    fontSize: "19px"
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "17px"
     fontWeight: 400
-    lineHeight: 1.7
-  body-lead:
-    fontFamily: "Georgia, Times New Roman, serif"
+    lineHeight: 1.5
+  body-long:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
     fontSize: "18px"
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.7
+  label:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "14px"
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: "0.08em"
+  control:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 700
+    lineHeight: 1.3
+  folio:
+    fontFamily: "Be Vietnam Pro, system-ui, sans-serif"
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: 1.5
   lettering:
     fontFamily: "Patrick Hand, Comic Sans MS, Chalkboard SE, cursive"
     fontSize: "clamp(12.5px, 1.4cqi, 16px)"
@@ -90,107 +115,132 @@ typography:
     fontWeight: 400
     lineHeight: 1
     letterSpacing: "0.04em"
-  label:
-    fontFamily: "Arial, Helvetica, sans-serif"
-    fontSize: "14px"
-    fontWeight: 400
-    lineHeight: 1.3
   mono:
     fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-    fontSize: "12px"
+    fontSize: "0.86em"
     fontWeight: 400
-    lineHeight: 1.4
-  mono-count:
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-    fontSize: "13px"
-    fontWeight: 400
-    lineHeight: 1.4
-    letterSpacing: "0.06em"
-    fontFeature: "\"c2sc\", \"smcp\""
 rounded:
   none: "0px"
-  xs: "2px"
-  sm: "3px"
-  md: "4px"
   balloon: "50% / 46%"
-  pop-balloon: "1.4em"
+  balloon-pop: "1.4em"
+  balloon-manga: "50%"
 spacing:
   gutter: "10px"
   frame: "14px"
-  box: "16px"
-  drawer: "18px"
-  chapter-edge: "22px"
-  edge: "24px"
-  section: "56px"
-  opening: "72px"
+  sheet: "16px"
+  panels-gap: "18px"
+  spread-gap: "28px"
+  writeup-gap: "72px"
+  chapter: "80px"
+  end: "104px"
 components:
   wordmark:
-    textColor: "{colors.press-ink}"
+    textColor: "{colors.ink}"
     typography: "{typography.wordmark}"
-  ui-switch-item:
-    textColor: "{colors.pencil-muted}"
+  edition-switch-item:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.press-grey}"
     typography: "{typography.label}"
-    rounded: "{rounded.xs}"
-    padding: "8px 10px"
-  ui-switch-item-active:
-    backgroundColor: "{colors.press-ink}"
-    textColor: "{colors.newsprint-paper}"
-    rounded: "{rounded.xs}"
-    padding: "8px 10px"
-  lang-jump:
-    textColor: "{colors.lamplight}"
-    rounded: "{rounded.xs}"
-    padding: "9px 12px"
-  lang-jump-active:
-    backgroundColor: "{colors.longbox-board}"
-    textColor: "{colors.reader-night}"
-    rounded: "{rounded.xs}"
-    padding: "9px 12px"
-  divider-card:
-    backgroundColor: "{colors.longbox-board}"
-    textColor: "{colors.reader-night}"
-    typography: "{typography.display}"
     rounded: "{rounded.none}"
-    padding: "44px 18px 18px"
-    width: "184px"
-  cover:
-    backgroundColor: "{colors.gutter-black}"
-    textColor: "{colors.night-text}"
+    padding: "6px 8px"
+  edition-switch-item-active:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.label}"
     rounded: "{rounded.none}"
-    padding: "8px 8px 14px"
-  cover-title:
-    textColor: "{colors.caption-white}"
-    typography: "{typography.title-cover}"
-  cover-title-hover:
-    textColor: "{colors.lamplight}"
-  cover-new:
-    backgroundColor: "{colors.stamp-red}"
-    textColor: "{colors.balloon-white}"
-    padding: "6px 10px 5px"
-  cover-more:
-    backgroundColor: "{colors.longbox-board}"
-    textColor: "{colors.reader-night}"
+    padding: "6px 8px"
+  language-tab:
+    backgroundColor: "{colors.tone-10}"
+    textColor: "{colors.ink}"
+    typography: "{typography.control}"
     rounded: "{rounded.none}"
-    padding: "16px"
-  cover-more-hover:
-    textColor: "{colors.stamp-red}"
-  mode-switch-active:
-    backgroundColor: "{colors.longbox-board}"
-    textColor: "{colors.reader-night}"
-    rounded: "{rounded.xs}"
-    padding: "7px 12px"
-  printed-page:
-    backgroundColor: "{colors.gutter-black}"
+    padding: "6px 12px"
+  language-tab-active:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+    typography: "{typography.control}"
     rounded: "{rounded.none}"
-    padding: "14px"
+    padding: "6px 12px"
+  contents-cell:
+    backgroundColor: "{colors.tone-30}"
+    textColor: "{colors.newsprint-white}"
+    rounded: "{rounded.none}"
+  contents-cell-number:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.numeral-cell}"
+    rounded: "{rounded.none}"
+  contents-cell-title:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+    padding: "6px 10px 7px"
+  title-box:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.title-brush}"
+    rounded: "{rounded.none}"
+    padding: "0.9vw 1.3vw 1vw"
+  shortcut:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.control}"
+    rounded: "{rounded.none}"
+    padding: "10px 16px"
+  shortcut-hover:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+  action-solid:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+    rounded: "{rounded.none}"
+    padding: "12px 22px"
+  action-solid-hover:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.ink}"
+  chapter-tab:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "4px 8px"
+  chapter-tab-hover:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+  mode-switch-segment:
+    backgroundColor: "{colors.tone-10}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "6px 16px"
+  mode-switch-segment-hover:
+    backgroundColor: "{colors.tone-30}"
+  mode-switch-segment-active:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+  chapter-number:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+    typography: "{typography.numeral}"
+    rounded: "{rounded.none}"
+  transcript-summary:
+    backgroundColor: "{colors.tone-10}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "7px 14px"
+  transcript-summary-open:
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.newsprint-white}"
+  editors-note:
+    backgroundColor: "{colors.newsprint-white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "12px 16px"
   caption:
-    backgroundColor: "{colors.gutter-black}"
-    textColor: "{colors.caption-white}"
+    backgroundColor: "{colors.key-black}"
+    textColor: "{colors.caption-cream}"
     typography: "{typography.lettering}"
     padding: "0.5em 1.1em 0.45em"
   balloon:
     backgroundColor: "{colors.balloon-white}"
-    textColor: "{colors.gutter-black}"
+    textColor: "{colors.key-black}"
     typography: "{typography.lettering}"
     rounded: "{rounded.balloon}"
     padding: "0.8em 1.15em"
@@ -200,184 +250,195 @@ components:
 
 ## Overview
 
-**Creative North Star: "The Longbox and the Printed Page"**
+**Creative North Star: "The Black-and-White Weekly"**
 
-Vibe2Fire is one world with two rooms. The reader is a printed comic laid on a dark table: a paper masthead and an editorial Georgia opening, then the night ground where pages sit in comic-page black gutters and the lettering is real HTML set over painted panels. The library is the comic-shop longbox in the same room: each comic language is a drawer behind a tabbed board divider card, and every comic stands in it as a cover framed in that same gutter black, carrying its own caption in its own lettering preset.
+Every page of Vibe2Fire is a page of a weekly manga magazine: cheap newsprint white, black ink panel borders, screentone greys, speed lines, a dry-brush title face. The library is a run of two-page spreads, one per comic language: a black-and-white contents page facing a title page whose newest comic's cover is printed in full colour, the way a weekly prints its colour opening pages. The reader, the language pages and the 404 are pages of the same issue: a masthead strip under speed lines, then title pages, chapter headings over 3px ink rules, printed comic pages, and a closing burst.
 
-The material vocabulary is physical and print-shop: newsprint paper, press ink, board stock, gutter black, a stamp red. Density is generous around prose (19px Georgia at 1.7, 46em measure) and tight inside the art (10px gutters, 14px page frame). Comic faces (Bangers, Patrick Hand) appear only where a comic would put them: the wordmark, divider cards, cover titles, captions, balloons and sound effects. Everything else speaks in Georgia, with a plain sans for small controls and monospace for measurements.
+The one thing that carries colour is the comic. Chrome is black, white and tone; painted panels and the HTML lettering set on them are the only hue on any screen. On the contents page even the art starts in greyscale and prints in colour only while you point at or focus a panel (the colour-insert pull). Selection, the current item and the open state are solid black; secondary surfaces are screentone. Speed lines, the newsprint grain and the NEW burst are plates Codex painted, multiplied onto the paper, never drawn in CSS.
 
-The system rejects the category default of a hero banner over an undifferentiated card grid; comics are filed, not merchandised. The page carries no JavaScript, so every state is CSS on native HTML: links, radio inputs, `<details>`, `aria-current`.
+The type is two voices. Protest Revolution, a rough dry brush, is reserved for display titles: the wordmark, a language's name, a comic's title, chapter titles and the line struck inside the closing burst. Be Vietnam Pro sets everything else, heavy and slanted for headlines, 900 for every numeral, plain for prose. Comic lettering (Patrick Hand, Bangers) stays inside each comic's lettering preset. The world rejects the webcomic platform's banner over rows of rounded cards and the old cream editorial longbox; the page carries no JavaScript, so every state is CSS on native HTML.
 
 **Key Characteristics:**
-- Paper masthead over a dark reader ground; the two rooms share one masthead and one wordmark.
-- Comic-page black (#111) frames anything that holds art: the printed page, the cover, the caption box.
-- Warm board (#e4dac6) marks filing and the selected state: divider cards, the "all in this language" card, the active language chip, the active reader mode.
-- Lettering is HTML, never pixels; covers carry real captions in the comic's own preset.
-- Measurements (counts, chapter numbers, chapter dates in the toolbar) are monospace; counts in the library are mono small caps.
-- Square corners on every paper object; small 2-4px radii only on controls.
+- Newsprint white ground with a painted paper grain; black ink and three screentone greys; no coloured accent anywhere in the chrome.
+- Comic art is the only colour; greyscale panels print in colour on hover and focus.
+- 3px ink rules frame everything structural; square corners everywhere outside speech balloons.
+- Solid black means selected, current, open or the page's one action.
+- Brush face for display titles only; Be Vietnam Pro for every other word and every number.
+- Speed lines, newsprint and the NEW burst are Codex-painted plates, each shipped with its prompt.
+- Lettering is HTML in the comic's own preset, on covers and in the reader alike.
 
 ## Colors
 
-A warm print palette: newsprint and board on one side, a near-black reader night on the other, one stamp red that turns ember coral on the dark.
+A black-and-white print palette with three screentone greys; every hue on the page belongs to a comic.
 
 ### Primary
-- **Stamp Red** (#a8321f): the wordmark's "2", emphasised words in a paper-side headline, link underlines and link hover on paper, the "Newest" badge on a cover, hover on the board card. On paper it is the only accent.
-- **Ember Coral** (#e8775e): Stamp Red's counterpart on the dark ground, for the emphasised words of the library headline, where #a8321f would sink into #191a18.
-
-### Secondary
-- **Longbox Board** (#e4dac6): the filing stock. Divider cards, the drawer-overflow card, the selected language chip and the selected reader mode (Pages / Panels). Board means "this is where you are" or "this is a section of the box".
-- **Lamplight** (#f1d3aa): warm light on the dark. Text selection everywhere, hover on dark links and summaries, the language-chip text, hovered cover titles, emphasis inside cover summaries.
-
-### Tertiary
-The lettering inks. They belong to comic content, not to chrome, and are chosen per comic by lettering preset.
-- **Caption White** (#f6f1e6): text in black brush captions; cover titles.
-- **Balloon White** (#ffffff): speech balloons, sound-effect fill, the light reader's page gutters.
-- **Pop Yellow** (#ffe680): caption boxes in the pop preset.
-- **SFX Red / SFX Yellow / SFX Mint** (#ff5a4a / #ffd23f / #7ff0d1): sound-effect colour options, always stroked in gutter black.
-- **Parchment / Parchment Ink / Parchment Rule** (#efe0bd / #3b2a14 / #6b4f26): the aged-scroll caption of the parchment preset for fantasy and storybook comics.
+- **Key Black** (#111111): the ink of the system. Every rule and frame, the printed page's gutters, caption boxes, the chapter number block, the numbered tab heads in the reader toolbar, and every selected or open state (active language tab, checked Pages / Panels segment, open transcript, hovered chapter tab and shortcut). Also text selection and the focus outline.
 
 ### Neutral
-- **Newsprint Paper** (#f4f0e7): the masthead, the cold open and the write-up; the page's base.
-- **Press Ink** (#25251f): text on paper; the active interface-language chip.
-- **Pencil Muted** (#67655b): secondary text on paper, footer, inactive interface switch.
-- **Paper Rule** (#d5cfc0): hairlines on paper (masthead rule, section rules, table rows, link underlines in shortcuts).
-- **Reader Night** (#191a18): the dark reader and library ground; also the ink printed on board.
-- **Night Text** (#e6dfcf): default text on the dark ground.
-- **Night Body** (#ded6c5): long-form copy on the dark (chapter descriptions, the library lead).
-- **Night Muted** (#aaa79b): toolbar links, chapter counters, cover counts, footer on dark.
-- **Night Rule** (#54544a): outlines of controls on dark (reader mode switch, language chips).
-- **Toolbar Rule** (#44443e): the hairline under the sticky reader toolbar.
-- **Gutter Black** (#111111): printed-page gutters, cover frames, caption boxes, balloon strokes, sound-effect strokes.
-- **Panel Void** (#2a2a26): the placeholder behind a panel or cover image before it paints.
-- **Box Floor / Box Wall** (#1f201d / #2c2d28): the inside of a longbox drawer and its walls, slightly lifted from Reader Night.
-- **Board Pencil** (#4a4740): secondary text printed on board (local language name, comic count).
-- **Brass Date** (#c1a685): the date that leads a chapter title on the dark reader.
-- **Kiln Focus** (#c16b44): the 3px focus outline on links, summaries, covers and the mode switch.
-- **Light Reader Ground** (#ece6d8): the comic section in the light theme.
+- **Newsprint White** (#fafaf7): the paper. Body ground under the painted newsprint grain, the inside of every framed control, the title box, the number box on a contents panel, the halo around the focus ring, and the meta theme colour.
+- **Ink** (#0e0e0d): set text on paper.
+- **Press Grey** (#4a4945): secondary text: inactive edition-switch and masthead links, the comic credit, the chapter dateline, folios.
+- **Tone 10** (#e3e2dd): the light screen. Resting fill of language tabs, Pages / Panels segments, transcript summaries, inline code.
+- **Tone 30** (#b4b3ae): the mid screen. Hover fill of segments and summaries, placeholder behind contents and cover images, 1px hairlines between write-up contents entries and table rows.
+- **Tone 60** (#6a6965): the dark screen. The dot screentone laid under emphasised words in headlines; the scrollbar thumb.
+
+### Tertiary
+The lettering inks. They belong to comic content, are chosen per comic by lettering preset, and never appear in chrome.
+- **Caption Cream** (#f6f1e6): text in the ink preset's black brush captions.
+- **Balloon White** (#ffffff): speech balloons, default sound-effect fill, the light theme's page gutters.
+- **Panel Void** (#2a2a26): the placeholder behind a panel in the reader before it paints.
+- **Pop Yellow** (#ffe680): caption boxes in the pop preset.
+- **SFX Red / SFX Yellow / SFX Mint** (#ff5a4a / #ffd23f / #7ff0d1): sound-effect colour options, always stroked and shadowed in Key Black.
+- **Parchment / Parchment Ink / Parchment Rule** (#efe0bd / #3b2a14 / #6b4f26): the aged-scroll caption of the parchment preset; **Parchment Balloon** (#fffaf0) and **Parchment SFX** (#ffd98a) complete it.
 
 ### Named Rules
-**The Gutter Black Rule.** Anything that holds comic art is framed in #111: the printed page, the cover, the caption box. Art never sits directly on Reader Night.
+**The Colour Is the Comic Rule.** Chrome is Key Black, Newsprint White and screentone. The only colour on a page is painted comic art and the lettering set on it. No link colour, no accent, no coloured state, no coloured badge.
 
-**The Board Means Filing Rule.** Longbox Board is reserved for dividers and the selected state. It is never a generic card fill.
+**The Solid Black Means Here Rule.** Selected, current, open and hovered-for-action states fill solid Key Black with Newsprint White text. The one primary action that ends a page (the closing link under the burst, the 404's way back) rests in solid black and inverts to paper on hover.
 
-**The One Red Rule.** Stamp Red is the only accent on paper and Ember Coral its only counterpart on dark. Lettering inks never leak into chrome.
+**The Screentone Is Secondary Rule.** Anything secondary or resting is a screentone grey, never a tint of a hue: Tone 10 at rest, Tone 30 on hover and behind images, a Tone 60 dot screen for emphasis.
 
 ## Typography
 
-**Display Font:** Bangers (with Arial Narrow, sans-serif), embedded as base64 WOFF2, Latin and Vietnamese subsets.
-**Body Font:** Georgia (with Times New Roman, serif).
-**Lettering Font:** Patrick Hand (with Comic Sans MS, Chalkboard SE, cursive), embedded like Bangers.
-**Label/Mono Font:** Arial/Helvetica for small controls; ui-monospace (SFMono-Regular, Menlo, Consolas) for measurements.
+**Display Font:** Protest Revolution (with Bangers, Arial Narrow, sans-serif), embedded as base64 WOFF2, Latin and Vietnamese subsets.
+**Body Font:** Be Vietnam Pro (with system-ui, sans-serif) at 400, 700 and 900, normal and italic, embedded the same way.
+**Lettering Fonts:** Patrick Hand (captions, balloons) and Bangers (sound effects), embedded; used only inside comic lettering.
+**Mono:** ui-monospace (SFMono-Regular, Menlo, Consolas) for inline code in write-ups only.
 
-**Character:** A quiet editorial serif carries every sentence; the comic faces are props from the comic itself, used where a letterer would use them. Monospace is the reader's voice for numbers.
+**Character:** A rough dry brush shouts the titles the way a weekly's letterer would; a heavy, slanted Vietnamese-native grotesk carries the headlines and every set word, so diacritics stay exact at every weight.
 
 ### Hierarchy
-- **Display** (Bangers 400, 40px, 0.95, 0.03em): the language name on a divider card, set in that language (30px on phones). The wordmark is the same face at 30px/1, 0.02em.
-- **Headline** (Georgia 400, clamp(30px, 4.1vw, 54px), 1.2, -0.02em, balanced): a comic's cold-open heading on paper. The library headline is the same voice on the dark at clamp(32px, 3.6vw, 48px), 1.12, max 16em. Emphasis is italic in the accent of its ground.
-- **Title** (Georgia 400, 26px): chapter headings, led by a Brass Date. Write-up section heads use 30px/1.25.
-- **Cover Title** (Bangers 400, 23px, 1, 0.03em): the comic's name under its cover (21px on phones).
-- **Body** (Georgia 400, 19px, 1.7-1.75, max 46em in chapters, 68ch in the write-up): chapter descriptions and prose (17-18px on phones). The library lead is 18px/1.6, max 44em. The invitation is italic clamp(20px, 2.1vw, 26px)/1.5.
-- **Lettering** (Patrick Hand 400, clamp(12.5px, 1.4cqi, 16px), 1.25, 0.03em, uppercase in the ink preset): captions and balloons, sized in container units so they scale with the page. Pop, manga and parchment drop the capitals; parchment switches to Georgia italic.
-- **SFX** (Bangers 400, clamp(30px, 5cqi, 60px), 1, 0.04em, rotated -9deg): sound effects, white fill with a 2.5px black stroke; XL up to 92px.
-- **Label** (Arial 400, 12-14px, 1.3): interface switch, reader mode, shortcuts, the footer and the satire notice.
-- **Mono** (ui-monospace 400, 11-12px, 1.4): toolbar chapter links, chapter counters, transcript summaries. **Mono Count** (13-14px, all-small-caps, 0.06em, tabular figures in chips): comic counts and chapter/panel counts in the library.
+- **Wordmark** (brush 400, clamp(44px, 6.3vw, 104px), 0.9): top left of the first spread; the reader masthead sets it at clamp(40px, 4.6vw, 64px), 1.1. The "2" is struck harder: rotated -8deg and scaled 1.12.
+- **Display** (brush 400, clamp(60px, 8.6vw, 176px), 1.12): a language's name, centred on its title page, set in that language.
+- **Title** (brush 400, clamp(38px, 4.7vw, 76px), 0.95): a comic's title in its title box. **Chapter Title** (brush 400, clamp(36px, 4.2vw, 64px), 1.15) heads each chapter. **End Line** (brush 400, up to 72px, 1.12, balanced) is the last line struck inside the closing burst.
+- **Headline** (Be Vietnam Pro 900 italic, clamp(34px, 4.4vw, 72px), 1.08, -0.025em, balanced): the reader's cold-open heading. The library headline is the same voice at clamp(26px, 3.05vw, 58px), 1.02; the 404 heading at clamp(24px, 3vw, 40px). Emphasis keeps the weight and lays a Tone 60 dot screen under the words.
+- **Numeral** (Be Vietnam Pro 900, tabular figures): chapter number block 48px (36px on phones), contents panel number clamp(18px, 2vw, 34px), toolbar tab heads, write-up contents counters, the 404 at 21cqi italic. Counts in running text (chapters, panels, comics) are 700 to 900.
+- **Heading** (Be Vietnam Pro 900, clamp(26px, 2.4vw, 34px), 1.2, -0.015em): write-up section heads over a 3px rule.
+- **Body** (Be Vietnam Pro 400, 17px, 1.5): the base. Long-form copy runs at 18px/1.7 (write-up, max 68ch), chapter descriptions at clamp(17px, 1.25vw, 19px)/1.7 (max 42em), the invitation at clamp(18px, 1.5vw, 22px)/1.55 (max 36em), a title box summary at clamp(15px, 1.32vw, 21px)/1.4 (max 62ch). Emphasis inside a summary is 700 upright.
+- **Label** (Be Vietnam Pro 700, 14px, 0.08em): the edition switch and the reader's masthead links. **Control** (700, 13-15px): language tabs, shortcuts, chapter tabs, Pages / Panels, transcript summaries, contents titles.
+- **Folio** (Be Vietnam Pro 400, 13px, Press Grey): the notice and colophon at the foot of the last spread and the reader's foot line.
+- **Lettering** (Patrick Hand 400, clamp(12.5px, 1.4cqi, 16px), 1.25, 0.03em, uppercase in the ink preset): captions and balloons, sized in container units. Pop and manga drop the capitals; parchment switches to Georgia italic.
+- **SFX** (Bangers 400, clamp(30px, 5cqi, 60px), 1, 0.04em, rotated -9deg): sound effects; XL up to 92px.
 
 ### Named Rules
-**The Letterer's Faces Rule.** Bangers and Patrick Hand appear only where a comic would print them: wordmark, dividers, cover titles, captions, balloons, sound effects. Headlines and prose stay in Georgia.
+**The Brush Is for Titles Rule.** Protest Revolution sets only display titles: the wordmark, a language's name, a comic's title, chapter titles, the end line in the burst and the NEW in the burst. Never a sentence of prose, a control, a label or a count.
 
-**The Measurements Are Mono Rule.** Counts, chapter numbers and dates in navigation are monospace; in the library they are small caps.
+**The Numbers Are Grotesk Rule.** Numerals that carry information are Be Vietnam Pro 900 with tabular figures. The brush 4 reads as an A, so even the 404 struck inside the burst is set in the grotesk.
+
+**The Letterer's Faces Rule.** Patrick Hand and Bangers appear only inside a comic's lettering preset (captions, balloons, sound effects); Bangers otherwise survives only as the brush's fallback.
 
 ## Layout
 
-One centred column family. The masthead, library intro, drawers and footer share `min(1240px, 100% - 48px)` (a 24px edge each side). The cold open narrows to 1000px, chapters to 1060px (760px in Panels mode), the reader toolbar to 1100px; the write-up is a 190px sticky contents column beside a 720px prose column with a 68px gap.
+The library is a column of spreads, `16px` from the viewport edge and `28px` apart. Each spread is a two-column grid of equal pages (head and contents left, title page right, a folio row across the foot), at least one viewport tall, edged in a 2px ink line. A 44px fold runs down the centre: a 2px ink line inside a soft gradient of shade, as the paper dips into the binding. The left page holds the masthead (first spread only) or a running head, then the contents: a two-column grid of ten numbered panels in rows of at least 108px. The right page stacks the language head, a 16:9 cover bleeding to both page edges between 3px rules, a ruled title box inset about 1vw, and a strip of three panels (0.86fr, 1.05fr, 1fr) that fills the rest. Spacing inside spreads scales with the viewport in vw so the spread keeps its proportions.
 
-The printed page is a six-column grid with rows of 34cqi, 10px gutters and a 14px black frame; panels span 2, 3, 4 or 6 columns. Panels mode stacks panels one per row at their own proportions with an 18px gap. A library drawer is a 184px divider column beside a cover grid of `auto-fill, minmax(168px, 1fr)` with 16px gaps inside a 16px box padding, about five covers across at 1440px; a drawer shows at most two rows (nine covers and a board card linking to the language's own page).
+The reader is one centred column family under a full-bleed masthead: masthead and cold open at `min(1240px, 100% - 40px)`, the sticky toolbar at 1400px, chapters at 1160px with 24px side padding (760px in Panels mode), `80px` between chapters, `104px` above the end burst. From 980px the cold open sets the headline and the cover side by side (1.08fr / 0.92fr, 56px gap). The printed page is a six-column grid with rows of 34cqi, `10px` gutters and a `14px` frame; panels span 2, 3, 4 or 6 columns. Panels mode stacks panels one per row at their own proportions, `18px` apart. The write-up is a 220px sticky contents column beside a 68ch prose column with a `72px` gap.
 
-Vertical rhythm: 72px above the cold open, 52px above each chapter, 56px between drawers, 64px between write-up sections.
-
-Phones (max-width 719px): the reader toolbar hides the mode switch and scrolls its chapter links horizontally; each panel becomes a black card with its lettering moved into a strip above the art so nothing covers the picture; the divider becomes a sticky tab bar over its drawer; covers go two across with 12px gaps and drop their summaries. At 860px the write-up collapses to one column.
+Phones: below 760px a spread reads as one page (head, title page, contents, folio), the fold disappears, and contents rows become 104px. Below 720px the reader hides the Pages / Panels switch, scrolls its chapter tabs sideways, drops the printed page's frame, and turns each panel into a black card with its lettering lifted into a strip above the art so nothing covers the picture. At 860px the write-up collapses to one column.
 
 ## Elevation & Depth
 
-A hybrid: chrome is flat and separated by hairlines and tonal grounds; only the physical paper objects that sit on the table cast shadows, and those shadows are soft and downward. Depth in the library is a lift: a cover rises 10px out of its box on hover or focus while its shadow deepens, eased by `cubic-bezier(0.16, 1, 0.3, 1)` over 260ms, and only under `(hover: hover)` with no reduced-motion preference. Hard offset shadows exist, but only as comic lettering devices.
+Flat print with one lift. Chrome sits flat on the paper and is separated by ink rules and screentone, never by shadow. Paper objects that lie on the paper (the spread, the reader's cover, the printed page from 720px, the 404 panel) share one soft, short shadow, a page lifted off the table, not a slab. Depth inside the art comes from the plates: speed lines multiplied onto the paper converge on what matters, and the fold shades the binding. Hard offset shadows exist only as comic lettering devices.
 
 ### Shadow Vocabulary
-- **Printed page** (`box-shadow: 0 22px 48px rgba(0, 0, 0, 0.5)`): the page on the dark reader.
-- **Printed page, light** (`box-shadow: 0 14px 34px rgba(60, 50, 30, 0.18)`): the white-gutter page in the light theme.
-- **Cover at rest** (`box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35)`): a cover standing in its box.
-- **Cover lifted** (`box-shadow: 0 26px 40px rgba(0, 0, 0, 0.55)`): a cover pulled out on hover or focus.
-- **SFX stroke shadow** (`text-shadow: 4px 4px 0 #111`): sound effects only.
+- **Print lift** (`box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45)`): the spread, the reader's cover, the printed page (720px and up), the 404 panel.
+- **Focus halo** (`box-shadow: 0 0 0 7px #fafaf7` under a 3px Key Black outline at 3px offset): every focusable element.
+- **SFX shadow** (`text-shadow: 4px 4px 0 #111`): sound effects only.
 - **Parchment edge** (`box-shadow: 0 2px 0 #6b4f26`): parchment captions only.
 
 ### Named Rules
-**The Table Light Rule.** Shadows fall straight down and only under paper objects (pages, covers). Controls, dividers and the masthead stay flat.
+**The One Lift Rule.** One shadow value in the chrome, the print lift, and only under paper objects. Controls, rules, tabs and boxes stay flat.
 
-**The Pull, Don't Bounce Rule.** The only library motion is the cover lift (and the board card's matching lift); the only reader motion is the scroll-driven sound-effect pop. Both switch off under reduced motion.
+**The Pull, Not Bounce Rule.** Motion eases out on `cubic-bezier(0.16, 1, 0.3, 1)`: colour prints into a panel over 480ms, a contents title slides up over 320ms, control fills change over 160ms, and sound effects pop once as their panel scrolls into view. Nothing moves under reduced motion; colour still shows on focus.
 
 ## Shapes
 
-Print geometry: paper objects are square-cornered (pages, panels, covers, divider cards, the drawer box). Small radii are reserved for controls: 2px on interface-switch and language chips and the mode-switch segments, 4px on the mode-switch housing, 3px on inline code. The one curve is the speech balloon, an ellipse (50% / 46%) with a two-layer clip-path tail; the pop preset rounds it to 1.4em, manga to a full 50%. Two silhouettes are cut with clip-path: the ink caption's rough brush edge and the divider card's tab notched into its top edge (the tab sits right of centre on desktop, nearer the left on phones). The drawer box closes with a heavier 6px bottom wall, like the floor of a longbox.
+Print geometry: every frame, tab, box, panel, cell, cover and button is square-cornered. Rule weight carries hierarchy: a 3px Key Black rule for structure (panel and cover borders, the title box, chapter headings, write-up section heads, the masthead and toolbar edges, the number box's two inner sides), a 2px line for framed controls and the spread's edge, and a 1px Tone 30 hairline only between list entries and table rows. The number box on a contents panel tucks into the top-left corner with rules on its right and bottom sides, like a panel number in a printed contents page. The only curves are comic lettering: the speech balloon is an ellipse (50% / 46%) with a two-layer clip-path tail, rounded to 1.4em in pop and a full 50% in manga; the ink caption has a rough brush edge cut with clip-path. The burst's spiky silhouette comes from its painted plate, never from a CSS shape.
+
+### Named Rules
+**The Square Corner Rule.** No border-radius anywhere in the chrome. Rounding belongs to speech balloons.
+
+**The Three-Pixel Ink Rule.** Structure is drawn in 3px Key Black; 2px is for control frames and the sheet edge; hairlines are Tone 30 and live only inside lists and tables.
 
 ## Components
 
-### Masthead and Wordmark
-Paper strip, full bleed in the library, ruled underneath on the reader. The wordmark is Bangers in Press Ink with a Stamp Red "2". The reader carries a sans "library" link and a mono credit at the right; the library carries the interface switch.
+### Wordmark
+Brush "Vibe2Fire" in Ink, the "2" rotated -8deg and scaled 1.12. Top left of the first spread, under the speed-line plate; in the reader masthead it carries the comic's own wordmark the same way.
 
-### Interface Switch (EN / VI)
-- **Style:** Arial 13px, 8px 10px padding, 2px radius, Pencil Muted text on paper.
-- **Active:** Press Ink chip with Newsprint Paper text (`aria-current="page"`).
-- **Hover:** Stamp Red text.
+### Edition Switch and Masthead Links
+A framed bar on paper (2px Key Black border, segments split by 2px rules), Label type. Inactive links are Press Grey and turn Ink on hover; the current interface language is Ink with a 3px underline (`aria-current="page"`). The reader masthead uses the same bar for "library" and the credit link, with 7px 12px segments and a 3px underline on hover.
 
-### Language Chips
-- **Style:** Georgia 15px in Lamplight, 9px 12px padding, 1px Night Rule outline, 2px radius, with the comic count in mono 12px tabular figures. Each language is named in itself.
-- **Hover:** outline turns Lamplight.
-- **Active:** Longbox Board fill with Reader Night text and Board Pencil count, on a language's own page.
+### Language Tabs
+- **Style:** Control type, 6px 12px, Tone 10 fill inside a 3px rule, the language named in itself, its comic count in tabular figures.
+- **Hover / Current:** solid Key Black with Newsprint White text.
 
-### Divider Card (signature)
-Longbox Board, 184px wide, at least 300px tall, sticky at 16px, with the tab cut into the top edge. The language's own name in Bangers 40px; under it, the name in the interface language when they differ (Arial 14px, Board Pencil); the count in mono small caps pinned to the bottom. On phones it becomes a sticky row: name, local name, count right-aligned.
+### Contents Cell (signature)
+A numbered panel on the contents page: square, 3px rule, Tone 30 behind a greyscale image (`grayscale(1) contrast(1.18)`). The number sits in a Newsprint White box in the top-left corner (Numeral, 900, tabular). The title sits in a Key Black bar that slides up from the foot on hover or focus (always shown where there is no hover). **The colour-insert pull:** on hover or focus the image prints in colour (filter off over 480ms). A language with one comic lists its chapters, deep-linking to each; a language with more lists its comics. Past ten, the tenth cell is a solid Key Black "all N in this language" cell.
 
-### Cover (signature)
-- **Frame:** Gutter Black, 8px padding (14px at the foot), square corners, Cover-at-rest shadow.
-- **Art:** 3:4 window on Panel Void, the cover panel cropped by its focus, carrying the panel's first caption or balloon in the comic's own lettering preset, sized clamp(12.5px, 6.4cqi, 17px).
-- **Text:** Bangers cover title in Caption White, mono small-caps counts in Night Muted, a three-line Georgia 14px summary.
-- **Newest:** a Stamp Red Bangers badge in the art's bottom-right corner.
-- **Hover / Focus:** lifts 10px with the Cover-lifted shadow; title turns Lamplight; focus adds the 3px Kiln Focus outline at 4px offset.
+### Title Page
+The language's name in Display, its interface-language name and comic count beneath in 900. Then the cover: the newest comic's cover panel at 16:9 in full colour between 3px rules, carrying its first caption or balloon in the comic's own lettering preset (tilted -4deg, bottom right), and, on the newest comic, the NEW burst breaking the top edge. Below it, the **title box**: a 3px-ruled paper box with the comic's title in brush (underlined 4px on hover), counts in 700, a summary, and the credit in Press Grey. Then the **strip** of three greyscale panels that print in colour together on hover or focus and open the first chapter.
 
-### Drawer Overflow Card
-A board card in the cover grid when a language holds more than ten comics: Bangers 24px "all N in this language" set bottom-left, lifts with the covers, text turns Stamp Red on hover.
+### NEW Burst
+The painted ink starburst plate (480 / 350) with the word set over it in brush, rotated -8deg, about a fifth of the cover's width. The same plate holds the reader's end line (rotated -4deg, up to 720px wide) and the 404.
+
+### Running Head and Folio
+Spreads after the first open with a running head: "Vibe2Fire" in brush at 30px followed by the word for contents in 700 14px uppercase at 0.12em, as a magazine heads its pages. The last spread closes with a folio row: the AI-art notice and colophon under the left page, the `content.json` link in 700 Ink under the right.
+
+### Reader Masthead and Cold Open
+A full-bleed strip under the top speed-line plate with a 3px rule beneath. The cold open sets the Headline, the invitation, a row of **shortcut** buttons (2px frame, paper, Control type, solid black on hover and focus), and the **editor's note** (2px frame, 14px, max 38em) that declares the fictional team and the AI art. From 980px the comic's cover panel sits beside it at 3:2 in colour, with a 3px rule, the print lift, its caption in the comic's lettering, and the corner speed-line plate on its top-right corner.
 
 ### Reader Toolbar
-Sticky, 97% opaque Reader Night with a Toolbar Rule hairline. Mono chapter links in Night Muted (Lamplight on hover) at the left; the Pages / Panels switch at the right: a Night Rule housing (4px radius, 3px padding) with Arial 12px segments, the checked one in Longbox Board. Built from two hidden radio inputs read by sibling selectors. Light theme: paper toolbar, Press Ink active segment.
+Sticky, on paper with the newsprint grain, a 3px rule above and below. **Chapter tabs** at the left: a 2px-framed tab with a Key Black number head (900, tabular) and the chapter's short label; on hover or focus the tab goes black and the head goes paper. **Pages / Panels** at the right: a 2px-framed pair of segments in Tone 10 (Tone 30 on hover), the checked one solid Key Black; built from two hidden radio inputs read by sibling selectors, with the focus ring drawn on the whole switch.
+
+### Chapter Heading
+A Key Black number block (Numeral 48px) beside the chapter title in brush, with the dateline (Press Grey, uppercase, 0.06em) over "n / total" at the right, all over a 3px rule.
 
 ### Printed Page and Panels
-Six-column grid in a Gutter Black frame with the Printed-page shadow. Panels are images with `object-fit: cover` and a focus position (top, bottom, left, right). The light theme swaps the frame to white and outlines each panel 3px in Gutter Black.
+A six-column grid in a Key Black frame with the print lift (720px and up). Panels are images with `object-fit: cover` and a focus position (top, bottom, left, right). The light theme swaps the gutters to white and outlines each panel 3px in Key Black; both themes sit on newsprint.
 
 ### Lettering Presets
-- **Ink (default):** black brush caption with a rough clip-path edge, Caption White uppercase Patrick Hand; white elliptical balloon with a 2px Gutter Black stroke and a two-layer tail (left, centre, right, or up).
-- **Pop:** Pop Yellow caption with a 2.5px black border, 1.4em-rounded balloons, sentence case, yellow sound effects.
-- **Manga:** white boxed caption, round balloons, sentence case, white sound effects at -14deg.
-- **Parchment:** Parchment caption in Georgia italic with a Parchment Rule border and hard 2px edge, warm-white balloons.
-- **Sound effects:** Bangers with a 2.5px black stroke and 4px hard black shadow, rotated -9deg, popping in once (scale 0.3 to 1.12 to 1) as the panel scrolls into view where scroll timelines are supported.
+Unchanged mechanics, chosen per comic.
+- **Ink (default):** Key Black brush caption with a rough clip-path edge and Caption Cream uppercase Patrick Hand; Balloon White ellipse with a 2px Key Black stroke and a two-layer tail (left, centre, right or up).
+- **Pop:** Pop Yellow caption with a 2.5px black border, 1.4em-rounded balloons, sentence case, SFX Yellow sound effects.
+- **Manga:** white boxed caption with a 2px rule, round balloons, sentence case, white sound effects at -14deg.
+- **Parchment:** Parchment caption in Georgia italic with a Parchment Rule border and hard 2px edge, Parchment Balloon balloons, Parchment SFX sound effects.
+- **Sound effects:** Bangers with a 2.5px Key Black stroke and the SFX shadow, rotated -9deg, popping in once (scale 0.3 to 1.12 to 1) as the panel scrolls into view where scroll timelines are supported.
 
 ### Transcript
-A native `<details>` under each page: mono 12px summary in Night Muted (Lamplight on hover), Arial 15px/1.7 text, max 46em.
+A native `<details>` under each page: the summary is a 2px-framed Tone 10 tab (Tone 30 on hover) with a small ink triangle that turns 90deg; open, it goes solid Key Black. Text at 16px/1.7, max 46em.
+
+### End and 404
+The comic closes on the burst plate with the end line in brush and one **solid action** below it (Key Black, 2px frame, 12px 22px, 700 16px; paper on hover). The 404 is one 16:9 panel, 3px rule and print lift, with the corner speed-line plate closing in from two corners on the burst and "404" in 900 italic grotesk, then a heading and a solid action for each interface language.
+
+### Write-up
+A sticky contents column (3px rule on top, a 900 italic title, entries split by Tone 30 hairlines with 900 tabular counters, solid black on hover) beside the prose. Section heads in Heading type over a 3px rule; asides in a 2px frame; tables ruled 2px at head and foot with Tone 30 row hairlines and tabular figures.
+
+### Painted Plates
+`/art/newsprint-v2.webp` tiles behind the body, every spread and the toolbar. `/art/speedlines-top-v2.webp` runs across the top of the first page and the reader masthead; `/art/speedlines-corner-v2.webp` closes in on the title page's top-right corner, the reader's cover and both corners of the 404 panel. `/art/burst-v1.webp` is the burst. Each sits beside a `.json` sidecar holding the prompt Codex painted it from.
+
+**The Plates Are Painted Rule.** Speed lines, the burst and the paper grain are Codex rasters, multiplied (`mix-blend-mode: multiply`) onto the paper or set as a contained background. They are never drawn with CSS gradients, SVG or clip-path, and every shipped plate keeps its prompt beside it.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** frame every piece of comic art in Gutter Black (#111): pages, covers, captions.
-- **Do** set every caption, balloon and sound effect as HTML in the comic's lettering preset; on covers too.
-- **Do** keep Longbox Board (#e4dac6) for dividers and the selected state.
-- **Do** use Stamp Red (#a8321f) as the only accent on paper and Ember Coral (#e8775e) on the dark.
-- **Do** set counts and navigation measurements in monospace, small caps in the library.
-- **Do** build interaction from native HTML and CSS (links, radio inputs, `<details>`, `aria-current`), with a 3px Kiln Focus (#c16b44) outline on every focusable element.
-- **Do** switch every movement off under `prefers-reduced-motion` and keep hover lifts behind `(hover: hover)`.
-- **Do** name each language in itself on dividers and chips, with the interface-language name as the secondary line.
+- **Do** keep the chrome in Key Black (#111111), Newsprint White (#fafaf7) and the three tones (#e3e2dd, #b4b3ae, #6a6965); let the comic art carry all the colour.
+- **Do** mark the selected, current or open state with a solid Key Black fill and Newsprint White text.
+- **Do** draw structure with 3px Key Black rules and keep every corner square.
+- **Do** set display titles (wordmark, language and comic titles, chapter titles, the end line, NEW) in Protest Revolution and everything else in Be Vietnam Pro.
+- **Do** set every informative numeral in Be Vietnam Pro 900 with tabular figures.
+- **Do** emphasise a headline word with the Tone 60 dot screen under it, keeping the weight.
+- **Do** start contents panels in greyscale and print them in colour on hover and on focus; show their titles without hover where there is no pointer.
+- **Do** use the painted plates for speed lines, newsprint and bursts, multiplied onto the paper, each with its prompt sidecar.
+- **Do** set captions, balloons and sound effects as HTML in the comic's own lettering preset, on covers and in the reader.
+- **Do** give every focusable element the 3px Key Black outline at 3px offset with the 7px paper halo, and switch every transition off under `prefers-reduced-motion`.
 
 ### Don't:
+- **Don't** round a corner in the chrome; rounding belongs to speech balloons.
+- **Don't** add a coloured accent, link colour, coloured badge or coloured state; colour is the comic's.
+- **Don't** put a kicker or eyebrow above a heading.
+- **Don't** draw speed lines, bursts or paper texture in CSS; they are painted plates.
+- **Don't** mark NEW with a pill or a badge; NEW is the painted burst.
+- **Don't** set prose, controls, labels or numbers in the brush face; the brush 4 reads as an A.
+- **Don't** use Patrick Hand or Bangers outside comic lettering.
 - **Don't** bake text into panel images; lettering is HTML, never pixels.
-- **Don't** set headlines or prose in Bangers or Patrick Hand; those faces are for the wordmark, dividers, cover titles and lettering.
-- **Don't** round paper objects: pages, panels, covers and divider cards stay square.
-- **Don't** use hard offset shadows outside lettering; they belong to sound effects and parchment captions only.
-- **Don't** put a hero banner over one undifferentiated card grid on the library; comics are filed by language behind dividers.
+- **Don't** add a second shadow value in the chrome; the print lift is the only one, and hard offsets belong to lettering.
 - **Don't** add script, inline `style=` attributes, external fonts or external images; the CSP forbids them and the world is built without them.

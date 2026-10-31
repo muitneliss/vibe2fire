@@ -28,9 +28,14 @@ src/components/ComicPage.astro   the reader page
 src/components/Library.astro     the library page
 src/components/BrandHead.astro   favicon, touch icon, manifest and og:image tags for every <head>
 src/pages/                 / and /vi/ (library), /[vi/]language/<code>/ (one comic language), /<slug>/ (each comic), /content.json, 404
-src/styles/reader.css      reader layout, themes (dark, light) and lettering presets (ink, pop, manga, parchment)
-src/styles/library.css     library layout (language drawers, divider cards, covers)
-src/styles/fonts.css       embedded Bangers + Patrick Hand (Latin and Vietnamese)
+src/styles/reader.css      reader page chrome: masthead strip, title page, toolbar, chapters, end burst, write-up, folio
+src/styles/lettering.css   comic mechanics: printed page, lettering, Pages/Panels, themes (dark, light), presets (ink, pop, manga, parchment)
+src/styles/notfound.css    the 404 panel
+src/styles/library.css     library layout: one two-page spread per comic language (contents page, title page)
+src/styles/magazine.css    the shared world (ADR 0006): tokens, newsprint, wordmark, focus, the NEW burst
+src/styles/fonts.css       embedded Bangers + Patrick Hand (Latin and Vietnamese), the comics' lettering
+src/styles/fonts-magazine.css  embedded Protest Revolution (dry-brush titles) + Be Vietnam Pro (set text)
+public/art/                site art painted by Codex (speed lines, burst, newsprint); each prompt beside it as .json
 scripts/comic.ts           generation CLI (bun run comic ...)
 scripts/brand.ts           brand CLI: paint the mark and link-preview image, derive public/brand/* (bun run brand ...)
 brand/.work/               gitignored: mark candidates, og master, prompts, Codex logs, review sheet

@@ -1,416 +1,182 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-30T00:00:00Z",
+  "generatedAt": "2026-10-31T07:15:58.592Z",
   "title": "Design System: Vibe2Fire",
   "extensions": {
     "colorMeta": {
-      "stamp-red": {
+      "key-black": {
         "role": "primary",
-        "displayName": "Stamp Red",
-        "canonical": "#a8321f",
-        "oklch": "oklch(49.3% 0.157 31.8)",
+        "displayName": "Key Black",
+        "canonical": "#111111",
+        "oklch": "oklch(17.8% 0.000 0.0)",
         "tonalRamp": [
-          "oklch(15% 0.077 31.8)",
-          "oklch(27% 0.118 31.8)",
-          "oklch(39% 0.144 31.8)",
-          "oklch(51% 0.157 31.8)",
-          "oklch(63% 0.154 31.8)",
-          "oklch(75% 0.137 31.8)",
-          "oklch(85% 0.112 31.8)",
-          "oklch(95% 0.077 31.8)"
+          "oklch(15% 0.000 0.0)",
+          "oklch(27% 0.000 0.0)",
+          "oklch(39% 0.000 0.0)",
+          "oklch(51% 0.000 0.0)",
+          "oklch(63% 0.000 0.0)",
+          "oklch(75% 0.000 0.0)",
+          "oklch(85% 0.000 0.0)",
+          "oklch(95% 0.000 0.0)"
         ],
-        "source": "--red (reader.css :root)"
+        "source": "--k (magazine.css :root)"
       },
-      "ember-coral": {
-        "role": "primary",
-        "displayName": "Ember Coral",
-        "canonical": "#e8775e",
-        "oklch": "oklch(69.4% 0.145 33.7)",
-        "tonalRamp": [
-          "oklch(15% 0.071 33.7)",
-          "oklch(27% 0.109 33.7)",
-          "oklch(39% 0.133 33.7)",
-          "oklch(51% 0.145 33.7)",
-          "oklch(63% 0.142 33.7)",
-          "oklch(75% 0.127 33.7)",
-          "oklch(85% 0.103 33.7)",
-          "oklch(95% 0.071 33.7)"
-        ],
-        "source": "--accent-dark (library.css .library)"
-      },
-      "longbox-board": {
-        "role": "secondary",
-        "displayName": "Longbox Board",
-        "canonical": "#e4dac6",
-        "oklch": "oklch(89.1% 0.029 84.6)",
-        "tonalRamp": [
-          "oklch(15% 0.014 84.6)",
-          "oklch(27% 0.022 84.6)",
-          "oklch(39% 0.027 84.6)",
-          "oklch(51% 0.029 84.6)",
-          "oklch(63% 0.028 84.6)",
-          "oklch(75% 0.025 84.6)",
-          "oklch(85% 0.021 84.6)",
-          "oklch(95% 0.014 84.6)"
-        ],
-        "source": "--board (library.css .library); same literal in reader.css mode switch"
-      },
-      "lamplight": {
-        "role": "secondary",
-        "displayName": "Lamplight",
-        "canonical": "#f1d3aa",
-        "oklch": "oklch(88.2% 0.063 75.4)",
-        "tonalRamp": [
-          "oklch(15% 0.031 75.4)",
-          "oklch(27% 0.047 75.4)",
-          "oklch(39% 0.058 75.4)",
-          "oklch(51% 0.063 75.4)",
-          "oklch(63% 0.062 75.4)",
-          "oklch(75% 0.055 75.4)",
-          "oklch(85% 0.045 75.4)",
-          "oklch(95% 0.031 75.4)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "newsprint-paper": {
+      "ink": {
         "role": "neutral",
-        "displayName": "Newsprint Paper",
-        "canonical": "#f4f0e7",
-        "oklch": "oklch(95.6% 0.013 86.8)",
+        "displayName": "Ink",
+        "canonical": "#0e0e0d",
+        "oklch": "oklch(16.3% 0.002 0.0)",
         "tonalRamp": [
-          "oklch(15% 0.006 86.8)",
-          "oklch(27% 0.010 86.8)",
-          "oklch(39% 0.012 86.8)",
-          "oklch(51% 0.013 86.8)",
-          "oklch(63% 0.012 86.8)",
-          "oklch(75% 0.011 86.8)",
-          "oklch(85% 0.009 86.8)",
-          "oklch(95% 0.006 86.8)"
-        ],
-        "source": "--paper"
-      },
-      "press-ink": {
-        "role": "neutral",
-        "displayName": "Press Ink",
-        "canonical": "#25251f",
-        "oklch": "oklch(26.2% 0.011 107.1)",
-        "tonalRamp": [
-          "oklch(15% 0.005 107.1)",
-          "oklch(27% 0.008 107.1)",
-          "oklch(39% 0.010 107.1)",
-          "oklch(51% 0.011 107.1)",
-          "oklch(63% 0.011 107.1)",
-          "oklch(75% 0.009 107.1)",
-          "oklch(85% 0.008 107.1)",
-          "oklch(95% 0.005 107.1)"
+          "oklch(15% 0.001 0.0)",
+          "oklch(27% 0.001 0.0)",
+          "oklch(39% 0.002 0.0)",
+          "oklch(51% 0.002 0.0)",
+          "oklch(63% 0.002 0.0)",
+          "oklch(75% 0.002 0.0)",
+          "oklch(85% 0.001 0.0)",
+          "oklch(95% 0.001 0.0)"
         ],
         "source": "--ink"
       },
-      "pencil-muted": {
+      "newsprint-white": {
         "role": "neutral",
-        "displayName": "Pencil Muted",
-        "canonical": "#67655b",
-        "oklch": "oklch(50.5% 0.016 97.6)",
+        "displayName": "Newsprint White",
+        "canonical": "#fafaf7",
+        "oklch": "oklch(98.4% 0.004 106.5)",
         "tonalRamp": [
-          "oklch(15% 0.008 97.6)",
-          "oklch(27% 0.012 97.6)",
-          "oklch(39% 0.014 97.6)",
-          "oklch(51% 0.016 97.6)",
-          "oklch(63% 0.015 97.6)",
-          "oklch(75% 0.014 97.6)",
-          "oklch(85% 0.011 97.6)",
-          "oklch(95% 0.008 97.6)"
+          "oklch(15% 0.002 106.5)",
+          "oklch(27% 0.003 106.5)",
+          "oklch(39% 0.003 106.5)",
+          "oklch(51% 0.004 106.5)",
+          "oklch(63% 0.004 106.5)",
+          "oklch(75% 0.003 106.5)",
+          "oklch(85% 0.003 106.5)",
+          "oklch(95% 0.002 106.5)"
         ],
-        "source": "--muted"
+        "source": "--paper"
       },
-      "paper-rule": {
+      "press-grey": {
         "role": "neutral",
-        "displayName": "Paper Rule",
-        "canonical": "#d5cfc0",
-        "oklch": "oklch(85.5% 0.021 88.7)",
+        "displayName": "Press Grey",
+        "canonical": "#4a4945",
+        "oklch": "oklch(40.5% 0.007 95.2)",
         "tonalRamp": [
-          "oklch(15% 0.010 88.7)",
-          "oklch(27% 0.016 88.7)",
-          "oklch(39% 0.020 88.7)",
-          "oklch(51% 0.021 88.7)",
-          "oklch(63% 0.021 88.7)",
-          "oklch(75% 0.019 88.7)",
-          "oklch(85% 0.015 88.7)",
-          "oklch(95% 0.010 88.7)"
+          "oklch(15% 0.004 95.2)",
+          "oklch(27% 0.005 95.2)",
+          "oklch(39% 0.006 95.2)",
+          "oklch(51% 0.006 95.2)",
+          "oklch(63% 0.006 95.2)",
+          "oklch(75% 0.005 95.2)",
+          "oklch(85% 0.005 95.2)",
+          "oklch(95% 0.004 95.2)"
         ],
-        "source": "--rule"
+        "source": "--muted",
+        "projectScale": ["#111111", "#4a4945", "#6a6965", "#b4b3ae", "#e3e2dd", "#fafaf7"]
       },
-      "reader-night": {
+      "tone-10": {
         "role": "neutral",
-        "displayName": "Reader Night",
-        "canonical": "#191a18",
-        "oklch": "oklch(21.6% 0.004 128.7)",
+        "displayName": "Tone 10",
+        "canonical": "#e3e2dd",
+        "oklch": "oklch(91.2% 0.007 97.4)",
         "tonalRamp": [
-          "oklch(15% 0.002 128.7)",
-          "oklch(27% 0.003 128.7)",
-          "oklch(39% 0.004 128.7)",
-          "oklch(51% 0.004 128.7)",
-          "oklch(63% 0.004 128.7)",
-          "oklch(75% 0.004 128.7)",
-          "oklch(85% 0.003 128.7)",
-          "oklch(95% 0.002 128.7)"
+          "oklch(15% 0.004 97.4)",
+          "oklch(27% 0.005 97.4)",
+          "oklch(39% 0.006 97.4)",
+          "oklch(51% 0.007 97.4)",
+          "oklch(63% 0.006 97.4)",
+          "oklch(75% 0.005 97.4)",
+          "oklch(85% 0.005 97.4)",
+          "oklch(95% 0.004 97.4)"
         ],
-        "source": "--dark; also --board-ink"
+        "source": "--tone-10",
+        "projectScale": ["#111111", "#4a4945", "#6a6965", "#b4b3ae", "#e3e2dd", "#fafaf7"]
       },
-      "night-text": {
+      "tone-30": {
         "role": "neutral",
-        "displayName": "Night Text",
-        "canonical": "#e6dfcf",
-        "oklch": "oklch(90.5% 0.023 87.2)",
+        "displayName": "Tone 30",
+        "canonical": "#b4b3ae",
+        "oklch": "oklch(76.6% 0.007 97.4)",
         "tonalRamp": [
-          "oklch(15% 0.011 87.2)",
-          "oklch(27% 0.017 87.2)",
-          "oklch(39% 0.021 87.2)",
-          "oklch(51% 0.023 87.2)",
-          "oklch(63% 0.022 87.2)",
-          "oklch(75% 0.020 87.2)",
-          "oklch(85% 0.016 87.2)",
-          "oklch(95% 0.011 87.2)"
+          "oklch(15% 0.004 97.4)",
+          "oklch(27% 0.005 97.4)",
+          "oklch(39% 0.006 97.4)",
+          "oklch(51% 0.007 97.4)",
+          "oklch(63% 0.007 97.4)",
+          "oklch(75% 0.006 97.4)",
+          "oklch(85% 0.005 97.4)",
+          "oklch(95% 0.004 97.4)"
         ],
-        "source": "--dark-text"
+        "source": "--tone-30",
+        "projectScale": ["#111111", "#4a4945", "#6a6965", "#b4b3ae", "#e3e2dd", "#fafaf7"]
       },
-      "night-body": {
+      "tone-60": {
         "role": "neutral",
-        "displayName": "Night Body",
-        "canonical": "#ded6c5",
-        "oklch": "oklch(87.8% 0.025 85.8)",
+        "displayName": "Tone 60",
+        "canonical": "#6a6965",
+        "oklch": "oklch(52.0% 0.006 95.2)",
         "tonalRamp": [
-          "oklch(15% 0.012 85.8)",
-          "oklch(27% 0.018 85.8)",
-          "oklch(39% 0.023 85.8)",
-          "oklch(51% 0.024 85.8)",
-          "oklch(63% 0.024 85.8)",
-          "oklch(75% 0.021 85.8)",
-          "oklch(85% 0.017 85.8)",
-          "oklch(95% 0.012 85.8)"
+          "oklch(15% 0.004 95.2)",
+          "oklch(27% 0.005 95.2)",
+          "oklch(39% 0.005 95.2)",
+          "oklch(51% 0.006 95.2)",
+          "oklch(63% 0.006 95.2)",
+          "oklch(75% 0.005 95.2)",
+          "oklch(85% 0.004 95.2)",
+          "oklch(95% 0.004 95.2)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "night-muted": {
-        "role": "neutral",
-        "displayName": "Night Muted",
-        "canonical": "#aaa79b",
-        "oklch": "oklch(72.7% 0.017 95.3)",
-        "tonalRamp": [
-          "oklch(15% 0.008 95.3)",
-          "oklch(27% 0.013 95.3)",
-          "oklch(39% 0.016 95.3)",
-          "oklch(51% 0.017 95.3)",
-          "oklch(63% 0.017 95.3)",
-          "oklch(75% 0.015 95.3)",
-          "oklch(85% 0.012 95.3)",
-          "oklch(95% 0.008 95.3)"
-        ],
-        "source": "--dark-muted"
-      },
-      "night-rule": {
-        "role": "neutral",
-        "displayName": "Night Rule",
-        "canonical": "#54544a",
-        "oklch": "oklch(44.3% 0.016 107.0)",
-        "tonalRamp": [
-          "oklch(15% 0.008 107.0)",
-          "oklch(27% 0.012 107.0)",
-          "oklch(39% 0.015 107.0)",
-          "oklch(51% 0.016 107.0)",
-          "oklch(63% 0.016 107.0)",
-          "oklch(75% 0.014 107.0)",
-          "oklch(85% 0.011 107.0)",
-          "oklch(95% 0.008 107.0)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "toolbar-rule": {
-        "role": "neutral",
-        "displayName": "Toolbar Rule",
-        "canonical": "#44443e",
-        "oklch": "oklch(38.5% 0.010 106.9)",
-        "tonalRamp": [
-          "oklch(15% 0.005 106.9)",
-          "oklch(27% 0.007 106.9)",
-          "oklch(39% 0.009 106.9)",
-          "oklch(51% 0.010 106.9)",
-          "oklch(63% 0.010 106.9)",
-          "oklch(75% 0.009 106.9)",
-          "oklch(85% 0.007 106.9)",
-          "oklch(95% 0.005 106.9)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "gutter-black": {
-        "role": "neutral",
-        "displayName": "Gutter Black",
-        "canonical": "#111111",
-        "oklch": "oklch(17.8% 0.000 89.9)",
-        "tonalRamp": [
-          "oklch(15% 0.000 89.9)",
-          "oklch(27% 0.000 89.9)",
-          "oklch(39% 0.000 89.9)",
-          "oklch(51% 0.000 89.9)",
-          "oklch(63% 0.000 89.9)",
-          "oklch(75% 0.000 89.9)",
-          "oklch(85% 0.000 89.9)",
-          "oklch(95% 0.000 89.9)"
-        ],
-        "source": "--k"
+        "source": "--tone-60",
+        "projectScale": ["#111111", "#4a4945", "#6a6965", "#b4b3ae", "#e3e2dd", "#fafaf7"]
       },
       "panel-void": {
-        "role": "neutral",
+        "role": "tertiary",
         "displayName": "Panel Void",
         "canonical": "#2a2a26",
         "oklch": "oklch(28.4% 0.007 106.8)",
         "tonalRamp": [
-          "oklch(15% 0.003 106.8)",
+          "oklch(15% 0.004 106.8)",
           "oklch(27% 0.005 106.8)",
-          "oklch(39% 0.007 106.8)",
+          "oklch(39% 0.006 106.8)",
           "oklch(51% 0.007 106.8)",
           "oklch(63% 0.007 106.8)",
           "oklch(75% 0.006 106.8)",
           "oklch(85% 0.005 106.8)",
-          "oklch(95% 0.003 106.8)"
+          "oklch(95% 0.004 106.8)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "literal in lettering.css .panel"
       },
-      "box-floor": {
-        "role": "neutral",
-        "displayName": "Box Floor",
-        "canonical": "#1f201d",
-        "oklch": "oklch(24.1% 0.006 121.9)",
-        "tonalRamp": [
-          "oklch(15% 0.003 121.9)",
-          "oklch(27% 0.004 121.9)",
-          "oklch(39% 0.005 121.9)",
-          "oklch(51% 0.006 121.9)",
-          "oklch(63% 0.006 121.9)",
-          "oklch(75% 0.005 121.9)",
-          "oklch(85% 0.004 121.9)",
-          "oklch(95% 0.003 121.9)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "box-wall": {
-        "role": "neutral",
-        "displayName": "Box Wall",
-        "canonical": "#2c2d28",
-        "oklch": "oklch(29.4% 0.009 116.1)",
-        "tonalRamp": [
-          "oklch(15% 0.004 116.1)",
-          "oklch(27% 0.007 116.1)",
-          "oklch(39% 0.008 116.1)",
-          "oklch(51% 0.009 116.1)",
-          "oklch(63% 0.009 116.1)",
-          "oklch(75% 0.008 116.1)",
-          "oklch(85% 0.006 116.1)",
-          "oklch(95% 0.004 116.1)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "board-pencil": {
-        "role": "neutral",
-        "displayName": "Board Pencil",
-        "canonical": "#4a4740",
-        "oklch": "oklch(39.9% 0.012 87.5)",
-        "tonalRamp": [
-          "oklch(15% 0.006 87.5)",
-          "oklch(27% 0.009 87.5)",
-          "oklch(39% 0.011 87.5)",
-          "oklch(51% 0.012 87.5)",
-          "oklch(63% 0.012 87.5)",
-          "oklch(75% 0.011 87.5)",
-          "oklch(85% 0.009 87.5)",
-          "oklch(95% 0.006 87.5)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "brass-date": {
-        "role": "neutral",
-        "displayName": "Brass Date",
-        "canonical": "#c1a685",
-        "oklch": "oklch(74.1% 0.055 72.4)",
-        "tonalRamp": [
-          "oklch(15% 0.027 72.4)",
-          "oklch(27% 0.041 72.4)",
-          "oklch(39% 0.051 72.4)",
-          "oklch(51% 0.055 72.4)",
-          "oklch(63% 0.054 72.4)",
-          "oklch(75% 0.048 72.4)",
-          "oklch(85% 0.039 72.4)",
-          "oklch(95% 0.027 72.4)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "kiln-focus": {
-        "role": "neutral",
-        "displayName": "Kiln Focus",
-        "canonical": "#c16b44",
-        "oklch": "oklch(61.8% 0.122 44.3)",
-        "tonalRamp": [
-          "oklch(15% 0.059 44.3)",
-          "oklch(27% 0.091 44.3)",
-          "oklch(39% 0.112 44.3)",
-          "oklch(51% 0.121 44.3)",
-          "oklch(63% 0.119 44.3)",
-          "oklch(75% 0.106 44.3)",
-          "oklch(85% 0.087 44.3)",
-          "oklch(95% 0.059 44.3)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "light-reader-ground": {
-        "role": "neutral",
-        "displayName": "Light Reader Ground",
-        "canonical": "#ece6d8",
-        "oklch": "oklch(92.6% 0.020 87.5)",
-        "tonalRamp": [
-          "oklch(15% 0.010 87.5)",
-          "oklch(27% 0.015 87.5)",
-          "oklch(39% 0.018 87.5)",
-          "oklch(51% 0.020 87.5)",
-          "oklch(63% 0.019 87.5)",
-          "oklch(75% 0.017 87.5)",
-          "oklch(85% 0.014 87.5)",
-          "oklch(95% 0.010 87.5)"
-        ],
-        "source": "literal value in reader.css/library.css (no custom property)"
-      },
-      "caption-white": {
+      "caption-cream": {
         "role": "tertiary",
-        "displayName": "Caption White",
+        "displayName": "Caption Cream",
         "canonical": "#f6f1e6",
         "oklch": "oklch(95.9% 0.016 86.4)",
         "tonalRamp": [
-          "oklch(15% 0.008 86.4)",
-          "oklch(27% 0.012 86.4)",
-          "oklch(39% 0.014 86.4)",
+          "oklch(15% 0.009 86.4)",
+          "oklch(27% 0.011 86.4)",
+          "oklch(39% 0.013 86.4)",
           "oklch(51% 0.015 86.4)",
-          "oklch(63% 0.015 86.4)",
-          "oklch(75% 0.014 86.4)",
+          "oklch(63% 0.014 86.4)",
+          "oklch(75% 0.012 86.4)",
           "oklch(85% 0.011 86.4)",
-          "oklch(95% 0.008 86.4)"
+          "oklch(95% 0.009 86.4)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "literal in lettering.css .cap"
       },
       "balloon-white": {
         "role": "tertiary",
         "displayName": "Balloon White",
         "canonical": "#ffffff",
-        "oklch": "oklch(100.0% 0.000 89.9)",
+        "oklch": "oklch(100.0% 0.000 0.0)",
         "tonalRamp": [
-          "oklch(15% 0.000 89.9)",
-          "oklch(27% 0.000 89.9)",
-          "oklch(39% 0.000 89.9)",
-          "oklch(51% 0.000 89.9)",
-          "oklch(63% 0.000 89.9)",
-          "oklch(75% 0.000 89.9)",
-          "oklch(85% 0.000 89.9)",
-          "oklch(95% 0.000 89.9)"
+          "oklch(15% 0.000 0.0)",
+          "oklch(27% 0.000 0.0)",
+          "oklch(39% 0.000 0.0)",
+          "oklch(51% 0.000 0.0)",
+          "oklch(63% 0.000 0.0)",
+          "oklch(75% 0.000 0.0)",
+          "oklch(85% 0.000 0.0)",
+          "oklch(95% 0.000 0.0)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "literal in lettering.css .bubble, .sfx, .theme-light .page"
       },
       "pop-yellow": {
         "role": "tertiary",
@@ -418,16 +184,16 @@
         "canonical": "#ffe680",
         "oklch": "oklch(92.5% 0.125 95.9)",
         "tonalRamp": [
-          "oklch(15% 0.061 95.9)",
-          "oklch(27% 0.094 95.9)",
-          "oklch(39% 0.115 95.9)",
-          "oklch(51% 0.125 95.9)",
-          "oklch(63% 0.123 95.9)",
-          "oklch(75% 0.109 95.9)",
-          "oklch(85% 0.089 95.9)",
-          "oklch(95% 0.061 95.9)"
+          "oklch(15% 0.075 95.9)",
+          "oklch(27% 0.090 95.9)",
+          "oklch(39% 0.105 95.9)",
+          "oklch(51% 0.120 95.9)",
+          "oklch(63% 0.115 95.9)",
+          "oklch(75% 0.100 95.9)",
+          "oklch(85% 0.088 95.9)",
+          "oklch(95% 0.075 95.9)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "lettering.css .lettering-pop .cap"
       },
       "sfx-red": {
         "role": "tertiary",
@@ -435,16 +201,16 @@
         "canonical": "#ff5a4a",
         "oklch": "oklch(68.6% 0.203 28.9)",
         "tonalRamp": [
-          "oklch(15% 0.097 28.9)",
-          "oklch(27% 0.150 28.9)",
-          "oklch(39% 0.184 28.9)",
-          "oklch(51% 0.199 28.9)",
-          "oklch(63% 0.196 28.9)",
-          "oklch(75% 0.174 28.9)",
+          "oklch(15% 0.122 28.9)",
+          "oklch(27% 0.146 28.9)",
+          "oklch(39% 0.171 28.9)",
+          "oklch(51% 0.195 28.9)",
+          "oklch(63% 0.187 28.9)",
+          "oklch(75% 0.163 28.9)",
           "oklch(85% 0.142 28.9)",
-          "oklch(95% 0.097 28.9)"
+          "oklch(95% 0.122 28.9)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "lettering.css .sfx-red"
       },
       "sfx-yellow": {
         "role": "tertiary",
@@ -452,16 +218,16 @@
         "canonical": "#ffd23f",
         "oklch": "oklch(87.9% 0.162 90.9)",
         "tonalRamp": [
-          "oklch(15% 0.079 90.9)",
-          "oklch(27% 0.121 90.9)",
-          "oklch(39% 0.148 90.9)",
-          "oklch(51% 0.161 90.9)",
-          "oklch(63% 0.158 90.9)",
-          "oklch(75% 0.141 90.9)",
-          "oklch(85% 0.115 90.9)",
-          "oklch(95% 0.079 90.9)"
+          "oklch(15% 0.097 90.9)",
+          "oklch(27% 0.116 90.9)",
+          "oklch(39% 0.136 90.9)",
+          "oklch(51% 0.155 90.9)",
+          "oklch(63% 0.149 90.9)",
+          "oklch(75% 0.129 90.9)",
+          "oklch(85% 0.113 90.9)",
+          "oklch(95% 0.097 90.9)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "lettering.css .sfx-yel, .lettering-pop .sfx"
       },
       "sfx-mint": {
         "role": "tertiary",
@@ -469,16 +235,16 @@
         "canonical": "#7ff0d1",
         "oklch": "oklch(88.0% 0.114 173.6)",
         "tonalRamp": [
-          "oklch(15% 0.055 173.6)",
-          "oklch(27% 0.085 173.6)",
-          "oklch(39% 0.104 173.6)",
-          "oklch(51% 0.113 173.6)",
-          "oklch(63% 0.111 173.6)",
-          "oklch(75% 0.099 173.6)",
-          "oklch(85% 0.081 173.6)",
-          "oklch(95% 0.055 173.6)"
+          "oklch(15% 0.068 173.6)",
+          "oklch(27% 0.082 173.6)",
+          "oklch(39% 0.095 173.6)",
+          "oklch(51% 0.109 173.6)",
+          "oklch(63% 0.104 173.6)",
+          "oklch(75% 0.091 173.6)",
+          "oklch(85% 0.080 173.6)",
+          "oklch(95% 0.068 173.6)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "lettering.css .sfx-mint"
       },
       "parchment": {
         "role": "tertiary",
@@ -486,16 +252,16 @@
         "canonical": "#efe0bd",
         "oklch": "oklch(91.0% 0.049 87.6)",
         "tonalRamp": [
-          "oklch(15% 0.024 87.6)",
-          "oklch(27% 0.037 87.6)",
-          "oklch(39% 0.045 87.6)",
-          "oklch(51% 0.049 87.6)",
-          "oklch(63% 0.048 87.6)",
-          "oklch(75% 0.043 87.6)",
-          "oklch(85% 0.035 87.6)",
-          "oklch(95% 0.024 87.6)"
+          "oklch(15% 0.029 87.6)",
+          "oklch(27% 0.035 87.6)",
+          "oklch(39% 0.041 87.6)",
+          "oklch(51% 0.047 87.6)",
+          "oklch(63% 0.045 87.6)",
+          "oklch(75% 0.039 87.6)",
+          "oklch(85% 0.034 87.6)",
+          "oklch(95% 0.029 87.6)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "lettering.css .lettering-parchment .cap"
       },
       "parchment-ink": {
         "role": "tertiary",
@@ -503,16 +269,16 @@
         "canonical": "#3b2a14",
         "oklch": "oklch(29.9% 0.043 72.0)",
         "tonalRamp": [
-          "oklch(15% 0.021 72.0)",
-          "oklch(27% 0.032 72.0)",
-          "oklch(39% 0.039 72.0)",
-          "oklch(51% 0.043 72.0)",
-          "oklch(63% 0.042 72.0)",
-          "oklch(75% 0.037 72.0)",
-          "oklch(85% 0.031 72.0)",
-          "oklch(95% 0.021 72.0)"
+          "oklch(15% 0.026 72.0)",
+          "oklch(27% 0.031 72.0)",
+          "oklch(39% 0.036 72.0)",
+          "oklch(51% 0.041 72.0)",
+          "oklch(63% 0.040 72.0)",
+          "oklch(75% 0.034 72.0)",
+          "oklch(85% 0.030 72.0)",
+          "oklch(95% 0.026 72.0)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "lettering.css .lettering-parchment .cap"
       },
       "parchment-rule": {
         "role": "tertiary",
@@ -520,279 +286,406 @@
         "canonical": "#6b4f26",
         "oklch": "oklch(44.8% 0.068 74.9)",
         "tonalRamp": [
-          "oklch(15% 0.033 74.9)",
-          "oklch(27% 0.051 74.9)",
-          "oklch(39% 0.063 74.9)",
-          "oklch(51% 0.068 74.9)",
-          "oklch(63% 0.067 74.9)",
-          "oklch(75% 0.060 74.9)",
-          "oklch(85% 0.049 74.9)",
-          "oklch(95% 0.033 74.9)"
+          "oklch(15% 0.041 74.9)",
+          "oklch(27% 0.049 74.9)",
+          "oklch(39% 0.057 74.9)",
+          "oklch(51% 0.066 74.9)",
+          "oklch(63% 0.063 74.9)",
+          "oklch(75% 0.055 74.9)",
+          "oklch(85% 0.048 74.9)",
+          "oklch(95% 0.041 74.9)"
         ],
-        "source": "literal value in reader.css/library.css (no custom property)"
+        "source": "lettering.css .lettering-parchment .cap border and edge"
+      },
+      "parchment-balloon": {
+        "role": "tertiary",
+        "displayName": "Parchment Balloon",
+        "canonical": "#fffaf0",
+        "oklch": "oklch(98.6% 0.014 84.6)",
+        "tonalRamp": [
+          "oklch(15% 0.009 84.6)",
+          "oklch(27% 0.010 84.6)",
+          "oklch(39% 0.012 84.6)",
+          "oklch(51% 0.014 84.6)",
+          "oklch(63% 0.013 84.6)",
+          "oklch(75% 0.011 84.6)",
+          "oklch(85% 0.010 84.6)",
+          "oklch(95% 0.009 84.6)"
+        ],
+        "source": "lettering.css .lettering-parchment .bubble"
+      },
+      "parchment-sfx": {
+        "role": "tertiary",
+        "displayName": "Parchment SFX",
+        "canonical": "#ffd98a",
+        "oklch": "oklch(90.1% 0.106 84.7)",
+        "tonalRamp": [
+          "oklch(15% 0.064 84.7)",
+          "oklch(27% 0.077 84.7)",
+          "oklch(39% 0.089 84.7)",
+          "oklch(51% 0.102 84.7)",
+          "oklch(63% 0.098 84.7)",
+          "oklch(75% 0.085 84.7)",
+          "oklch(85% 0.074 84.7)",
+          "oklch(95% 0.064 84.7)"
+        ],
+        "source": "lettering.css .lettering-parchment .sfx"
       }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Display",
-        "purpose": "Language name on a divider card, set in that language (30px on phones)."
-      },
       "wordmark": {
         "displayName": "Wordmark",
-        "purpose": "Vibe2Fire wordmark in the masthead, the 2 in Stamp Red."
+        "purpose": "The brush wordmark, the 2 rotated -8deg and scaled 1.12. Reader masthead: clamp(40px, 4.6vw, 64px), 1.1."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "A language's name on its title page, set in that language."
+      },
+      "title-brush": {
+        "displayName": "Title",
+        "purpose": "A comic's title in its title box."
+      },
+      "chapter-title": {
+        "displayName": "Chapter Title",
+        "purpose": "Chapter headings in the reader."
+      },
+      "end-line": {
+        "displayName": "End Line",
+        "purpose": "The last line struck inside the closing burst; NEW in the cover burst uses the same face."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "A comic's cold-open heading on paper; balanced, italic accent for emphasis."
+        "purpose": "Reader cold-open heading, italic, emphasis on a Tone 60 dot screen."
       },
       "headline-library": {
-        "displayName": "Library Headline",
-        "purpose": "The library heading on the dark ground, max 16em; emphasis in Ember Coral."
+        "displayName": "Headline (library)",
+        "purpose": "The first spread's headline, italic."
       },
-      "title": {
-        "displayName": "Title",
-        "purpose": "Chapter headings, led by a Brass Date."
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Chapter number block; every informative number is 900 tabular grotesk, never brush."
       },
-      "title-cover": {
-        "displayName": "Cover Title",
-        "purpose": "A comic's name under its cover (21px on phones)."
+      "numeral-cell": {
+        "displayName": "Numeral (contents)",
+        "purpose": "The number box on a contents panel."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "Write-up section heads over a 3px rule."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Chapter descriptions and write-up prose; 46em in chapters, 68ch in prose."
+        "purpose": "Base text, 17px/1.5."
       },
-      "body-lead": {
-        "displayName": "Lead",
-        "purpose": "The library lead paragraph, max 44em."
-      },
-      "lettering": {
-        "displayName": "Lettering",
-        "purpose": "Captions and balloons over panels, sized in container units; uppercase in the ink preset."
-      },
-      "sfx": {
-        "displayName": "Sound Effect",
-        "purpose": "Sound effects: white or coloured fill, 2.5px black stroke, 4px hard shadow, rotated -9deg."
+      "body-long": {
+        "displayName": "Body (long-form)",
+        "purpose": "Write-up prose, max 68ch; chapter descriptions run clamp(17px, 1.25vw, 19px)/1.7."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Small controls and notices: interface switch, mode switch, shortcuts, footer."
+        "purpose": "Edition switch and reader masthead links."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Tabs, shortcuts, segments, summaries (13-15px, 700)."
+      },
+      "folio": {
+        "displayName": "Folio",
+        "purpose": "Notices, colophon and foot lines in Press Grey."
+      },
+      "lettering": {
+        "displayName": "Lettering",
+        "purpose": "Captions and balloons inside a comic's lettering preset only."
+      },
+      "sfx": {
+        "displayName": "SFX",
+        "purpose": "Sound effects, stroked and shadowed in Key Black, rotated -9deg."
       },
       "mono": {
         "displayName": "Mono",
-        "purpose": "Measurements in navigation: toolbar chapter links, chapter counters, transcript summary."
-      },
-      "mono-count": {
-        "displayName": "Mono Count",
-        "purpose": "Counts in the library (comics per language, chapters and panels per comic), all small caps."
+        "purpose": "Inline code in write-ups only."
       }
     },
     "shadows": [
       {
-        "name": "printed-page",
-        "value": "0 22px 48px rgba(0, 0, 0, 0.5)",
-        "purpose": "The printed page on the dark reader."
+        "name": "print-lift",
+        "value": "0 18px 40px -18px rgba(0, 0, 0, 0.45)",
+        "purpose": "The only chrome shadow: the spread, the reader's cover, the printed page (720px and up), the 404 panel."
       },
       {
-        "name": "printed-page-light",
-        "value": "0 14px 34px rgba(60, 50, 30, 0.18)",
-        "purpose": "The white-gutter page in the light reader theme."
+        "name": "focus-halo",
+        "value": "0 0 0 7px #fafaf7",
+        "purpose": "Paper halo under the 3px Key Black focus outline at 3px offset."
       },
       {
-        "name": "cover-rest",
-        "value": "0 10px 22px rgba(0, 0, 0, 0.35)",
-        "purpose": "A cover standing in its drawer."
-      },
-      {
-        "name": "cover-lift",
-        "value": "0 26px 40px rgba(0, 0, 0, 0.55)",
-        "purpose": "A cover pulled out of the box on hover or focus."
-      },
-      {
-        "name": "sfx-offset",
-        "value": "4px 4px 0 #111111",
-        "purpose": "text-shadow on sound effects only; a lettering device, not chrome."
+        "name": "sfx-shadow",
+        "value": "text-shadow: 4px 4px 0 #111",
+        "purpose": "Sound effects only."
       },
       {
         "name": "parchment-edge",
         "value": "0 2px 0 #6b4f26",
-        "purpose": "Parchment-preset captions only."
+        "purpose": "Parchment captions only."
       }
     ],
     "motion": [
       {
-        "name": "lift",
+        "name": "pull",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "--lift: easing for the cover and overflow-card lift."
+        "purpose": "The one easing (--pull)."
       },
       {
-        "name": "lift-duration",
-        "value": "260ms",
-        "purpose": "Duration of translate and box-shadow on the cover lift."
+        "name": "colour-pull",
+        "value": "filter 480ms var(--pull)",
+        "purpose": "A greyscale panel prints in colour on hover or focus."
       },
       {
-        "name": "lift-distance",
-        "value": "translate: 0 -10px",
-        "purpose": "How far a cover rises; only under (hover: hover) and prefers-reduced-motion: no-preference."
+        "name": "title-slide",
+        "value": "translate 320ms var(--pull)",
+        "purpose": "A contents panel's title bar slides up."
+      },
+      {
+        "name": "control-fill",
+        "value": "background-color 160ms var(--pull), color 160ms var(--pull)",
+        "purpose": "Tabs, segments, buttons and summaries change fill."
       },
       {
         "name": "sfx-pop",
-        "value": "scale 0.3 -> 1.12 -> 1, opacity 0 -> 1; animation-timeline: view(); range entry 10% to entry 70%",
-        "purpose": "Sound effects pop in as their panel scrolls into view; reduced-motion and unsupported browsers show them static."
-      },
-      {
-        "name": "scroll",
-        "value": "scroll-behavior: smooth; scroll-padding-top: 84px",
-        "purpose": "In-page jumps to chapters and drawers."
+        "value": "scale 0.3 → 1.12 → 1 on animation-timeline: view(), range entry 10% to entry 70%",
+        "purpose": "Sound effects pop once as their panel scrolls in, where scroll timelines are supported."
       }
     ],
     "breakpoints": [
       {
-        "name": "phone",
+        "name": "reader-phone",
         "value": "max-width: 719px",
-        "purpose": "Lettering moves above the art, mode switch hides, dividers become sticky tab bars, covers two across."
+        "purpose": "Lettering lifts above the art; mode switch hidden; chapter tabs scroll."
       },
       {
-        "name": "writeup",
+        "name": "page-lift",
+        "value": "min-width: 720px",
+        "purpose": "Printed page takes the print lift."
+      },
+      {
+        "name": "spread-single",
+        "value": "max-width: 760px",
+        "purpose": "A spread reads as one page; the fold disappears."
+      },
+      {
+        "name": "writeup-single",
         "value": "max-width: 860px",
         "purpose": "Write-up collapses to one column."
       },
       {
-        "name": "container",
-        "value": "min(1240px, 100% - 48px)",
-        "purpose": "Masthead, library intro, drawers, footer."
+        "name": "cold-open-wide",
+        "value": "min-width: 980px",
+        "purpose": "Cold open sets headline and cover side by side."
+      }
+    ],
+    "plates": [
+      {
+        "path": "/art/newsprint-v2.webp",
+        "prompt": "/art/newsprint-v2.webp.json",
+        "use": "Tiled paper grain behind the body, every spread and the reader toolbar."
+      },
+      {
+        "path": "/art/speedlines-top-v2.webp",
+        "prompt": "/art/speedlines-top-v2.webp.json",
+        "use": "Multiplied across the top of the first page and the reader masthead."
+      },
+      {
+        "path": "/art/speedlines-corner-v2.webp",
+        "prompt": "/art/speedlines-corner-v2.webp.json",
+        "use": "Multiplied onto the title page's top-right corner, the reader's cover and both corners of the 404 panel."
+      },
+      {
+        "path": "/art/burst-v1.webp",
+        "prompt": "/art/burst-v1.webp.json",
+        "use": "The NEW burst, the end-line burst and the 404 burst."
       }
     ]
   },
   "components": [
     {
-      "name": "Wordmark and Interface Switch",
-      "kind": "nav",
-      "refersTo": "ui-switch-item",
-      "description": "Paper masthead: Bangers wordmark with the red 2, EN / VI interface switch with the active locale inked.",
-      "html": "<header class=\"ds-root ds-masthead\"><a class=\"ds-wordmark\" href=\"#\">Vibe<span>2</span>Fire</a><nav class=\"ds-ui-switch\"><a href=\"#\" aria-current=\"page\">EN</a><a href=\"#\">VI</a></nav></header>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-masthead{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:var(--paper);color:var(--ink);}.ds-wordmark{font:400 30px/1 var(--bang);letter-spacing:0.02em;color:var(--ink);text-decoration:none;}.ds-wordmark span{color:var(--red);}.ds-wordmark:focus-visible,.ds-ui-switch a:focus-visible{outline:3px solid #c16b44;outline-offset:5px;}.ds-ui-switch{display:flex;gap:4px;font:13px/1 Arial,Helvetica,sans-serif;}.ds-ui-switch a{padding:8px 10px;color:var(--muted);text-decoration:none;border-radius:2px;}.ds-ui-switch a:hover{color:var(--red);}.ds-ui-switch a[aria-current=\"page\"]{color:var(--paper);background:var(--ink);}"
+      "name": "Wordmark",
+      "kind": "custom",
+      "refersTo": "wordmark",
+      "description": "Brush wordmark, the 2 struck harder; top left of the first spread and the reader masthead.",
+      "html": "<a class=\"ds-wordmark\" href=\"#\">Vibe<span>2</span>Fire</a>",
+      "css": ".ds-wordmark { font-family: var(--brush, \"Protest Revolution\", \"Bangers\", \"Arial Narrow\", sans-serif); font-weight: 400; font-size: 72px; line-height: 0.9; color: var(--ink, #0e0e0d); text-decoration: none; white-space: nowrap; } .ds-wordmark span { display: inline-block; rotate: -8deg; scale: 1.12; } .ds-wordmark:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); }"
     },
     {
-      "name": "Language Chips",
+      "name": "Edition Switch",
+      "kind": "nav",
+      "refersTo": "edition-switch-item",
+      "description": "EN | VI interface switch: a 2px-framed bar; the current language is Ink with a 3px underline.",
+      "html": "<nav class=\"ds-edition\" aria-label=\"Interface language\"><a href=\"#\" aria-current=\"page\">EN</a><a href=\"#\">VI</a></nav>",
+      "css": ".ds-edition { display: inline-flex; align-items: center; background: var(--paper, #fafaf7); border: 2px solid var(--k, #111111); font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; } .ds-edition a { padding: 6px 8px; color: var(--muted, #4a4945); text-decoration: none; } .ds-edition a + a { border-left: 2px solid var(--k, #111111); } .ds-edition a:hover { color: var(--ink, #0e0e0d); } .ds-edition a[aria-current=\"page\"] { color: var(--ink, #0e0e0d); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 0.18em; } .ds-edition a:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); }"
+    },
+    {
+      "name": "Language Tab",
       "kind": "chip",
-      "refersTo": "lang-jump",
-      "description": "Jump links to each language drawer on the dark ground: the language named in itself, the count in mono.",
-      "html": "<nav class=\"ds-root ds-jump\"><a href=\"#\">English<b>2</b></a><a href=\"#\" aria-current=\"page\">Tiếng Việt<b>11</b></a><a href=\"#\">Español<b>1</b></a></nav>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-jump{display:flex;flex-wrap:wrap;gap:8px;padding:24px;background:var(--dark);}.ds-jump a{display:inline-flex;align-items:baseline;gap:10px;padding:9px 12px;border:1px solid #54544a;border-radius:2px;color:#f1d3aa;text-decoration:none;font:15px/1.2 Georgia,\"Times New Roman\",serif;}.ds-jump a:hover{border-color:#f1d3aa;}.ds-jump a:focus-visible{outline:3px solid #c16b44;outline-offset:5px;}.ds-jump a[aria-current=\"page\"]{background:var(--board);border-color:var(--board);color:var(--board-ink);}.ds-jump b{font:400 12px/1 var(--mono);color:var(--dark-muted);font-variant-numeric:tabular-nums;}.ds-jump a[aria-current=\"page\"] b{color:#4a4740;}"
+      "refersTo": "language-tab",
+      "description": "A language named in itself with its comic count; Tone 10 at rest, solid black on hover and when current.",
+      "html": "<nav class=\"ds-lang-tabs\"><a href=\"#\" lang=\"vi\">Tiếng Việt <b>1</b></a><a href=\"#\" lang=\"en\" aria-current=\"page\">English <b>3</b></a></nav>",
+      "css": ".ds-lang-tabs { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); } .ds-lang-tabs a { padding: 6px 12px; border: 3px solid var(--k, #111111); background: var(--tone-10, #e3e2dd); color: var(--ink, #0e0e0d); font-weight: 700; font-size: 15px; text-decoration: none; } .ds-lang-tabs a b { margin-left: 4px; font-variant-numeric: tabular-nums; } .ds-lang-tabs a:hover, .ds-lang-tabs a[aria-current=\"page\"] { background: var(--k, #111111); color: var(--paper, #fafaf7); } .ds-lang-tabs a:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); }"
     },
     {
-      "name": "Divider Card",
+      "name": "Contents Cell",
+      "kind": "card",
+      "refersTo": "contents-cell",
+      "description": "Signature: a numbered greyscale panel that prints in colour and slides up its title on hover or focus (the colour-insert pull).",
+      "html": "<a class=\"ds-cell\" href=\"#\"><span class=\"ds-cell-art\"></span><span class=\"ds-cell-num\">4</span><span class=\"ds-cell-title\">Ngày số không</span></a>",
+      "css": ".ds-cell { position: relative; display: block; width: 300px; height: 168px; overflow: hidden; border: 3px solid var(--k, #111111); background: var(--tone-30, #b4b3ae); color: var(--paper, #fafaf7); text-decoration: none; font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); } .ds-cell-art { position: absolute; inset: 0; background: linear-gradient(135deg, #e0a050 0%, #4a7fb0 55%, #2a3550 100%); filter: grayscale(1) contrast(1.18); transition: filter 480ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-cell-num { position: absolute; top: 0; left: 0; min-width: 1.35em; padding: 0.04em 0.24em 0; border-right: 3px solid var(--k, #111111); border-bottom: 3px solid var(--k, #111111); background: var(--paper, #fafaf7); color: var(--ink, #0e0e0d); font-weight: 900; font-size: 28px; line-height: 1.1; text-align: center; font-variant-numeric: tabular-nums; } .ds-cell-title { position: absolute; inset: auto 0 0; padding: 6px 10px 7px; background: var(--k, #111111); font-weight: 700; font-size: 14px; line-height: 1.3; translate: 0 101%; transition: translate 320ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-cell:hover .ds-cell-art, .ds-cell:focus-visible .ds-cell-art { filter: none; } .ds-cell:hover .ds-cell-title, .ds-cell:focus-visible .ds-cell-title { translate: 0 0; } .ds-cell:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); } @media (prefers-reduced-motion: reduce) { .ds-cell-art, .ds-cell-title { transition: none; } }"
+    },
+    {
+      "name": "Title Box",
+      "kind": "card",
+      "refersTo": "title-box",
+      "description": "The ruled paper box on a title page: brush title, counts, summary, credit.",
+      "html": "<div class=\"ds-title-box\"><h3><a href=\"#\">Vibe2Fire</a></h3><p class=\"ds-meta\">10 chapters · 46 panels</p><p class=\"ds-summary\">A satire about <em>a boss who taught himself AI</em> and a Marketing team that is no more.</p><p class=\"ds-credit\">art painted by Codex · words written by people</p></div>",
+      "css": ".ds-title-box { max-width: 560px; padding: 14px 20px 16px; border: 3px solid var(--k, #111111); background: var(--paper, #fafaf7); color: var(--ink, #0e0e0d); font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); } .ds-title-box h3 { margin: 0; font-family: var(--brush, \"Protest Revolution\", \"Bangers\", \"Arial Narrow\", sans-serif); font-weight: 400; font-size: 56px; line-height: 0.95; } .ds-title-box h3 a { color: inherit; text-decoration: none; } .ds-title-box h3 a:hover { text-decoration: underline; text-decoration-thickness: 4px; } .ds-title-box h3 a:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); } .ds-meta { margin: 0.3em 0 0.25em; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; } .ds-summary { margin: 0; font-size: 16px; line-height: 1.4; } .ds-summary em { font-style: normal; font-weight: 700; } .ds-credit { margin: 0.45em 0 0; color: var(--muted, #4a4945); font-size: 13px; }"
+    },
+    {
+      "name": "Shortcut Button",
+      "kind": "button",
+      "refersTo": "shortcut",
+      "description": "Framed paper button for jumps on a title page; solid black on hover and focus.",
+      "html": "<a class=\"ds-shortcut\" href=\"#\">Start at Q3 ↓</a>",
+      "css": ".ds-shortcut { display: inline-block; padding: 10px 16px; border: 2px solid var(--k, #111111); background: var(--paper, #fafaf7); color: var(--ink, #0e0e0d); font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); font-weight: 700; font-size: 15px; line-height: 1.3; text-decoration: none; transition: background-color 160ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)), color 160ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-shortcut:hover, .ds-shortcut:focus-visible { background: var(--k, #111111); color: var(--paper, #fafaf7); } .ds-shortcut:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); }"
+    },
+    {
+      "name": "Solid Action",
+      "kind": "button",
+      "refersTo": "action-solid",
+      "description": "The one action that ends a page (under the end burst, on the 404); solid black, paper on hover.",
+      "html": "<a class=\"ds-action\" href=\"#\">Read the real log</a>",
+      "css": ".ds-action { display: inline-block; padding: 12px 22px; border: 2px solid var(--k, #111111); background: var(--k, #111111); color: var(--paper, #fafaf7); font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); font-weight: 700; font-size: 16px; text-decoration: none; transition: background-color 160ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)), color 160ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-action:hover { background: var(--paper, #fafaf7); color: var(--ink, #0e0e0d); } .ds-action:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); }"
+    },
+    {
+      "name": "Pages / Panels Switch",
       "kind": "custom",
-      "refersTo": "divider-card",
-      "description": "The longbox divider: board stock with a tab cut into the top edge, the language's own name in Bangers, the count in mono small caps.",
-      "html": "<div class=\"ds-root ds-dark\"><header class=\"ds-divider\"><h2>Tiếng Việt</h2><p class=\"ds-divider-local\">Vietnamese</p><p class=\"ds-divider-count\">11 comics</p></header></div>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-dark{padding:24px;background:var(--dark);}.ds-divider{width:184px;min-height:300px;padding:44px 18px 18px;display:flex;flex-direction:column;background:var(--board);color:var(--board-ink);clip-path:polygon(0 26px,44% 26px,52% 0,100% 0,100% 100%,0 100%);}.ds-divider h2{margin:0;font:400 40px/0.95 var(--bang);letter-spacing:0.03em;overflow-wrap:anywhere;}.ds-divider-local{margin:8px 0 0;font:14px/1.3 Arial,Helvetica,sans-serif;color:#4a4740;}.ds-divider-count{margin:auto 0 0;padding-top:24px;font:14px/1.3 var(--mono);color:#4a4740;font-variant-caps:all-small-caps;letter-spacing:0.06em;}"
+      "refersTo": "mode-switch-segment",
+      "description": "Two framed segments in Tone 10; the checked one is solid black. Built from hidden radio inputs in the reader.",
+      "html": "<div class=\"ds-mode\" role=\"group\" aria-label=\"Reading mode\"><input type=\"radio\" name=\"ds-mode\" id=\"ds-pages\" checked><label for=\"ds-pages\">Pages</label><input type=\"radio\" name=\"ds-mode\" id=\"ds-panels\"><label for=\"ds-panels\">Panels</label></div>",
+      "css": ".ds-mode { display: inline-flex; border: 2px solid var(--k, #111111); font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); font-weight: 700; font-size: 14px; } .ds-mode input { position: absolute; opacity: 0; pointer-events: none; } .ds-mode label { padding: 6px 16px; background: var(--tone-10, #e3e2dd); color: var(--ink, #0e0e0d); cursor: pointer; transition: background-color 160ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)), color 160ms var(--pull, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-mode label + input + label { border-left: 2px solid var(--k, #111111); } .ds-mode label:hover { background: var(--tone-30, #b4b3ae); } .ds-mode input:checked + label { background: var(--k, #111111); color: var(--paper, #fafaf7); } .ds-mode:has(input:focus-visible) { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); }"
     },
     {
-      "name": "Cover",
-      "kind": "card",
-      "refersTo": "cover",
-      "description": "A comic standing in its drawer: framed in comic-page black, art carrying a real HTML caption, Bangers title, mono small-caps counts; lifts out of the box on hover and focus.",
-      "html": "<div class=\"ds-root ds-box\"><a class=\"ds-cover\" href=\"#\"><span class=\"ds-cover-art\"><span class=\"ds-cap\">3:04 a.m. The pager again.</span><span class=\"ds-cover-new\">Newest</span></span><span class=\"ds-cover-title\">Night Shift</span><span class=\"ds-cover-meta\">1 chapter · 6 panels</span><span class=\"ds-cover-summary\">A deploy goes wrong at <em>3 a.m.</em> and nobody admits it.</span></a></div>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-box{padding:16px;background:#1f201d;border:1px solid #2c2d28;border-bottom:6px solid #2c2d28;}.ds-cover{width:180px;display:flex;flex-direction:column;gap:8px;padding:8px 8px 14px;background:var(--k);color:var(--dark-text);text-decoration:none;box-shadow:0 10px 22px rgba(0,0,0,0.35);transition:translate 260ms var(--lift),box-shadow 260ms var(--lift);}.ds-cover:hover,.ds-cover:focus-visible{translate:0 -10px;box-shadow:0 26px 40px rgba(0,0,0,0.55);}.ds-cover:focus-visible{outline:3px solid #c16b44;outline-offset:4px;}.ds-cover-art{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#2a2a26;margin-bottom:4px;}.ds-cap{position:absolute;top:6%;left:6%;max-width:82%;background:var(--k);color:#f6f1e6;padding:0.5em 1.1em 0.45em;font:13px/1.25 var(--hand);letter-spacing:0.03em;text-transform:uppercase;clip-path:polygon(1.5% 6%,30% 0,62% 5%,100% 1%,98.5% 52%,100% 96%,66% 100%,28% 95%,0 100%,1% 48%);}.ds-cover-new{position:absolute;right:0;bottom:0;padding:6px 10px 5px;background:var(--red);color:#fff;font:400 17px/1 var(--bang);letter-spacing:0.06em;}.ds-cover-title{padding:0 4px;font:400 23px/1 var(--bang);letter-spacing:0.03em;color:#f6f1e6;}.ds-cover:hover .ds-cover-title{color:#f1d3aa;}.ds-cover-meta{padding:0 4px;font:13px/1.4 var(--mono);color:var(--dark-muted);font-variant-caps:all-small-caps;letter-spacing:0.06em;}.ds-cover-summary{padding:2px 4px 0;font:14px/1.45 Georgia,serif;color:#c9c3b4;}.ds-cover-summary em{color:#f1d3aa;}@media (prefers-reduced-motion:reduce){.ds-cover:hover,.ds-cover:focus-visible{translate:none;}}"
-    },
-    {
-      "name": "Drawer Overflow Card",
-      "kind": "card",
-      "refersTo": "cover-more",
-      "description": "Board card closing a full drawer; opens the language's own page.",
-      "html": "<div class=\"ds-root ds-dark\"><a class=\"ds-more\" href=\"#\">All 11 in Vietnamese</a></div>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-dark{padding:24px;background:var(--dark);}.ds-more{width:180px;min-height:160px;display:flex;align-items:flex-end;padding:16px;background:var(--board);color:var(--board-ink);font:400 24px/1.05 var(--bang);letter-spacing:0.03em;text-decoration:none;transition:translate 260ms var(--lift);}.ds-more:hover{color:var(--red);}.ds-more:hover,.ds-more:focus-visible{translate:0 -10px;}.ds-more:focus-visible{outline:3px solid #c16b44;outline-offset:4px;}"
-    },
-    {
-      "name": "Reader Toolbar and Mode Switch",
+      "name": "Chapter Tab",
       "kind": "nav",
-      "refersTo": "mode-switch-active",
-      "description": "Sticky dark toolbar: mono chapter links left, the Pages / Panels segmented switch right with the checked segment in board.",
-      "html": "<div class=\"ds-root ds-toolbar\"><nav class=\"ds-era\"><a href=\"#\">Q3</a><a href=\"#\">28/10</a><a href=\"#\">29/10 morning</a></nav><div class=\"ds-mode\"><span class=\"ds-on\">Pages</span><span>Panels</span></div></div>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:62px;padding:10px 22px;background:rgba(25,26,24,0.97);border-bottom:1px solid #44443e;}.ds-era{display:flex;gap:6px 20px;font:12px/1.4 var(--mono);}.ds-era a{color:var(--dark-muted);text-decoration:none;}.ds-era a:hover{color:#f1d3aa;}.ds-era a:focus-visible{outline:3px solid #c16b44;outline-offset:5px;}.ds-mode{display:flex;border:1px solid #54544a;border-radius:4px;padding:3px;gap:3px;}.ds-mode span{color:var(--dark-muted);padding:7px 12px;font:12px/1.4 Arial,Helvetica,sans-serif;border-radius:2px;cursor:pointer;}.ds-mode span:hover{color:#f1d3aa;}.ds-mode .ds-on{color:#1b1c19;background:#e4dac6;}"
+      "refersTo": "chapter-tab",
+      "description": "Reader toolbar tab: a black number head and a short label; the tab goes black on hover and focus.",
+      "html": "<nav class=\"ds-chapters\"><a href=\"#\"><b>1</b><span>Quý 3</span></a><a href=\"#\"><b>4</b><span>28/10</span></a></nav>",
+      "css": ".ds-chapters { display: flex; flex-wrap: wrap; gap: 6px; font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); } .ds-chapters a { display: flex; align-items: stretch; border: 2px solid var(--k, #111111); background: var(--paper, #fafaf7); color: var(--ink, #0e0e0d); font-weight: 700; font-size: 13px; line-height: 1.2; text-decoration: none; } .ds-chapters b { display: grid; place-items: center; min-width: 1.8em; padding: 4px; background: var(--k, #111111); color: var(--paper, #fafaf7); font-weight: 900; font-variant-numeric: tabular-nums; } .ds-chapters span { display: grid; align-items: center; padding: 4px 8px; } .ds-chapters a:hover, .ds-chapters a:focus-visible { background: var(--k, #111111); color: var(--paper, #fafaf7); } .ds-chapters a:hover b, .ds-chapters a:focus-visible b { background: var(--paper, #fafaf7); color: var(--ink, #0e0e0d); } .ds-chapters a:focus-visible { outline: 3px solid var(--k, #111111); outline-offset: 3px; box-shadow: 0 0 0 7px var(--paper, #fafaf7); }"
     },
     {
-      "name": "Printed Page with Lettering",
+      "name": "Chapter Heading",
       "kind": "custom",
-      "refersTo": "printed-page",
-      "description": "A page in comic-page black gutters: panels on a six-column grid, ink-preset caption and balloon as HTML, a stroked sound effect.",
-      "html": "<div class=\"ds-root ds-page\"><figure class=\"ds-panel ds-w4\"><p class=\"ds-cap\">Quarter three. Saigon.</p><p class=\"ds-sfx\">Bzzt!</p></figure><figure class=\"ds-panel ds-w2\"><p class=\"ds-bubble\">Who pushed to main?</p></figure></div>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-page{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:180px;gap:10px;padding:14px;background:var(--k);box-shadow:0 22px 48px rgba(0,0,0,0.5);}.ds-panel{position:relative;margin:0;overflow:hidden;background:#2a2a26;}.ds-w4{grid-column:span 4;}.ds-w2{grid-column:span 2;}.ds-cap,.ds-bubble{position:absolute;top:8%;left:5%;margin:0;max-width:70%;font:14px/1.25 var(--hand);letter-spacing:0.03em;text-transform:uppercase;}.ds-cap{background:var(--k);color:#f6f1e6;padding:0.5em 1.1em 0.45em;clip-path:polygon(1.5% 6%,30% 0,62% 5%,100% 1%,98.5% 52%,100% 96%,66% 100%,28% 95%,0 100%,1% 48%);}.ds-bubble{background:#fff;color:var(--k);border:2px solid var(--k);border-radius:50%/46%;padding:0.8em 1.15em;text-align:center;}.ds-sfx{position:absolute;right:8%;bottom:10%;margin:0;font:400 48px/1 var(--bang);letter-spacing:0.04em;color:#ffd23f;-webkit-text-stroke:2.5px var(--k);paint-order:stroke fill;text-shadow:4px 4px 0 var(--k);rotate:-9deg;}"
+      "refersTo": "chapter-number",
+      "description": "Black number block, brush chapter title, dateline and n / total, over a 3px rule.",
+      "html": "<div class=\"ds-chapter-head\"><span class=\"ds-no\">1</span><h2>Sa mạc nội dung</h2><small><span>Quý 3/2026</span>1 / 10</small></div>",
+      "css": ".ds-chapter-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: end; gap: 8px 22px; padding-bottom: 14px; border-bottom: 3px solid var(--k, #111111); color: var(--ink, #0e0e0d); font-family: var(--sans, \"Be Vietnam Pro\", system-ui, sans-serif); } .ds-no { display: grid; place-items: center; align-self: stretch; min-width: 1.45em; padding: 0 0.2em; background: var(--k, #111111); color: var(--paper, #fafaf7); font-weight: 900; font-size: 48px; line-height: 1; font-variant-numeric: tabular-nums; } .ds-chapter-head h2 { margin: 0; font-family: var(--brush, \"Protest Revolution\", \"Bangers\", \"Arial Narrow\", sans-serif); font-weight: 400; font-size: 52px; line-height: 1.15; } .ds-chapter-head small { font-weight: 700; font-size: 16px; line-height: 1.4; text-align: right; font-variant-numeric: tabular-nums; } .ds-chapter-head small span { display: block; color: var(--muted, #4a4945); letter-spacing: 0.06em; text-transform: uppercase; }"
     },
     {
-      "name": "Lettering Presets",
+      "name": "Ink Lettering",
       "kind": "custom",
       "refersTo": "caption",
-      "description": "The four caption styles side by side: ink (brush), pop (yellow box), manga (white box), parchment (aged scroll).",
-      "html": "<div class=\"ds-root ds-presets\"><p class=\"ds-c ds-ink\">Ink caption</p><p class=\"ds-c ds-pop\">Pop caption</p><p class=\"ds-c ds-manga\">Manga caption</p><p class=\"ds-c ds-parch\">Parchment caption</p></div>",
-      "css": ".ds-root{--paper:#f4f0e7;--ink:#25251f;--muted:#67655b;--rule:#d5cfc0;--red:#a8321f;--dark:#191a18;--dark-text:#e6dfcf;--dark-muted:#aaa79b;--k:#111111;--board:#e4dac6;--board-ink:#191a18;--lift:cubic-bezier(0.16,1,0.3,1);--bang:\"Bangers\",\"Arial Narrow\",sans-serif;--hand:\"Patrick Hand\",\"Comic Sans MS\",\"Chalkboard SE\",cursive;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}.ds-presets{display:flex;flex-wrap:wrap;gap:16px;padding:24px;background:#2a2a26;}.ds-c{margin:0;padding:0.5em 1.1em 0.45em;font:15px/1.25 var(--hand);}.ds-ink{background:var(--k);color:#f6f1e6;letter-spacing:0.03em;text-transform:uppercase;clip-path:polygon(1.5% 6%,30% 0,62% 5%,100% 1%,98.5% 52%,100% 96%,66% 100%,28% 95%,0 100%,1% 48%);}.ds-pop{background:#ffe680;color:var(--k);border:2.5px solid var(--k);}.ds-manga{background:#fff;color:var(--k);border:2px solid var(--k);}.ds-parch{background:#efe0bd;color:#3b2a14;border:2px solid #6b4f26;font-family:Georgia,\"Times New Roman\",serif;font-style:italic;letter-spacing:0.01em;box-shadow:0 2px 0 #6b4f26;}"
+      "description": "The default lettering preset: a black brush caption and a white elliptical balloon with a tail, as HTML over the art.",
+      "html": "<div class=\"ds-letter\"><p class=\"ds-cap\">Quý 3/2026 – Sài Gòn</p><p class=\"ds-bubble\">Mọi thứ vẫn ổn chứ?</p></div>",
+      "css": ".ds-letter { display: grid; gap: 28px; justify-items: start; padding: 20px; background: var(--tone-30, #b4b3ae); } .ds-cap, .ds-bubble { position: relative; margin: 0; max-width: 260px; font-family: var(--hand, \"Patrick Hand\", \"Comic Sans MS\", cursive); font-size: 16px; line-height: 1.25; letter-spacing: 0.03em; text-transform: uppercase; } .ds-cap { background: var(--k, #111111); color: #f6f1e6; padding: 0.5em 1.1em 0.45em; clip-path: polygon(1.5% 6%, 30% 0, 62% 5%, 100% 1%, 98.5% 52%, 100% 96%, 66% 100%, 28% 95%, 0 100%, 1% 48%); } .ds-bubble { background: #fff; color: var(--k, #111111); border: 2px solid var(--k, #111111); border-radius: 50% / 46%; padding: 0.8em 1.15em; text-align: center; } .ds-bubble::before, .ds-bubble::after { content: \"\"; position: absolute; top: 100%; left: 24%; width: 20px; height: 20px; clip-path: polygon(0 0, 100% 0, 25% 100%); } .ds-bubble::before { background: var(--k, #111111); margin-top: -1px; } .ds-bubble::after { background: #fff; width: 14px; height: 13px; margin: -3px 0 0 3px; }"
     }
   ],
   "narrative": {
-    "northStar": "The Longbox and the Printed Page",
-    "overview": "**Creative North Star: \"The Longbox and the Printed Page\"**\n\nVibe2Fire is one world with two rooms. The reader is a printed comic laid on a dark table: a paper masthead and an editorial Georgia opening, then the night ground where pages sit in comic-page black gutters and the lettering is real HTML set over painted panels. The library is the comic-shop longbox in the same room: each comic language is a drawer behind a tabbed board divider card, and every comic stands in it as a cover framed in that same gutter black, carrying its own caption in its own lettering preset.\n\nThe material vocabulary is physical and print-shop: newsprint paper, press ink, board stock, gutter black, a stamp red. Density is generous around prose (19px Georgia at 1.7, 46em measure) and tight inside the art (10px gutters, 14px page frame). Comic faces (Bangers, Patrick Hand) appear only where a comic would put them: the wordmark, divider cards, cover titles, captions, balloons and sound effects. Everything else speaks in Georgia, with a plain sans for small controls and monospace for measurements.\n\nThe system rejects the category default of a hero banner over an undifferentiated card grid; comics are filed, not merchandised. The page carries no JavaScript, so every state is CSS on native HTML: links, radio inputs, `<details>`, `aria-current`.",
+    "northStar": "The Black-and-White Weekly",
+    "overview": "Every page of Vibe2Fire is a page of a weekly manga magazine: cheap newsprint white, black ink panel borders, screentone greys, speed lines, a dry-brush title face. The library is a run of two-page spreads, one per comic language: a black-and-white contents page facing a title page whose newest comic's cover is printed in full colour, the way a weekly prints its colour opening pages. The reader, the language pages and the 404 are pages of the same issue: a masthead strip under speed lines, then title pages, chapter headings over 3px ink rules, printed comic pages, and a closing burst.\n\nThe one thing that carries colour is the comic. Chrome is black, white and tone; painted panels and the HTML lettering set on them are the only hue on any screen. On the contents page even the art starts in greyscale and prints in colour only while you point at or focus a panel (the colour-insert pull). Selection, the current item and the open state are solid black; secondary surfaces are screentone. Speed lines, the newsprint grain and the NEW burst are plates Codex painted, multiplied onto the paper, never drawn in CSS.\n\nThe type is two voices. Protest Revolution, a rough dry brush, is reserved for display titles: the wordmark, a language's name, a comic's title, chapter titles and the line struck inside the closing burst. Be Vietnam Pro sets everything else, heavy and slanted for headlines, 900 for every numeral, plain for prose. Comic lettering (Patrick Hand, Bangers) stays inside each comic's lettering preset. The world rejects the webcomic platform's banner over rows of rounded cards and the old cream editorial longbox; the page carries no JavaScript, so every state is CSS on native HTML.",
     "keyCharacteristics": [
-      "Paper masthead over a dark reader ground; the two rooms share one masthead and one wordmark.",
-      "Comic-page black (#111) frames anything that holds art: the printed page, the cover, the caption box.",
-      "Warm board (#e4dac6) marks filing and the selected state: divider cards, the \"all in this language\" card, the active language chip, the active reader mode.",
-      "Lettering is HTML, never pixels; covers carry real captions in the comic's own preset.",
-      "Measurements (counts, chapter numbers, chapter dates in the toolbar) are monospace; counts in the library are mono small caps.",
-      "Square corners on every paper object; small 2-4px radii only on controls."
+      "Newsprint white ground with a painted paper grain; black ink and three screentone greys; no coloured accent anywhere in the chrome.",
+      "Comic art is the only colour; greyscale panels print in colour on hover and focus.",
+      "3px ink rules frame everything structural; square corners everywhere outside speech balloons.",
+      "Solid black means selected, current, open or the page's one action.",
+      "Brush face for display titles only; Be Vietnam Pro for every other word and every number.",
+      "Speed lines, newsprint and the NEW burst are Codex-painted plates, each shipped with its prompt.",
+      "Lettering is HTML in the comic's own preset, on covers and in the reader alike."
     ],
     "rules": [
       {
-        "name": "The Gutter Black Rule",
-        "body": "Anything that holds comic art is framed in #111: the printed page, the cover, the caption box. Art never sits directly on Reader Night.",
+        "name": "The Colour Is the Comic Rule",
+        "body": "Chrome is Key Black, Newsprint White and screentone. The only colour on a page is painted comic art and the lettering set on it. No link colour, no accent, no coloured state, no coloured badge.",
         "section": "colors"
       },
       {
-        "name": "The Board Means Filing Rule",
-        "body": "Longbox Board is reserved for dividers and the selected state. It is never a generic card fill.",
+        "name": "The Solid Black Means Here Rule",
+        "body": "Selected, current, open and hovered-for-action states fill solid Key Black with Newsprint White text. The one primary action that ends a page (the closing link under the burst, the 404's way back) rests in solid black and inverts to paper on hover.",
         "section": "colors"
       },
       {
-        "name": "The One Red Rule",
-        "body": "Stamp Red is the only accent on paper and Ember Coral its only counterpart on dark. Lettering inks never leak into chrome.",
+        "name": "The Screentone Is Secondary Rule",
+        "body": "Anything secondary or resting is a screentone grey, never a tint of a hue: Tone 10 at rest, Tone 30 on hover and behind images, a Tone 60 dot screen for emphasis.",
         "section": "colors"
+      },
+      {
+        "name": "The Brush Is for Titles Rule",
+        "body": "Protest Revolution sets only display titles: the wordmark, a language's name, a comic's title, chapter titles, the end line in the burst and the NEW in the burst. Never a sentence of prose, a control, a label or a count.",
+        "section": "typography"
+      },
+      {
+        "name": "The Numbers Are Grotesk Rule",
+        "body": "Numerals that carry information are Be Vietnam Pro 900 with tabular figures. The brush 4 reads as an A, so even the 404 struck inside the burst is set in the grotesk.",
+        "section": "typography"
       },
       {
         "name": "The Letterer's Faces Rule",
-        "body": "Bangers and Patrick Hand appear only where a comic would print them: wordmark, dividers, cover titles, captions, balloons, sound effects. Headlines and prose stay in Georgia.",
+        "body": "Patrick Hand and Bangers appear only inside a comic's lettering preset (captions, balloons, sound effects); Bangers otherwise survives only as the brush's fallback.",
         "section": "typography"
       },
       {
-        "name": "The Measurements Are Mono Rule",
-        "body": "Counts, chapter numbers and dates in navigation are monospace; in the library they are small caps.",
-        "section": "typography"
-      },
-      {
-        "name": "The Table Light Rule",
-        "body": "Shadows fall straight down and only under paper objects (pages, covers). Controls, dividers and the masthead stay flat.",
+        "name": "The One Lift Rule",
+        "body": "One shadow value in the chrome, the print lift, and only under paper objects. Controls, rules, tabs and boxes stay flat.",
         "section": "elevation"
       },
       {
-        "name": "The Pull, Don't Bounce Rule",
-        "body": "The only library motion is the cover lift (and the board card's matching lift); the only reader motion is the scroll-driven sound-effect pop. Both switch off under reduced motion.",
+        "name": "The Pull, Not Bounce Rule",
+        "body": "Motion eases out on `cubic-bezier(0.16, 1, 0.3, 1)`: colour prints into a panel over 480ms, a contents title slides up over 320ms, control fills change over 160ms, and sound effects pop once as their panel scrolls into view. Nothing moves under reduced motion; colour still shows on focus.",
         "section": "elevation"
+      },
+      {
+        "name": "The Square Corner Rule",
+        "body": "No border-radius anywhere in the chrome. Rounding belongs to speech balloons.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Three-Pixel Ink Rule",
+        "body": "Structure is drawn in 3px Key Black; 2px is for control frames and the sheet edge; hairlines are Tone 30 and live only inside lists and tables.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Plates Are Painted Rule",
+        "body": "Speed lines, the burst and the paper grain are Codex rasters, multiplied (`mix-blend-mode: multiply`) onto the paper or set as a contained background. They are never drawn with CSS gradients, SVG or clip-path, and every shipped plate keeps its prompt beside it.",
+        "section": "components"
       }
     ],
     "dos": [
-      "**Do** frame every piece of comic art in Gutter Black (#111): pages, covers, captions.",
-      "**Do** set every caption, balloon and sound effect as HTML in the comic's lettering preset; on covers too.",
-      "**Do** keep Longbox Board (#e4dac6) for dividers and the selected state.",
-      "**Do** use Stamp Red (#a8321f) as the only accent on paper and Ember Coral (#e8775e) on the dark.",
-      "**Do** set counts and navigation measurements in monospace, small caps in the library.",
-      "**Do** build interaction from native HTML and CSS (links, radio inputs, `<details>`, `aria-current`), with a 3px Kiln Focus (#c16b44) outline on every focusable element.",
-      "**Do** switch every movement off under `prefers-reduced-motion` and keep hover lifts behind `(hover: hover)`.",
-      "**Do** name each language in itself on dividers and chips, with the interface-language name as the secondary line."
+      "**Do** keep the chrome in Key Black (#111111), Newsprint White (#fafaf7) and the three tones (#e3e2dd, #b4b3ae, #6a6965); let the comic art carry all the colour.",
+      "**Do** mark the selected, current or open state with a solid Key Black fill and Newsprint White text.",
+      "**Do** draw structure with 3px Key Black rules and keep every corner square.",
+      "**Do** set display titles (wordmark, language and comic titles, chapter titles, the end line, NEW) in Protest Revolution and everything else in Be Vietnam Pro.",
+      "**Do** set every informative numeral in Be Vietnam Pro 900 with tabular figures.",
+      "**Do** emphasise a headline word with the Tone 60 dot screen under it, keeping the weight.",
+      "**Do** start contents panels in greyscale and print them in colour on hover and on focus; show their titles without hover where there is no pointer.",
+      "**Do** use the painted plates for speed lines, newsprint and bursts, multiplied onto the paper, each with its prompt sidecar.",
+      "**Do** set captions, balloons and sound effects as HTML in the comic's own lettering preset, on covers and in the reader.",
+      "**Do** give every focusable element the 3px Key Black outline at 3px offset with the 7px paper halo, and switch every transition off under `prefers-reduced-motion`."
     ],
     "donts": [
+      "**Don't** round a corner in the chrome; rounding belongs to speech balloons.",
+      "**Don't** add a coloured accent, link colour, coloured badge or coloured state; colour is the comic's.",
+      "**Don't** put a kicker or eyebrow above a heading.",
+      "**Don't** draw speed lines, bursts or paper texture in CSS; they are painted plates.",
+      "**Don't** mark NEW with a pill or a badge; NEW is the painted burst.",
+      "**Don't** set prose, controls, labels or numbers in the brush face; the brush 4 reads as an A.",
+      "**Don't** use Patrick Hand or Bangers outside comic lettering.",
       "**Don't** bake text into panel images; lettering is HTML, never pixels.",
-      "**Don't** set headlines or prose in Bangers or Patrick Hand; those faces are for the wordmark, dividers, cover titles and lettering.",
-      "**Don't** round paper objects: pages, panels, covers and divider cards stay square.",
-      "**Don't** use hard offset shadows outside lettering; they belong to sound effects and parchment captions only.",
-      "**Don't** put a hero banner over one undifferentiated card grid on the library; comics are filed by language behind dividers.",
+      "**Don't** add a second shadow value in the chrome; the print lift is the only one, and hard offsets belong to lettering.",
       "**Don't** add script, inline `style=` attributes, external fonts or external images; the CSP forbids them and the world is built without them."
     ]
   }
