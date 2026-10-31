@@ -1,10 +1,8 @@
 ---
-// The comic library as a weekly manga magazine (ADR 0006), built to hold a big catalogue.
-// The opening spread is this week's issue: the newest comic on the title page, facing the latest releases in every language.
-// Then one spread per comic language for whatever the opening spread did not already show, and an index of every comic.
-// A spread whose contents would be empty shows its comic's chapters instead, so one comic still fills a spread.
-// One page per interface locale (/ and /vi/), plus one page per comic language (/language/<code>/, /vi/language/<code>/)
-// that lists every comic in that language.
+// The comic library, a weekly manga magazine's front section (ADR 0006): a masthead, a filter bar by comic language,
+// the newest comic as the issue's feature, then the catalogue: every comic in the current filter as a card, newest first.
+// Filtering is a set of static pages, so it needs no JavaScript and every filter has its own URL:
+// / and /vi/ show every language; /language/<code>/ and /vi/language/<code>/ show one.
 // No JavaScript and no inline styles (CSP in public/_headers).
 import "../styles/fonts.css";
 import "../styles/fonts-magazine.css";
@@ -17,82 +15,35 @@ import { languageName, libraryPath, LOCALES, UI, type Locale } from "../lib/i18n
 
 interface Props {
   locale: Locale;
-  /** Show only this comic language, every comic in it. */
+  /** Filter to this comic language. */
   only?: string;
 }
 const { locale, only } = Astro.props;
 const t = UI[locale];
 const all = listComics();
 const langOf = (c: Comic) => c.config.lang ?? "en";
-// Eight panels on a contents page; a language with more shows seven and a panel opening the language's own page.
-const CONTENTS_LIMIT = 8;
+const comics = only ? all.filter((c) => langOf(c) === only) : all;
 
-// Comics by language: the reader's own language first, then the biggest languages.
-const byLang = new Map<string, Comic[]>();
-for (const c of all) byLang.set(langOf(c), [...(byLang.get(langOf(c)) ?? []), c]);
-const languages = [...byLang.keys()].sort(
-  (a, b) => Number(b === locale) - Number(a === locale) || byLang.get(b)!.length - byLang.get(a)!.length || a.localeCompare(b),
-);
+// Filter choices: the reader's own language first, then the biggest languages.
+const counts = new Map<string, number>();
+for (const c of all) counts.set(langOf(c), (counts.get(langOf(c)) ?? 0) + 1);
+const languages = [...counts.keys()].sort((a, b) => Number(b === locale) - Number(a === locale) || counts.get(b)! - counts.get(a)! || a.localeCompare(b));
+
+const feature = comics[0];
 const newest = all[0];
-
-interface Spread {
-  lang: string;
-  lead: Comic;
-  /** Comics on the contents page; empty means the lead's chapters fill it. */
-  contents: Comic[];
-  label: string;
-  /** Where the screentone panel under the contents leads: the whole language, or the index. */
-  more?: { href: string; text: string };
-  id?: string;
-}
-const spreads: Spread[] = [];
-let overflow: Comic[] = [];
-if (only) {
-  const list = byLang.get(only) ?? [];
-  if (list[0]) {
-    spreads.push({ lang: only, lead: list[0], contents: list.slice(1, 1 + CONTENTS_LIMIT), label: `${t.contents} · ${languageName(only, locale)}` });
-    overflow = list.slice(1 + CONTENTS_LIMIT);
-  }
-} else if (newest) {
-  const latest = all.slice(1, 1 + CONTENTS_LIMIT);
-  spreads.push({ lang: langOf(newest), lead: newest, contents: latest, label: t.latest, more: { href: "#index-heading", text: t.index } });
-  const shown = new Set([newest, ...latest]);
-  for (const lang of languages) {
-    const pool = byLang.get(lang)!.filter((c) => !shown.has(c));
-    if (!pool.length) continue;
-    spreads.push({
-      lang,
-      lead: pool[0],
-      contents: pool.slice(1, 1 + CONTENTS_LIMIT),
-      label: `${t.contents} · ${languageName(lang, locale)}`,
-      more: { href: libraryPath(locale, lang), text: t.allIn(byLang.get(lang)!.length, languageName(lang, locale)) },
-      id: `lang-${lang}`,
-    });
-  }
-}
-// The index lists every comic once there is more than one; each language's #lang-<code> anchor lands on its spread,
-// else on its index group, else (a library of one comic) on the opening spread.
-const showIndex = !only && all.length > 1;
-const anchored = new Set(spreads.map((s) => s.id).filter(Boolean));
-if (spreads[0] && !anchored.has(`lang-${spreads[0].lang}`) && !showIndex) spreads[0].id = `lang-${spreads[0].lang}`;
-
+const choice = only ? languageName(only, locale) : t.filterAll;
 const title = only ? `${languageName(only, locale)} · ${t.libraryTitle}` : t.libraryTitle;
-const heading = only ? t.languageHeading(languageName(only, only)) : t.libraryHeading;
+const heading = only ? t.languageHeading(languageName(only, locale)) : t.libraryHeading;
+
 const img = (comic: Comic, panel: Panel) => `${comic.panelsPath}${panel.id}.webp`;
 const panelCount = (comic: Comic) => comic.config.chapters.reduce((n, ch) => n + ch.panels.length, 0);
-const counts = (comic: Comic) => `${t.chapters(comic.config.chapters.length)} · ${t.panels(panelCount(comic))}`;
-const cellMeta = (comic: Comic) => `${languageName(langOf(comic), locale)} · ${t.chapters(comic.config.chapters.length)}`;
 const focusClass = (p?: Panel) => (p?.focus ? `f-${p.focus}` : "");
 const dateFormat = new Intl.DateTimeFormat(locale, { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 const released = (comic: Comic) => (comic.config.date ? dateFormat.format(new Date(`${comic.config.date}T00:00:00Z`)) : "");
-// A chapter's thumbnail is its first panel, unless that panel is already the comic's cover.
-const thumb = (comic: Comic, ch: Comic["config"]["chapters"][number]) =>
-  ch.panels.find((p) => p.id !== coverPanel(comic)?.id) ?? ch.panels[0];
-// Three panels after the cover and the thumbnails: a taste of the first pages.
-const strip = (comic: Comic) => {
-  const used = new Set([coverPanel(comic)?.id, ...comic.config.chapters.map((ch) => thumb(comic, ch)?.id)]);
-  return comic.config.chapters.flatMap((ch) => ch.panels).filter((p) => !used.has(p.id)).slice(0, 3);
-};
+const meta = (comic: Comic) =>
+  [languageName(langOf(comic), locale), t.chapters(comic.config.chapters.length), released(comic)].filter(Boolean).join(" · ");
+// Three panels after the cover: a taste of the first pages.
+const strip = (comic: Comic) => comic.config.chapters.flatMap((ch) => ch.panels).filter((p) => p.id !== coverPanel(comic)?.id).slice(0, 3);
 // The cover carries the cover panel's first caption or balloon, set in the comic's own lettering.
 const coverText = (comic: Comic) => {
   const text = (coverPanel(comic)?.text ?? []).find((x: Lettering) => "cap" in x || "say" in x || "stack" in x);
@@ -100,7 +51,6 @@ const coverText = (comic: Comic) => {
   if ("say" in text) return `<p class="bubble cover-say">${inlineMarkdown(text.say)}</p>`;
   return `<p class="cap cover-cap">${inlineMarkdown("cap" in text ? text.cap : "stack" in text ? text.stack[0] : "")}</p>`;
 };
-const lastSheet = showIndex || overflow.length ? "after" : spreads.length - 1;
 ---
 <!doctype html>
 <html lang={locale}>
@@ -119,172 +69,83 @@ const lastSheet = showIndex || overflow.length ? "after" : spreads.length - 1;
   <link rel="alternate" type="application/json" href="/content.json" title="Content feed">
 </head>
 <body class="mag">
-  <main class="spreads">
-    {spreads.length === 0 && (
-      <section class="spread spread-empty">
-        <header class="mast">
-          <a class="wordmark" href={libraryPath(locale)}>Vibe<span>2</span>Fire</a>
-        </header>
-        <p class="lib-empty">{t.empty}</p>
+  <header class="lib-mast">
+    <div class="mast">
+      <a class="wordmark" href={libraryPath(locale)}>Vibe<span>2</span>Fire</a>
+      <nav class="ui-switch" aria-label={t.interface}>
+        {LOCALES.map((l) => (
+          <a href={libraryPath(l, only)} hreflang={l} lang={l} aria-current={l === locale ? "page" : undefined}>{l.toUpperCase()}</a>
+        ))}
+      </nav>
+    </div>
+    <h1 class="headline" set:html={inlineMarkdown(heading)} />
+    <p class="lead">{t.libraryDescription}</p>
+  </header>
+
+  <nav class="filter" aria-label={t.filterBy}>
+    <span class="filter-label">{t.filterBy}</span>
+    <a href={libraryPath(locale)} aria-current={only ? undefined : "page"}>{t.filterAll} <b>{all.length}</b></a>
+    {languages.map((l) => (
+      <a href={libraryPath(locale, l)} lang={l} aria-current={l === only ? "page" : undefined}>{languageName(l, l)} <b>{counts.get(l)}</b></a>
+    ))}
+  </nav>
+
+  <main>
+    {feature ? (
+      <section class="feature" aria-labelledby="feature-title">
+        <a class={`cover lettering-${feature.lettering}`} href={feature.path} lang={langOf(feature)} tabindex="-1" aria-hidden="true">
+          {coverPanel(feature) && <img class={focusClass(coverPanel(feature))} src={img(feature, coverPanel(feature)!)} alt="" width="1536" height="1024" decoding="async" fetchpriority="high">}
+          <Fragment set:html={coverText(feature)} />
+          {feature === newest && <span class="burst" lang={locale}>{t.newest}</span>}
+        </a>
+        <div class="feature-text">
+          <h2 id="feature-title"><a href={feature.path} lang={langOf(feature)}>{feature.config.title}</a></h2>
+          <p class="meta">{meta(feature)} · {t.panels(panelCount(feature))}</p>
+          {feature.config.summary && <p class="summary" lang={langOf(feature)} set:html={inlineMarkdown(feature.config.summary)} />}
+          <p class="credit">{t.credit}</p>
+          <a class="read" href={feature.path}>{t.read}</a>
+          {strip(feature).length > 0 && (
+            <a class="strip" href={`${feature.path}#${feature.config.chapters[0]?.id ?? ""}`} aria-label={`${t.startReading}: ${feature.config.title}`}>
+              {strip(feature).map((p) => <img class={focusClass(p)} src={img(feature, p)} alt="" width="600" height="400" loading="lazy" decoding="async">)}
+            </a>
+          )}
+        </div>
       </section>
+    ) : (
+      <p class="lib-empty">{t.empty}</p>
     )}
 
-    {spreads.map(({ lang, lead, contents, label, more, id }, i) => {
-      const cover = coverPanel(lead);
-      const inLang = byLang.get(lang)?.length ?? 0;
-      return (
-        <section class="spread" id={id} aria-labelledby={`comic-${lead.slug}`}>
-          <div class="leaf-head">
-            {i === 0 ? (
-              <>
-                <header class="mast">
-                  <a class="wordmark" href={libraryPath(locale)}>Vibe<span>2</span>Fire</a>
-                  <nav class="ui-switch" aria-label={t.interface}>
-                    {LOCALES.map((l) => (
-                      <a href={libraryPath(l, only)} hreflang={l} lang={l} aria-current={l === locale ? "page" : undefined}>{l.toUpperCase()}</a>
-                    ))}
-                  </nav>
-                </header>
-                <h1 class="headline" set:html={inlineMarkdown(heading)} />
-                {(languages.length > 1 || only) && (
-                  <nav class="lang-tabs" aria-label={t.filterBy}>
-                    {only && <a href={libraryPath(locale)}>{t.allLanguages}</a>}
-                    {languages.map((l) => (
-                      <a href={only ? libraryPath(locale, l) : `#lang-${l}`} lang={l} aria-current={l === only ? "page" : undefined}>
-                        {languageName(l, l)} <b>{byLang.get(l)!.length}</b>
-                      </a>
-                    ))}
-                  </nav>
-                )}
-              </>
-            ) : (
-              <p class="running-head"><span>Vibe2Fire</span> {label}</p>
-            )}
-          </div>
-
-          <div class={`contents-page${contents.length ? " has-comics" : ""}`}>
-            {i === 0 && contents.length > 0 && <p class="running-head">{label}</p>}
-            {contents.length === 0 ? (
-              <ol class="contents" role="list" aria-label={`${t.contents} · ${lead.config.title}`} lang={langOf(lead)}>
-                {lead.config.chapters.map((ch, n) => (
-                  <li>
-                    <a class="cell" href={`${lead.path}#${ch.id}`} aria-label={t.chapterLink(n + 1, ch.title)}>
-                      <img class={focusClass(thumb(lead, ch))} src={img(lead, thumb(lead, ch))} alt="" width="600" height="400" loading="lazy" decoding="async">
-                      <span class="num" aria-hidden="true">{n + 1}</span>
-                      <span class="cell-title" aria-hidden="true">{ch.title}</span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            ) : (
-              <ol class="contents" role="list" aria-label={label}>
-                {contents.map((comic, n) => (
-                  <li>
-                    <a class="cell cell-comic" href={comic.path}>
-                      <span class="cell-art">
-                        {coverPanel(comic) && <img class={focusClass(coverPanel(comic))} src={img(comic, coverPanel(comic)!)} alt="" width="600" height="400" loading="lazy" decoding="async">}
-                        <span class="num" aria-hidden="true">{n + 1}</span>
-                      </span>
-                      <span class="cell-cap">
-                        <b lang={langOf(comic)}>{comic.config.title}</b>
-                        <span>{cellMeta(comic)}</span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            )}
-            {contents.length > 0 && (more ? <a class="tone-fill" href={more.href}><span>{more.text}</span></a> : <div class="tone-fill" aria-hidden="true" />)}
-          </div>
-
-          <div class="title-page">
-            <header class="lang-head">
-              <p class="lang-name" lang={lang}>{languageName(lang, lang)}</p>
-              <p lang={locale}>{lang !== locale && <>{languageName(lang, locale)} · </>}{t.comics(inLang)}</p>
-            </header>
-            <a class={`cover lettering-${lead.lettering}`} href={lead.path} lang={langOf(lead)} aria-labelledby={`comic-${lead.slug}`}>
-              {cover && <img class={focusClass(cover)} src={img(lead, cover)} alt="" width="1536" height="1024" decoding="async" fetchpriority={i === 0 ? "high" : undefined} loading={i === 0 ? undefined : "lazy"}>}
-              <Fragment set:html={coverText(lead)} />
-              {lead === newest && <span class="burst" lang={locale}>{t.newest}</span>}
-            </a>
-            <div class="title-box">
-              <h2 id={`comic-${lead.slug}`}><a href={lead.path} lang={langOf(lead)}>{lead.config.title}</a></h2>
-              <p class="meta" lang={locale}>{counts(lead)}{released(lead) && <> · {released(lead)}</>}</p>
-              {lead.config.summary && <p class="summary" lang={langOf(lead)} set:html={inlineMarkdown(lead.config.summary)} />}
-              <p class="credit" lang={locale}>{t.credit}</p>
-            </div>
-            {strip(lead).length > 0 && (
-              <a class="strip" href={`${lead.path}#${lead.config.chapters[0]?.id ?? ""}`} aria-label={`${t.startReading}: ${lead.config.title}`}>
-                {strip(lead).map((p) => <img class={focusClass(p)} src={img(lead, p)} alt="" width="600" height="400" loading="lazy" decoding="async">)}
-              </a>
-            )}
-          </div>
-
-          {i === lastSheet && (
-            <footer class="folio">
-              <p>{t.aiNotice} {t.colophon}</p>
-              <a href="/content.json">content.json</a>
-            </footer>
-          )}
-        </section>
-      );
-    })}
-
-    {overflow.length > 0 && only && (
-      <section class="sheet" aria-labelledby="more-heading">
-        <h2 id="more-heading" class="sheet-title">{t.moreIn(languageName(only, locale))}</h2>
-        <ol class="contents grid-more" role="list">
-          {overflow.map((comic, n) => (
+    {comics.length > 0 && (
+      <section class="catalogue" aria-labelledby="catalogue-title">
+        <header class="catalogue-head">
+          <h2 id="catalogue-title">{t.catalogue(choice)}</h2>
+          <p>{t.comics(comics.length)}</p>
+        </header>
+        <ol class="cards" role="list">
+          {comics.map((comic, n) => (
             <li>
-              <a class="cell cell-comic" href={comic.path}>
-                <span class="cell-art">
+              <a class="card" href={comic.path}>
+                <span class="card-art">
                   {coverPanel(comic) && <img class={focusClass(coverPanel(comic))} src={img(comic, coverPanel(comic)!)} alt="" width="600" height="400" loading="lazy" decoding="async">}
-                  <span class="num" aria-hidden="true">{n + 1 + CONTENTS_LIMIT}</span>
+                  <span class="num" aria-hidden="true">{n + 1}</span>
+                  {comic === newest && <span class="burst" lang={locale}>{t.newest}</span>}
                 </span>
-                <span class="cell-cap">
-                  <b lang={langOf(comic)}>{comic.config.title}</b>
-                  <span>{cellMeta(comic)}</span>
+                <span class="card-text">
+                  <b class="card-title" lang={langOf(comic)}>{comic.config.title}</b>
+                  <span class="card-meta">{meta(comic)}</span>
+                  {comic.config.summary && <span class="card-summary" lang={langOf(comic)} set:html={inlineMarkdown(comic.config.summary)} />}
                 </span>
               </a>
             </li>
           ))}
         </ol>
-        <footer class="folio">
-          <p>{t.aiNotice} {t.colophon}</p>
-          <a href="/content.json">content.json</a>
-        </footer>
-      </section>
-    )}
-
-    {showIndex && (
-      <section class="sheet index" aria-labelledby="index-heading">
-        <h2 id="index-heading" class="sheet-title">{t.index}</h2>
-        <div class="index-groups">
-          {languages.map((lang) => (
-            <section class="index-group" id={anchored.has(`lang-${lang}`) ? undefined : `lang-${lang}`} aria-labelledby={`index-${lang}`}>
-              <h3 id={`index-${lang}`}>
-                <span lang={lang}>{languageName(lang, lang)}</span>
-                <b>{t.comics(byLang.get(lang)!.length)}</b>
-              </h3>
-              <ol role="list">
-                {byLang.get(lang)!.map((comic) => (
-                  <li>
-                    <a href={comic.path} lang={langOf(comic)}>{comic.config.title}</a>
-                    <span>{released(comic)}</span>
-                    <span>{t.chapters(comic.config.chapters.length)}</span>
-                  </li>
-                ))}
-              </ol>
-              {byLang.get(lang)!.length > CONTENTS_LIMIT && <a class="index-all" href={libraryPath(locale, lang)}>{t.allIn(byLang.get(lang)!.length, languageName(lang, locale))}</a>}
-            </section>
-          ))}
-        </div>
-        <footer class="folio">
-          <p>{t.aiNotice} {t.colophon}</p>
-          <a href="/content.json">content.json</a>
-        </footer>
       </section>
     )}
   </main>
+
+  <footer class="folio">
+    <p>{t.aiNotice} {t.colophon}</p>
+    <a href="/content.json">content.json</a>
+  </footer>
 </body>
 </html>
