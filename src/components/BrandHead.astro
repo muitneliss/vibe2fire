@@ -1,0 +1,17 @@
+---
+// Brand tags for every <head>: favicon, touch icon, manifest and (unless share is false) the link-preview image.
+import { SITE } from "../lib/comic";
+import { BRAND, OG_ALT, OG_SIZE } from "../lib/brand";
+
+interface Props { share?: boolean }
+const { share = true } = Astro.props;
+---
+<link rel="icon" href={BRAND.favicon} sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href={BRAND.icon32}>
+<link rel="apple-touch-icon" href={BRAND.appleTouch}>
+<link rel="manifest" href={BRAND.manifest}>
+{share && <meta property="og:image" content={new URL(BRAND.og, SITE).href}>}
+{share && <meta property="og:image:width" content={String(OG_SIZE[0])}>}
+{share && <meta property="og:image:height" content={String(OG_SIZE[1])}>}
+{share && <meta property="og:image:alt" content={OG_ALT}>}
+{share && <meta name="twitter:card" content="summary_large_image">}

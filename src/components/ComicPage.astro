@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import "../styles/fonts.css";
 import "../styles/reader.css";
+import BrandHead from "./BrandHead.astro";
 import { inlineMarkdown, paragraphs, SHAPES, TAILS, transcriptOf, type Comic, type Lettering } from "../lib/comic";
 import { DEFAULT_LOCALE, libraryPath, LOCALES, type Locale } from "../lib/i18n";
 
@@ -44,6 +45,7 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
   {page.description && <meta property="og:description" content={page.description}>}
   <meta property="og:title" content={page.pageTitle ?? config.title}>
   <meta property="og:type" content="article">
+  <BrandHead />
   <link rel="alternate" type="application/json" href="/content.json" title="Content feed">
 </head>
 <body class={`theme-${comic.theme} lettering-${comic.lettering}`}>

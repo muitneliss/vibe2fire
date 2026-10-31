@@ -2,9 +2,10 @@
 // Generation CLI: comic.yaml -> cast sheet -> panels (Codex image generation) -> review -> webp.
 // The page itself is built by Astro (bun run build); see AGENTS.md.
 // Usage: bun run comic <check|prompts|cast|panels|review|webp|status|all> <slug | comics/<slug>> [--only ids|chapters] [--force] [--jobs N] [--dry-run]
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { allPanels, castPrompt, type Comic, listComics, loadComic, panelPrompt, refsFor, ROOT, validate } from "../src/lib/comic";
+import { runCodex } from "./codex";
 
 const die = (msg: string): never => {
   console.error(`comic: ${msg}`);
@@ -31,25 +32,6 @@ const selected = (comic: Comic) => {
 };
 const publicPanels = (comic: Comic) => join(ROOT, "public", comic.panelsPath);
 
-// ---------- codex ----------
-async function codex(comic: Comic, prompt: string, images: string[], cwd: string, out: string, log: string) {
-  const args = [comic.config.generation?.codex ?? "codex", "exec", "--skip-git-repo-check", "-s", "workspace-write", "-C", cwd];
-  if (comic.config.generation?.model) args.push("-m", comic.config.generation.model);
-  args.push(prompt); // the prompt must come before -i: -i takes every following path as an image
-  if (images.length) args.push("-i", ...images);
-  const proc = Bun.spawn(args, { stdout: "pipe", stderr: "pipe" });
-  const [o, e] = await Promise.all([new Response(proc.stdout).text(), new Response(proc.stderr).text()]);
-  await proc.exited;
-  writeFileSync(log, o + e);
-  if (existsSync(out) && statSync(out).size > 0) return true;
-  // Codex keeps every generated image under ~/.codex/generated_images; recover the last one its log names.
-  const found = [...(o + e).matchAll(/(\/[^\s'"]*generated_images\/[^\s'"]+\.png)/g)].map((m) => m[1]).filter(existsSync);
-  if (found.length) {
-    copyFileSync(found[found.length - 1], out);
-    return true;
-  }
-  return false;
-}
 async function pool<T>(items: T[], jobs: number, fn: (t: T) => Promise<void>) {
   let i = 0;
   await Promise.all(
@@ -80,8 +62,8 @@ async function cast(comic: Comic) {
   writeFileSync(join(work.prompts, "cast-sheet.txt"), prompt);
   if (flags["dry-run"]) return console.log(prompt);
   if (existsSync(work.sheet) && !flags.force) return console.log(`skip cast sheet (exists); --force to redo`);
-  const ok = await codex(
-    comic,
+  const ok = await runCodex(
+    comic.config.generation,
     prompt,
     refsFor(
       comic,
@@ -110,7 +92,14 @@ async function panels(comic: Comic) {
     rmSync(out, { force: true });
     let ok = false;
     for (let attempt = 0; attempt < 2 && !ok; attempt++)
-      ok = await codex(comic, prompt, [work.sheet, ...refsFor(comic, p.cast ?? [])], work.panels, out, join(work.logs, `${p.id}.log`));
+      ok = await runCodex(
+        comic.config.generation,
+        prompt,
+        [work.sheet, ...refsFor(comic, p.cast ?? [])],
+        work.panels,
+        out,
+        join(work.logs, `${p.id}.log`),
+      );
     console.log(ok ? `ok ${p.id}` : `FAIL ${p.id}`);
     if (!ok) failed.push(p.id);
   });

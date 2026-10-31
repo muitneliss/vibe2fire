@@ -1,0 +1,22 @@
+{
+  "name": "Vibe2Fire",
+  "short_name": "Vibe2Fire",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#f4f0e7",
+  "background_color": "#f4f0e7",
+  "icons": [
+    {
+      "src": "/brand/icon-192-v1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/brand/icon-512-v1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

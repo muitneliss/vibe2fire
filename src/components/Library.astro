@@ -6,6 +6,7 @@
 import "../styles/fonts.css";
 import "../styles/reader.css";
 import "../styles/library.css";
+import BrandHead from "./BrandHead.astro";
 import { coverPanel, inlineMarkdown, listComics, SITE, type Comic, type Lettering } from "../lib/comic";
 import { languageName, libraryPath, LOCALES, UI, type Locale } from "../lib/i18n";
 
@@ -60,6 +61,7 @@ const focusClass = (comic: Comic) => (coverPanel(comic)?.focus ? `f-${coverPanel
   <meta property="og:title" content={title}>
   <meta property="og:description" content={t.libraryDescription}>
   <meta property="og:type" content="website">
+  <BrandHead />
   <link rel="canonical" href={new URL(libraryPath(locale, only), SITE).href}>
   {LOCALES.map((l) => <link rel="alternate" hreflang={l} href={new URL(libraryPath(l, only), SITE).href}>)}
   <link rel="alternate" type="application/json" href="/content.json" title="Content feed">
