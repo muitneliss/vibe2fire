@@ -50,7 +50,8 @@ bun run preview                  # wrangler dev: dist/ with _headers, as Workers
 bun run comic check|prompts|cast|panels|review|webp|status|all <slug> [--only ids] [--force] [--jobs N] [--dry-run]
 bun run brand prompts|mark|review|pick|og|icons|status [n] [--variants N] [--force]   # site icon + share image; costs Codex images
 
-# Deploy (personal Cloudflare global key, injected by Agent Vault; never pass a key yourself)
+# Deploy: merging to main deploys automatically (Cloudflare Workers Builds, ADR 0005).
+# Manual fallback (personal Cloudflare global key, injected by Agent Vault; never pass a key yourself):
 bun run build && kanna-vault-run --vault cloudflare-lowbit -- env CLOUDFLARE_API_KEY=placeholder CLOUDFLARE_EMAIL=placeholder bunx wrangler deploy
 ```
 
@@ -66,7 +67,7 @@ Run `bun run check && bun run test && bun run build` before every commit; CI run
 - **The feed is a contract.** `/content.json` (schema `vibe2fire.content/v1`) is read by omninoise-ops. Adding fields is fine; renaming or removing one needs `vibe2fire.content/v2` and a note in `docs/content-feed.md`.
 - **The site is public.** It names the Omninoise studio by the owner's decision (ADR 0003). The marketing team in Vibe2Fire is fictional, and the page says so; keep that notice. Facts in write-ups must trace to the omninoise-ops log or ADRs.
 - **Secrets.** No key, token or password in a file, commit, argument or log. Cloudflare calls go through `kanna-vault-run --vault cloudflare-lowbit --`; GitHub through `gh`.
-- **Git.** One branch per change, never commit to `main`; open a PR, merge it with `gh pr merge --squash --delete-branch` once CI is green. Never commit `comics/*/.work/`, `dist/` or `.wrangler/`.
+- **Git.** One branch per change, never commit to `main`; open a PR, merge it with `gh pr merge --squash --delete-branch` once CI is green; the merge deploys to vibe2fire.dev. Never commit `comics/*/.work/`, `dist/` or `.wrangler/`.
 
 ## Gotchas
 
