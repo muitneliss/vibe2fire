@@ -59,7 +59,7 @@ export const UI: Record<Locale, UiStrings> = {
   en: {
     libraryTitle: "Vibe2Fire · comics",
     libraryDescription:
-      "Satirical comics about work in the AI era: the AI arrived, everyone started vibe coding, and then the layoffs came. Art painted by AI, words written by people.",
+      "Comics about work in the AI era: the AI arrived, everyone started vibe coding, and the people who would not learn it were laid off. Art painted by AI, words written by people.",
     libraryHeading: "Comics about work in the *AI era*.",
     languageHeading: (language) => `Comics in *${language}*.`,
     languageLead: (language) => `Every comic in ${language} on Vibe2Fire, newest first.`,
@@ -91,7 +91,7 @@ export const UI: Record<Locale, UiStrings> = {
   vi: {
     libraryTitle: "Vibe2Fire · truyện tranh",
     libraryDescription:
-      "Truyện tranh châm biếm về đời công sở thời AI: AI đến, ai cũng vibe code, rồi làn sóng sa thải ập tới. Tranh do AI vẽ, lời do người viết.",
+      "Truyện tranh về đời công sở thời AI: AI đến, ai cũng vibe code, còn ai không chịu trau dồi AI thì bị cho nghỉ việc. Tranh do AI vẽ, lời do người viết.",
     libraryHeading: "Truyện tranh về đời công sở *thời AI*.",
     languageHeading: (language) => `Truyện tranh *${language}*.`,
     // Mid-sentence, Vietnamese writes "tiếng Việt", not the title-case "Tiếng Việt".

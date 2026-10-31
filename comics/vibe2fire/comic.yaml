@@ -1,12 +1,12 @@
-# Vibe2Fire: the satire comic about how the Omninoise studio was built (10 chapters, 46 panels).
+# Vibe2Fire: the comic about how the Omninoise studio was built (10 chapters, 46 panels).
 # Field reference: .agents/skills/comic-pipeline/references/config.md
 # After editing: bun run check && bun run build. Panels are generated with: bun run comic panels comics/vibe2fire
 title: Vibe2Fire
 lang: vi
 date: 2026-10-30
-summary: Truyện châm biếm về *một ông sếp tự học AI* và phòng Marketing không còn nữa, kèm nhật ký kỹ thuật thật.
+summary: Truyện về *một ông sếp tự học AI* và phòng Marketing không còn nữa vì không chịu trau dồi AI, kèm nhật ký kỹ thuật thật.
 cover: c01-p1
-tags: [satire, ai, vibe-coding, layoffs, office]
+tags: [ai, upskilling, vibe-coding, layoffs, office]
 style:
   preset: graphic-novel
 reader:
@@ -23,20 +23,20 @@ reader:
     library: Tất cả truyện
 page:
   pageTitle: "Vibe2Fire: sếp tự học AI, phòng Marketing giải tán"
-  description: Truyện tranh châm biếm nội bộ về cách Omninoise ra đời, kèm nhật ký kỹ thuật thật.
+  description: Truyện tranh nội bộ về cách Omninoise ra đời và phòng Marketing không còn nữa vì không chịu trau dồi AI, kèm nhật ký kỹ thuật thật.
   robots: noindex, nofollow
   wordmark: Vibe*2*Fire
   credit:
     text: Omninoise, nội bộ ↗
     href: /
-  heading: Chuyện về *một ông sếp tự học AI* và một phòng Marketing không còn nữa
+  heading: Chuyện về *một ông sếp tự học AI* và một phòng Marketing không còn nữa vì không chịu trau dồi AI
   invitation: Omninoise là studio nội bộ biến tài liệu của chính sếp thành video ngắn về AI, rồi đăng lên năm nền tảng dưới tên Tech Life Insights. Nó được dựng trong ba ngày, bởi một người và hai con agent. Trước khi đọc nhật ký kỹ thuật, mời bạn quay về quý 3 năm 2026…
   shortcuts:
     - text: Bắt đầu từ quý 3 ↓
       href: "#sa-mac"
     - text: Đọc thẳng nhật ký thật ↘
       href: "#nhat-ky"
-  note: Truyện châm biếm nội bộ, mười chương. Phòng Marketing trong truyện là nhân vật hư cấu. Tranh do AI vẽ (Codex), lời thoại do người viết. Mọi thứ trong phần nhật ký đều có thật và lấy từ `docs/log.md`, `docs/status.md` và `docs/adr/`.
+  note: Truyện nội bộ, mười chương. Phòng Marketing trong truyện là nhân vật hư cấu. Tranh do AI vẽ (Codex), lời thoại do người viết. Mọi thứ trong phần nhật ký đều có thật và lấy từ `docs/log.md`, `docs/status.md` và `docs/adr/`.
   end:
     text: Hết. Phòng Marketing cũng vậy.
     link:
@@ -44,7 +44,7 @@ page:
       href: "#nhat-ky"
   writeup: writeup.html
   writeupId: nhat-ky
-  footer: Vibe2Fire · truyện châm biếm nội bộ
+  footer: Vibe2Fire · truyện nội bộ
   backToTop: Về đầu trang ↑
 characters:
   - id: boss
