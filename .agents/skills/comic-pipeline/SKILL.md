@@ -35,7 +35,7 @@ Generation skips PNGs already on disk, so `panels` and `all` resume after a fail
 4. **Cast**: concrete visual `look`s and a short `tag` per character; `refs` for anyone who must resemble a real person, product or earlier art. Run `cast`, open the sheet and fix it before any panel: every panel copies it.
 5. **Panels**: English `scene` with `{id}` placeholders, lettering in the comic's language under `text`. `check`, then `prompts --only` one panel and read it.
 6. **Generate, review, convert**: `panels` → `review` → look at every contact sheet → regenerate failures (`--only id --force`) → `webp`.
-7. **Letter and ship**: `bun run build && bun run preview`; screenshot each chapter at desktop width, in the "Panels" mode and at 390 px. Move lettering (`at`, `tail`, `focus`) wherever a bubble covers a face. Then the repo's check/test/build, a PR, and the deploy command in AGENTS.md.
+7. **Letter and ship**: `bun run build && bun run preview`; screenshot each chapter at desktop width, in the "Panels" mode and at 390 px. Move lettering (`at`, `tail`, `focus`) wherever a bubble covers a face. Then the repo's check/test/build and a PR; merging it to `main` deploys (Workers Builds). The manual deploy command in AGENTS.md is the fallback.
 
 ## Extending an existing comic
 
