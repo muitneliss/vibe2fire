@@ -56,7 +56,8 @@ const plural = (one: string, many: string) => (n: number) => `${n} ${n === 1 ? o
 export const UI: Record<Locale, UiStrings> = {
   en: {
     libraryTitle: "Vibe2Fire · comics",
-    libraryDescription: "Comics painted with AI image generation and lettered by hand in HTML, in more than one language.",
+    libraryDescription:
+      "Satirical comics about work in the AI era: the AI arrived, everyone started vibe coding, and then the layoffs came. Art painted by AI, words written by people.",
     libraryHeading: "Comics, *bound* by language.",
     libraryLead:
       "Every comic on Vibe2Fire, newest first. Panels are AI-generated; every caption and balloon is real text, so it reads in any language.",
@@ -86,7 +87,8 @@ export const UI: Record<Locale, UiStrings> = {
   },
   vi: {
     libraryTitle: "Vibe2Fire · truyện tranh",
-    libraryDescription: "Truyện tranh vẽ bằng AI, lời thoại viết tay bằng HTML, nhiều ngôn ngữ.",
+    libraryDescription:
+      "Truyện tranh châm biếm về đời công sở thời AI: AI đến, ai cũng vibe code, rồi làn sóng sa thải ập tới. Tranh do AI vẽ, lời do người viết.",
     libraryHeading: "Truyện tranh, *đóng tập* theo ngôn ngữ.",
     libraryLead:
       "Mọi truyện trên Vibe2Fire, mới nhất trước. Tranh do AI vẽ; lời dẫn và lời thoại là chữ thật, nên đọc được ở mọi ngôn ngữ.",
