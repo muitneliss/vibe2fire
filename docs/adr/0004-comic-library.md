@@ -17,6 +17,6 @@ The site served one "home" comic at `/` and every other comic at `/<slug>/`. A s
 
 ## Consequences
 
-- Old `/#chapter` links land on the library. Fragments never reach the server, so no redirect can carry them. Acceptable: the Vibe2Fire page is `noindex` and not publicly linked, per its own footer.
+- Old `/#chapter` links land on the library. Fragments never reach the server, so no redirect can carry them. Acceptable: the Vibe2Fire page is `noindex`, so few outside links point at its old fragments.
 - Feed `url` values change within `vibe2fire.content/v1` (comic and chapter URLs now include the slug); field meanings are unchanged and `date`, `summary`, `cover` are added. Recorded in `docs/content-feed.md`.
 - Adding an interface language means adding a locale and its strings to `src/lib/i18n.ts` and a page file `src/pages/<code>/index.astro`; a comic in a new language needs nothing, its drawer appears on its own; adding a comic means adding a folder.
