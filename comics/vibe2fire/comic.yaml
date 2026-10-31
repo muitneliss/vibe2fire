@@ -23,7 +23,7 @@ reader:
     library: Tất cả truyện
 page:
   pageTitle: "Vibe2Fire: sếp tự học AI, phòng Marketing giải tán"
-  description: Truyện tranh nội bộ về cách Omninoise ra đời và phòng Marketing không còn nữa vì không chịu trau dồi AI, kèm nhật ký kỹ thuật thật.
+  description: Truyện tranh hư cấu về cách Omninoise ra đời và phòng Marketing không còn nữa vì không chịu trau dồi AI, kèm nhật ký kỹ thuật thật.
   robots: noindex, nofollow
   wordmark: Vibe*2*Fire
   credit:
@@ -36,7 +36,7 @@ page:
       href: "#sa-mac"
     - text: Đọc thẳng nhật ký thật ↘
       href: "#nhat-ky"
-  note: Truyện nội bộ, mười chương. Phòng Marketing trong truyện là nhân vật hư cấu. Tranh do AI vẽ (Codex), lời thoại do người viết. Mọi thứ trong phần nhật ký đều có thật và lấy từ `docs/log.md`, `docs/status.md` và `docs/adr/`.
+  note: Truyện hư cấu, mười chương; phòng Marketing trong truyện cũng là hư cấu. Tranh do AI vẽ (Codex), lời thoại do người viết. Mọi thứ trong phần nhật ký đều có thật và lấy từ `docs/log.md`, `docs/status.md` và `docs/adr/`.
   end:
     text: Hết. Phòng Marketing cũng vậy.
     link:
@@ -44,7 +44,7 @@ page:
       href: "#nhat-ky"
   writeup: writeup.html
   writeupId: nhat-ky
-  footer: Vibe2Fire · truyện nội bộ
+  footer: Vibe2Fire · truyện hư cấu
   backToTop: Về đầu trang ↑
 characters:
   - id: boss
