@@ -11,7 +11,7 @@ A comic lives at `comics/<slug>/comic.yaml`; paths in it are relative to that fo
 | `date` | no | Release date, `YYYY-MM-DD`. The library at `/` lists the newest comic first; comics without a date come last |
 | `summary` *md* | no | One or two sentences shown on the comic's card in the library, and in the feed as plain text |
 | `cover` | no | Panel id used as the comic's thumbnail in the library and the feed. Default: the first panel |
-| `tags` | no | Topics, e.g. `[satire, ai, vibe-coding]`: lowercase letters, digits and hyphens, no repeats. Each tag gets a library filter page at `/tag/<tag>/` and is shown as `#tag` on the comic's card; also in the feed. Reuse tags other comics already use (the library's topic row lists them) so filters group comics instead of splitting them |
+| `tags` | no | Topics, e.g. `[ai, upskilling, vibe-coding]`: lowercase letters, digits and hyphens, no repeats. Each tag gets a library filter page at `/tag/<tag>/` and is shown as `#tag` on the comic's card; also in the feed. Reuse tags other comics already use (the library's topic row lists them) so filters group comics instead of splitting them |
 | `style` | no | Art style, below; default preset `graphic-novel` |
 | `reader` | no | Reader theme, lettering preset, UI labels |
 | `page` | no | Masthead, opening section, end card, write-up, footer |
@@ -50,7 +50,7 @@ A comic lives at `comics/<slug>/comic.yaml`; paths in it are relative to that fo
 | `heading` *md* | The big opening line; `*em*` turns accent |
 | `invitation` *md* | Italic opening paragraph |
 | `shortcuts` | `[{ text, href }]` under the opening, e.g. start reading / skip to write-up |
-| `note` *md* | Small print under the opening: satire or fiction notice, AI-art credit |
+| `note` *md* | Small print under the opening: fiction notice, AI-art credit |
 | `end` | `{ text, link: { text, href } }` after the last chapter |
 | `writeup`, `writeupId` | An HTML fragment file included after the comic (a factual write-up), and its element id for the skip link |
 | `footer` *md*, `backToTop` | Footer text and the back-to-top link text |

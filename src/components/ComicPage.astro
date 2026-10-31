@@ -77,7 +77,7 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
         <nav class="shortcuts" aria-label={labels.start}>
           {(page.shortcuts ?? [{ text: labels.start, href: `#${first}` }]).map((s: { text: string; href: string }) => <a href={s.href}>{s.text}</a>)}
         </nav>
-        {page.note && <p class="satire" set:html={inlineMarkdown(page.note)} />}
+        {page.note && <p class="editor-note" set:html={inlineMarkdown(page.note)} />}
       </div>
       {cover && (
         <div class={`cover-art lettering-${comic.lettering}`}>

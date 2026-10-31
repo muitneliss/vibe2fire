@@ -1,6 +1,6 @@
 # Vibe2Fire
 
-Comics made with Codex image generation and Astro, served at https://vibe2fire.dev. The first comic, *Vibe2Fire*, is a Vietnamese satire about a boss who taught himself AI, built a social studio in three days, and dissolved the marketing team.
+Comics made with Codex image generation and Astro, served at https://vibe2fire.dev. The first comic, *Vibe2Fire*, is a Vietnamese comic about a boss who taught himself AI, built a social studio in three days, and dissolved the marketing team that would not learn it.
 
 - `comics/<slug>/comic.yaml`: a comic (style, cast, chapters, panels, lettering)
 - `bun run comic all <slug>`: generate the cast sheet and panels, review, convert

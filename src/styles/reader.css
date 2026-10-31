@@ -123,7 +123,7 @@ code {
   color: var(--paper);
 }
 /* The editor's note: the fictional team and the AI art are declared here (ADR 0003) */
-.satire {
+.editor-note {
   max-width: 38em;
   margin: 28px 0 0;
   padding: 12px 16px;
