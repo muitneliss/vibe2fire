@@ -23,9 +23,13 @@ Vibe2Fire is a comic studio and site. Each comic is one `comics/<slug>/comic.yam
 ## Confirmed decisions (2026-10-30)
 
 - The site supports many comics. The root `/` becomes the comic library; every comic, including Vibe2Fire, is served at `/<slug>/`.
-- The reader page keeps its existing look (dark reader, calif.io/php2shell layout, HTML lettering presets); the redesign adds the library and cross-comic navigation inside that world.
 - Site chrome is internationalised: the library and shared navigation exist in more than one interface language.
 - Readers browse the library by comic language.
+
+## Confirmed decisions (2026-10-31)
+
+- The whole site (library, language pages, reader, 404) is redesigned as one world, a weekly manga magazine (ADR 0006). This replaces the 2026-10-30 decision that the reader keeps its existing look. The reader keeps its mechanics: the printed page, Pages / Panels, HTML lettering presets.
+- The site shows Claude and Codex working together: Codex paints the site's artwork from Claude's prompts, and the pages credit both.
 
 ## Constraints and commitments
 
@@ -37,5 +41,4 @@ Vibe2Fire is a comic studio and site. Each comic is one `comics/<slug>/comic.yam
 
 ## Open decisions
 
-- Comic-level metadata for listings (cover panel, release date, short blurb) does not exist yet in `comic.yaml`.
 - Which interface languages ship beyond English and Vietnamese.

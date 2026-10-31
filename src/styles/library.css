@@ -1,376 +1,421 @@
-@charset "UTF-8";
-/* The comic library, a longbox: each comic language is a drawer behind a tabbed divider card, and
-   every comic is a cover framed in the comic-page black. Builds on reader.css (tokens, wordmark,
-   lettering presets). No JavaScript; the lift on hover and focus is CSS only. */
-.library {
-  --board: #e4dac6;
-  --board-ink: #191a18;
-  --accent-dark: #e8775e;
-  --lift: cubic-bezier(0.16, 1, 0.3, 1);
-  background: var(--dark);
-  color: var(--dark-text);
-  scrollbar-color: #55554c var(--dark);
-}
-.library ::selection {
-  background: #f1d3aa;
-  color: var(--k);
-}
-
-/* Paper masthead, full bleed */
-.lib-top {
-  background: var(--paper);
-  color: var(--ink);
-}
-.lib-top .masthead {
-  border-bottom: 0;
-  align-items: center;
-  padding: 20px 0;
-}
-.ui-switch {
-  display: flex;
-  gap: 4px;
-  font:
-    13px/1 Arial,
-    Helvetica,
-    sans-serif;
-}
-.ui-switch a {
-  padding: 8px 10px;
-  color: var(--muted);
-  text-decoration: none;
-  border-radius: 2px;
-}
-.ui-switch a:hover {
-  color: var(--red);
-}
-.ui-switch a[aria-current="page"] {
-  color: var(--paper);
-  background: var(--ink);
-}
-
-/* Opening: the heading and the jump links to each language drawer */
-.lib-intro {
-  width: min(1240px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: 56px 0 36px;
+/* The library: one two-page spread per comic language (ADR 0006).
+   Left page: the masthead (first spread only) over the contents, greyscale panels that print in colour when pointed at.
+   Right page: the language's title page, its newest comic's cover in colour, a ruled title box and a strip of panels.
+   Phones read the spread as one page: head, title page, contents. */
+.spreads {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 24px 64px;
+  gap: 28px;
+  padding: 16px;
 }
-.lib-intro h1 {
-  margin: 0;
-  max-width: 16em;
-  font-size: clamp(32px, 3.6vw, 48px);
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+.spread {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "head title"
+    "contents title"
+    "folio folio";
+  min-height: calc(100svh - 32px);
+  border: 2px solid var(--k);
+  background: var(--paper) url("/art/newsprint-v1.webp");
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
+}
+/* The fold: the paper dips into the binding */
+.spread::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 calc(50% - 22px);
+  z-index: 4;
+  width: 44px;
+  background:
+    linear-gradient(var(--k), var(--k)) center / 2px 100% no-repeat,
+    linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.07) 35%, rgba(0, 0, 0, 0.26) 50%, rgba(0, 0, 0, 0.07) 65%, transparent);
+  pointer-events: none;
+}
+
+/* Left page, top: masthead and headline under Codex's speed lines */
+.leaf-head {
+  grid-area: head;
+  position: relative;
+  padding: 1.2vw 2.4vw 1.1vw 2vw;
+}
+.leaf-head::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  aspect-ratio: 1536 / 404;
+  background: url("/art/speedlines-top-v1.webp") top center / 100% auto no-repeat;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.mast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.mast .ui-switch {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  border: 2px solid var(--k);
+}
+.mast .wordmark {
+  font-size: clamp(44px, 6.3vw, 104px);
+}
+.headline {
+  position: relative;
+  margin: 0.12em 0 0;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(26px, 3.05vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
-.lib-intro h1 em {
-  color: var(--accent-dark);
+/* Emphasis takes a band of screentone under the words */
+.headline em {
+  padding: 0 0.08em;
+  background: radial-gradient(circle, var(--tone-60) 1.1px, transparent 1.4px) 0 0.62em / 5px 5px repeat-x;
+  background-size: 5px 5px;
+  background-repeat: repeat;
+  background-clip: content-box;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
-.lib-lead {
-  margin: 18px 0 0;
-  max-width: 44em;
-  color: #ded6c5;
-  font-size: 18px;
-  line-height: 1.6;
+.running-head {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
-.lib-jump {
-  font: 12px/1.4 var(--mono);
-  color: var(--dark-muted);
+.running-head span {
+  font-family: var(--brush);
+  font-size: 30px;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-right: 10px;
 }
-.lib-jump p {
-  margin: 0 0 10px;
-  font:
-    13px/1.3 Arial,
-    Helvetica,
-    sans-serif;
-}
-.lib-jump ul {
+.lang-tabs {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  margin-top: 14px;
 }
-.lib-jump a {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 9px 12px;
-  border: 1px solid #54544a;
-  border-radius: 2px;
-  color: #f1d3aa;
-  font:
-    15px/1.2 Georgia,
-    "Times New Roman",
-    serif;
+.lang-tabs a {
+  padding: 6px 12px;
+  border: var(--rule);
+  background: var(--tone-10);
+  font-weight: 700;
+  font-size: 15px;
   text-decoration: none;
 }
-.lib-jump a:hover {
-  border-color: #f1d3aa;
-  color: #f1d3aa;
-}
-.lib-jump a[aria-current="page"] {
-  background: var(--board);
-  border-color: var(--board);
-  color: var(--board-ink);
-}
-.lib-jump b {
-  font: 400 12px/1 var(--mono);
-  color: var(--dark-muted);
+.lang-tabs a b {
   font-variant-numeric: tabular-nums;
+  margin-left: 4px;
 }
-.lib-jump a[aria-current="page"] b {
-  color: #4a4740;
-}
-.lib-empty {
-  width: min(1240px, calc(100% - 48px));
-  margin: 0 auto 80px;
-  color: var(--dark-muted);
-  font-size: 18px;
-}
-
-/* A drawer: the divider card on the left, the covers filed behind it */
-.drawer {
-  width: min(1240px, calc(100% - 48px));
-  margin: 0 auto;
-  padding: 0 0 56px;
-  display: grid;
-  grid-template-columns: 184px minmax(0, 1fr);
-  gap: 18px;
-  scroll-margin-top: 24px;
-}
-.divider {
-  position: sticky;
-  top: 16px;
-  align-self: start;
-  min-height: 300px;
-  padding: 44px 18px 18px;
-  display: flex;
-  flex-direction: column;
-  background: var(--board);
-  color: var(--board-ink);
-  /* the tab cut into the top edge of a longbox divider */
-  clip-path: polygon(0 26px, 44% 26px, 52% 0, 100% 0, 100% 100%, 0 100%);
-}
-.divider h2 {
-  margin: 0;
-  font: 400 40px/0.95 var(--bang);
-  letter-spacing: 0.03em;
-  overflow-wrap: anywhere;
-}
-.divider-local {
-  margin: 8px 0 0;
-  font:
-    14px/1.3 Arial,
-    Helvetica,
-    sans-serif;
-  color: #4a4740;
-}
-.divider-count {
-  margin: auto 0 0;
-  padding-top: 24px;
-  font: 14px/1.3 var(--mono);
-  color: #4a4740;
-}
-
-/* The inside of the box: covers stand in it, and the space left over reads as room for the next issue */
-.covers {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
-  gap: 16px;
-  margin: 0;
-  padding: 16px;
-  list-style: none;
-  background: #1f201d;
-  border: 1px solid #2c2d28;
-  border-bottom: 6px solid #2c2d28;
-}
-.cover {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 8px 8px 14px;
+.lang-tabs a:hover,
+.lang-tabs a[aria-current="page"] {
   background: var(--k);
-  color: var(--dark-text);
-  text-decoration: none;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
-  transition:
-    translate 260ms var(--lift),
-    box-shadow 260ms var(--lift);
+  color: var(--paper);
 }
-.cover:focus-visible {
-  outline: 3px solid #c16b44;
-  outline-offset: 4px;
+
+/* Left page: the contents, a grid of numbered panels */
+.contents {
+  grid-area: contents;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(108px, 1fr);
+  gap: 0.75vw 0.9vw;
+  margin: 0;
+  padding: 0 2.4vw 1.6vw 1.4vw;
+  list-style: none;
 }
-.cover-art {
-  container-type: inline-size;
+.cell {
   position: relative;
   display: block;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   overflow: hidden;
-  background: #2a2a26;
-  margin-bottom: 4px;
+  border: var(--rule);
+  background: var(--tone-30);
+  text-decoration: none;
+  color: var(--paper);
 }
-.cover-art img {
+.cell img {
+  position: absolute;
+  inset: 0;
+}
+.cell img,
+.strip img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  filter: grayscale(1) contrast(1.18);
+}
+.num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 1.35em;
+  padding: 0.04em 0.24em 0;
+  border-right: var(--rule);
+  border-bottom: var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 900;
+  font-size: clamp(18px, 2vw, 34px);
+  line-height: 1.1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.cell-title {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 6px 10px 7px;
+  background: var(--k);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.3;
+  translate: 0 101%;
+}
+.cell-more {
+  display: grid;
+  place-items: end start;
+  padding: 12px;
+  background: var(--k);
+  font-family: var(--brush);
+  font-size: 26px;
+  line-height: 1.05;
+}
+/* The colour-insert pull: a greyscale panel prints in colour while you point at it */
+.cell:is(:hover, :focus-visible) img,
+.strip:is(:hover, :focus-visible) img {
+  filter: none;
+}
+.cell:is(:hover, :focus-visible) .cell-title {
+  translate: 0 0;
+}
+@media (hover: none) {
+  .cell-title {
+    translate: 0 0;
+  }
+}
+
+/* Right page: the language's title page */
+.title-page {
+  grid-area: title;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.title-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 34%;
+  aspect-ratio: 520 / 444;
+  background: url("/art/speedlines-corner-v1.webp") top right / 100% auto no-repeat;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.lang-head {
+  position: relative;
+  z-index: 2;
+  padding: 1.5vw 2vw 0.9vw;
+  text-align: center;
+}
+.lang-head h2 {
+  margin: 0;
+  font-family: var(--brush);
+  font-weight: 400;
+  font-size: clamp(60px, 8.6vw, 176px);
+  line-height: 1.12;
+}
+.lang-head p {
+  margin: -0.1em 0 0;
+  font-weight: 900;
+  font-size: clamp(14px, 1.5vw, 24px);
+}
+.cover {
+  position: relative;
+  z-index: 2;
+  display: block;
+  aspect-ratio: 16 / 9;
+  container-type: inline-size;
+  border-block: var(--rule);
+  background: var(--tone-30);
+}
+.cover img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: var(--focus, 50% 50%);
 }
-.cover-art .cover-cap,
-.cover-art .cover-say {
-  top: 6%;
-  left: 6%;
-  max-width: 82%;
-  font-size: clamp(12.5px, 6.4cqi, 17px);
-}
-.cover-art .cover-say {
+.cover .cover-cap,
+.cover .cover-say {
   top: auto;
-  bottom: 10%;
+  left: auto;
+  right: 3%;
+  bottom: 7%;
+  max-width: 62%;
+  font-size: clamp(14px, 3.6cqi, 30px);
+  rotate: -4deg;
 }
-.cover-new {
+.cover .burst {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 6px 10px 5px;
-  background: var(--red);
-  color: #fff;
-  font: 400 17px/1 var(--bang);
-  letter-spacing: 0.06em;
+  top: -13%;
+  right: 0.5%;
+  z-index: 3;
+  width: 21%;
+  font-size: clamp(20px, 6.4cqi, 54px);
 }
-.cover-title {
-  padding: 0 4px;
-  font: 400 23px/1 var(--bang);
-  letter-spacing: 0.03em;
-  color: #f6f1e6;
+.cover:hover img {
+  filter: saturate(1.15) contrast(1.05);
 }
-.cover-meta {
-  padding: 0 4px;
-  font: 13px/1.4 var(--mono);
-  color: var(--dark-muted);
+.title-box {
+  position: relative;
+  z-index: 2;
+  margin: 0.7vw 1vw 0 0.9vw;
+  padding: 0.9vw 1.3vw 1vw;
+  border: var(--rule);
+  background: var(--paper);
 }
-/* Counts and sizes: mono small caps, the reader's voice for measurements */
-.divider-count,
-.cover-meta {
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.06em;
+.title-box h3 {
+  margin: 0;
+  font-family: var(--brush);
+  font-weight: 400;
+  font-size: clamp(38px, 4.7vw, 76px);
+  line-height: 0.95;
 }
-.cover-summary {
-  padding: 2px 4px 0;
-  font-size: 14px;
-  line-height: 1.45;
-  color: #c3c0b4;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.cover-summary em {
-  color: #f1d3aa;
-}
-
-/* The one authored moment: a cover lifts out of the box, the way you pull a comic from a longbox */
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .cover:hover,
-  .cover:focus-visible {
-    translate: 0 -10px;
-    box-shadow: 0 26px 40px rgba(0, 0, 0, 0.55);
-  }
-}
-.cover:hover .cover-title {
-  color: #f1d3aa;
-}
-
-/* A full drawer ends in a divider-board card that opens the language's own page */
-.cover-more {
-  height: 100%;
-  min-height: 160px;
-  display: flex;
-  align-items: flex-end;
-  padding: 16px;
-  background: var(--board);
-  color: var(--board-ink);
-  font: 400 24px/1.05 var(--bang);
-  letter-spacing: 0.03em;
+.title-box h3 a {
   text-decoration: none;
-  transition: translate 260ms var(--lift);
 }
-.cover-more:hover {
-  color: var(--red);
+.title-box h3 a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
 }
-.cover-more:focus-visible {
-  outline: 3px solid #c16b44;
-  outline-offset: 4px;
+.title-box .meta {
+  margin: 0.3em 0 0.25em;
+  font-weight: 700;
+  font-size: clamp(15px, 1.45vw, 23px);
+  font-variant-numeric: tabular-nums;
 }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .cover-more:hover,
-  .cover-more:focus-visible {
-    translate: 0 -10px;
+.title-box .summary {
+  margin: 0;
+  max-width: 62ch;
+  font-size: clamp(15px, 1.32vw, 21px);
+  line-height: 1.4;
+}
+.title-box .summary em {
+  font-style: normal;
+  font-weight: 700;
+}
+.title-box .credit {
+  margin: 0.45em 0 0;
+  color: var(--muted);
+  font-size: clamp(13px, 1.05vw, 16px);
+}
+.strip {
+  display: grid;
+  grid-template-columns: 0.86fr 1.05fr 1fr;
+  gap: 0.55vw;
+  flex: 1;
+  min-height: clamp(96px, 10.5vw, 180px);
+  margin: 0.55vw 1vw 0.9vw 0.9vw;
+}
+.strip img {
+  border: var(--rule);
+}
+
+/* The folio: the site's notice and credit along the foot of the last spread */
+.folio {
+  grid-area: folio;
+  position: relative;
+  z-index: 5;
+  background: var(--paper);
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 2vw 12px;
+  border-top: 2px solid var(--k);
+  font-size: 13px;
+  color: var(--muted);
+}
+.folio p {
+  margin: 0;
+  max-width: 90ch;
+}
+.folio a {
+  font-weight: 700;
+  color: var(--ink);
+}
+.lib-empty {
+  padding: 2vw;
+  font-weight: 700;
+}
+
+/* Motion: the pull of colour and the title tab, eased out; nothing moves under reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .cell img,
+  .strip img,
+  .cover img {
+    transition: filter 480ms var(--pull);
+  }
+  .cell-title {
+    transition: translate 320ms var(--pull);
   }
 }
 
-.lib-foot {
-  border-top-color: #44443e;
-  color: var(--dark-muted);
-}
-.lib-foot a:hover {
-  color: #f1d3aa;
-}
-
-/* Phones: the divider becomes a tab bar over its drawer and sticks while you scroll the drawer */
-@media (max-width: 719px) {
-  .lib-intro {
+/* Phones and narrow tablets: one page, head then title page then contents */
+@media (max-width: 760px) {
+  .spreads {
+    padding: 8px;
+    gap: 16px;
+  }
+  .spread {
     grid-template-columns: minmax(0, 1fr);
-    padding: 36px 0 28px;
-  }
-  .lib-lead {
-    font-size: 17px;
-  }
-  .drawer {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-    padding-bottom: 40px;
-  }
-  .divider {
-    top: 0;
-    z-index: 2;
+    grid-template-rows: none;
+    grid-template-areas: "head" "title" "contents" "folio";
     min-height: 0;
-    padding: 30px 14px 12px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 4px 12px;
-    clip-path: polygon(0 18px, 30% 18px, 36% 0, 100% 0, 100% 100%, 0 100%);
   }
-  .divider h2 {
-    font-size: 30px;
-  }
-  .divider-local {
-    margin: 0;
-  }
-  .divider-count {
-    margin: 0 0 0 auto;
-    padding: 0;
-  }
-  .covers {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    padding: 10px;
-  }
-  .cover {
-    padding: 6px 6px 12px;
-  }
-  .cover-title {
-    font-size: 21px;
-  }
-  .cover-summary {
+  .spread::after {
     display: none;
+  }
+  .leaf-head {
+    padding: 14px 16px 12px;
+  }
+  .lang-head {
+    padding: 14px 16px 8px;
+  }
+  .title-box {
+    margin: 10px 10px 0;
+    padding: 12px 14px;
+  }
+  .strip {
+    gap: 6px;
+    margin: 8px 10px 14px;
+  }
+  .contents {
+    grid-auto-rows: 104px;
+    gap: 8px;
+    padding: 14px 10px 14px;
+    border-top: var(--rule);
+  }
+  .folio {
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 16px;
   }
 }

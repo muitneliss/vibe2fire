@@ -1,0 +1,407 @@
+/* Comic mechanics shared by the reader and the library covers: the printed page (a six-column grid of panels),
+   HTML lettering laid over the art (captions, balloons, sound effects), the Pages / Panels switch, the phone
+   layout that lifts lettering above the art, and the lettering presets (ink is the base; pop, manga, parchment).
+   Lettering is HTML, never pixels, so any language's diacritics stay exact. */
+/* A printed page: black gutters, a six-column grid, every row the same height */
+.page {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 34cqi;
+  gap: 10px;
+  padding: 14px;
+  background: var(--k);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.5);
+}
+.w2 {
+  grid-column: span 2;
+}
+.w3 {
+  grid-column: span 3;
+}
+.w4 {
+  grid-column: span 4;
+}
+.w6 {
+  grid-column: span 6;
+}
+.panel {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: #2a2a26;
+}
+.panel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+}
+.f-top {
+  --focus: 50% 20%;
+}
+.f-bottom {
+  --focus: 50% 85%;
+}
+.f-left {
+  --focus: 20% 50%;
+}
+.f-right {
+  --focus: 80% 50%;
+}
+
+/* Lettering, after the reference: black brush captions, white balloons, capitals */
+.cap,
+.bubble {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  max-width: 44%;
+  font-family: var(--hand);
+  font-size: clamp(12.5px, 1.4cqi, 16px);
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.w2 > .cap,
+.w2 > .bubble {
+  max-width: 74%;
+  font-size: clamp(12.5px, 1.5cqi, 15px);
+}
+.w3 > .cap,
+.w3 > .bubble {
+  max-width: 64%;
+}
+.cap {
+  background: var(--k);
+  color: #f6f1e6;
+  padding: 0.5em 1.1em 0.45em;
+  clip-path: polygon(1.5% 6%, 30% 0, 62% 5%, 100% 1%, 98.5% 52%, 100% 96%, 66% 100%, 28% 95%, 0 100%, 1% 48%);
+}
+.bubble {
+  background: #fff;
+  color: var(--k);
+  border: 2px solid var(--k);
+  border-radius: 50% / 46%;
+  padding: 0.8em 1.15em;
+  text-align: center;
+}
+.bubble::before,
+.bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: var(--tail, 24%);
+  width: 20px;
+  height: 20px;
+  clip-path: polygon(0 0, 100% 0, 25% 100%);
+}
+.bubble::before {
+  background: var(--k);
+  margin-top: -1px;
+}
+.bubble::after {
+  background: #fff;
+  width: 14px;
+  height: 13px;
+  margin: -3px 0 0 3px;
+}
+.tail-c {
+  --tail: calc(50% - 10px);
+}
+.tail-r {
+  --tail: calc(74% - 16px);
+}
+.tail-r::before,
+.tail-r::after {
+  clip-path: polygon(0 0, 100% 0, 75% 100%);
+}
+.tail-r::after {
+  margin-left: 3px;
+}
+.tail-up::before,
+.tail-up::after {
+  top: auto;
+  bottom: 100%;
+  clip-path: polygon(25% 0, 100% 100%, 0 100%);
+}
+.tail-up::before {
+  margin: 0 0 -1px;
+}
+.tail-up::after {
+  margin: 0 0 -3px 3px;
+}
+.cap-stack {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 70%;
+}
+.cap-stack > .cap {
+  position: relative;
+  max-width: 100%;
+}
+
+.at-tl {
+  top: 4%;
+  left: 3%;
+}
+.at-tr {
+  top: 4%;
+  right: 3%;
+}
+.at-tc {
+  top: 4%;
+  left: 50%;
+  translate: -50% 0;
+}
+.at-ml {
+  top: 34%;
+  left: 3%;
+}
+.at-mr {
+  top: 34%;
+  right: 3%;
+}
+.at-bl {
+  bottom: 5%;
+  left: 3%;
+}
+.at-br {
+  bottom: 5%;
+  right: 3%;
+}
+.at-bc {
+  bottom: 5%;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.sfx {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  font-family: var(--bang);
+  font-size: clamp(30px, 5cqi, 60px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #fff;
+  -webkit-text-stroke: 2.5px var(--k);
+  paint-order: stroke fill;
+  text-shadow: 4px 4px 0 var(--k);
+  rotate: -9deg;
+}
+.sfx-xl {
+  font-size: clamp(40px, 8cqi, 92px);
+}
+.sfx-red {
+  color: #ff5a4a;
+}
+.sfx-yel {
+  color: #ffd23f;
+}
+.sfx-mint {
+  color: #7ff0d1;
+}
+
+/* Panels mode: one panel per row at its own proportions, like the reference */
+#mode-panels:checked ~ .chapter,
+#mode-panels:checked ~ .comic-end {
+  max-width: 760px;
+}
+#mode-panels:checked ~ .chapter .page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+#mode-panels:checked ~ .chapter .panel img {
+  height: auto;
+}
+#mode-panels:checked ~ .chapter .panel > :is(.cap, .bubble) {
+  max-width: 58%;
+  font-size: 16px;
+}
+#mode-panels:checked ~ .chapter .cap-stack {
+  max-width: 70%;
+}
+#mode-panels:checked ~ .chapter .cap-stack > .cap {
+  font-size: 16px;
+}
+
+/* Phones: lettering moves into a strip above the art so nothing covers the picture */
+@media (max-width: 719px) {
+  .mode-switch {
+    display: none;
+  }
+  .reader-toolbar-inner {
+    min-height: 48px;
+    padding: 8px 16px;
+  }
+  .era-links {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .chapter {
+    padding-top: 40px;
+  }
+  .chapter-description {
+    font-size: 17px;
+  }
+  .page {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 12px 0;
+    background: var(--k);
+  }
+  .panel img {
+    order: 9;
+    height: auto;
+    width: calc(100% + 24px);
+    margin: 4px -12px 0;
+  }
+  .panel > p,
+  .cap-stack {
+    position: relative;
+    inset: auto;
+    translate: none;
+  }
+  .panel > :is(.cap, .bubble),
+  .cap-stack,
+  .cap-stack > .cap {
+    max-width: 100%;
+    font-size: 14.5px;
+  }
+  .bubble::before,
+  .bubble::after {
+    display: none;
+  }
+  .sfx {
+    order: 2;
+    margin-left: auto;
+    font-size: 34px;
+  }
+}
+
+/* The one authored moment: sound effects pop in as their panel scrolls into view */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .sfx {
+      animation: sfx-pop linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 70%;
+    }
+  }
+}
+@keyframes sfx-pop {
+  from {
+    scale: 0.3;
+    opacity: 0;
+  }
+  60% {
+    scale: 1.12;
+    opacity: 1;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+.theme-light .page {
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(60, 50, 30, 0.18);
+}
+.theme-light .panel {
+  outline: 3px solid var(--k);
+  outline-offset: -3px;
+}
+.theme-light .panel img {
+  position: relative;
+  z-index: 0;
+}
+@media (max-width: 719px) {
+  .theme-light .panel {
+    background: #fff;
+  }
+  .theme-light .panel > .cap {
+    color: #f6f1e6;
+  }
+}
+
+/* ---------- Lettering: pop (yellow caption boxes, rounded white balloons) ---------- */
+.lettering-pop .cap {
+  background: #ffe680;
+  color: var(--k);
+  border: 2.5px solid var(--k);
+  clip-path: none;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.lettering-pop .bubble {
+  border-width: 2.5px;
+  border-radius: 1.4em;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.lettering-pop .sfx {
+  color: #ffd23f;
+}
+
+/* ---------- Lettering: manga (white boxes, sentence case, sharp tails) ---------- */
+.lettering-manga .cap {
+  background: #fff;
+  color: var(--k);
+  border: 2px solid var(--k);
+  clip-path: none;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.lettering-manga .bubble {
+  border-radius: 50%;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.lettering-manga .sfx {
+  color: #fff;
+  rotate: -14deg;
+}
+
+/* ---------- Lettering: parchment (aged scroll captions for fantasy and storybook) ---------- */
+.lettering-parchment .cap {
+  background: #efe0bd;
+  color: #3b2a14;
+  border: 2px solid #6b4f26;
+  clip-path: none;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  box-shadow: 0 2px 0 #6b4f26;
+}
+.lettering-parchment .bubble {
+  background: #fffaf0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.lettering-parchment .sfx {
+  color: #ffd98a;
+}

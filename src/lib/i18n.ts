@@ -30,6 +30,16 @@ export interface UiStrings {
   comics: (n: number) => string;
   empty: string;
   aiNotice: string;
+  /** Running head over a language's contents page. */
+  contents: string;
+  /** Accessible name of a chapter panel on the contents page. */
+  chapterLink: (n: number, title: string) => string;
+  /** The strip of panels under a comic's title box opens its first chapter. */
+  startReading: string;
+  /** Who made a comic: art and words. */
+  credit: string;
+  /** Who made the site. */
+  colophon: string;
   notFoundTitle: string;
   notFoundHeading: string;
   notFoundLink: string;
@@ -41,7 +51,7 @@ export const UI: Record<Locale, UiStrings> = {
   en: {
     libraryTitle: "Vibe2Fire · comics",
     libraryDescription: "Comics painted with AI image generation and lettered by hand in HTML, in more than one language.",
-    libraryHeading: "Comics, *filed by language*.",
+    libraryHeading: "Comics, *bound* by language.",
     libraryLead:
       "Every comic on Vibe2Fire, newest first. Panels are AI-generated; every caption and balloon is real text, so it reads in any language.",
     languageHeading: (language) => `Comics in *${language}*.`,
@@ -49,13 +59,18 @@ export const UI: Record<Locale, UiStrings> = {
     allLanguages: "All languages",
     filterBy: "Comic language",
     interface: "Interface language",
-    newest: "Newest",
+    newest: "New",
     allIn: (n, language) => `All ${n} in ${language}`,
     chapters: plural("chapter", "chapters"),
     panels: plural("panel", "panels"),
     comics: plural("comic", "comics"),
     empty: "No comics yet.",
     aiNotice: "Panel art is AI-generated (Codex image generation); lettering and stories are written by people.",
+    contents: "Contents",
+    chapterLink: (n, title) => `Chapter ${n}: ${title}`,
+    startReading: "Start reading",
+    credit: "art painted by Codex · words written by people",
+    colophon: "Designed by Claude and Codex: Codex painted the mockups and the art, Claude built the pages.",
     notFoundTitle: "Not found · Vibe2Fire",
     notFoundHeading: "This page got laid off.",
     notFoundLink: "Back to all comics",
@@ -63,7 +78,7 @@ export const UI: Record<Locale, UiStrings> = {
   vi: {
     libraryTitle: "Vibe2Fire · truyện tranh",
     libraryDescription: "Truyện tranh vẽ bằng AI, lời thoại viết tay bằng HTML, nhiều ngôn ngữ.",
-    libraryHeading: "Truyện tranh, *xếp theo ngôn ngữ*.",
+    libraryHeading: "Truyện tranh, *đóng tập* theo ngôn ngữ.",
     libraryLead:
       "Mọi truyện trên Vibe2Fire, mới nhất trước. Tranh do AI vẽ; lời dẫn và lời thoại là chữ thật, nên đọc được ở mọi ngôn ngữ.",
     languageHeading: (language) => `Truyện tranh *${language}*.`,
@@ -73,13 +88,18 @@ export const UI: Record<Locale, UiStrings> = {
     allLanguages: "Mọi ngôn ngữ",
     filterBy: "Ngôn ngữ truyện",
     interface: "Ngôn ngữ giao diện",
-    newest: "Mới nhất",
+    newest: "Mới",
     allIn: (n, language) => `Cả ${n} truyện ${language}`,
     chapters: (n) => `${n} chương`,
     panels: (n) => `${n} khung`,
     comics: (n) => `${n} truyện`,
     empty: "Chưa có truyện nào.",
     aiNotice: "Tranh do AI vẽ (Codex), lời thoại và cốt truyện do người viết.",
+    contents: "Mục lục",
+    chapterLink: (n, title) => `Chương ${n}: ${title}`,
+    startReading: "Bắt đầu đọc",
+    credit: "tranh do Codex vẽ · lời do người viết",
+    colophon: "Claude và Codex cùng thiết kế: Codex vẽ bản phác và tranh, Claude dựng trang.",
     notFoundTitle: "Không tìm thấy · Vibe2Fire",
     notFoundHeading: "Trang này đã bị cho nghỉ việc.",
     notFoundLink: "Về danh sách truyện",

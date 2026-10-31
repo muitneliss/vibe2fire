@@ -12,3 +12,5 @@ brand/.work/
 # Impeccable design scratch: decision sketches and review captures (the surface brief and DESIGN files are committed)
 .impeccable/mocks/
 .impeccable/review/
+.impeccable/build/
+assets/
