@@ -19,8 +19,8 @@ const page = config.page ?? {};
 const total = config.chapters.length;
 const first = config.chapters[0]?.id;
 const lang = config.lang ?? "en";
-// Back to the library in the comic's language when the site speaks it, opened at this comic's language spread.
-const library = `${libraryPath((LOCALES as readonly string[]).includes(lang) ? (lang as Locale) : DEFAULT_LOCALE)}#lang-${lang}`;
+// Back to the library in the comic's language when the site speaks it, filtered to the comic's language.
+const library = libraryPath((LOCALES as readonly string[]).includes(lang) ? (lang as Locale) : DEFAULT_LOCALE, lang);
 const writeup = page.writeup ? readFileSync(resolve(comic.dir, page.writeup), "utf8") : "";
 const wordmark = String(page.wordmark ?? config.title)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;")

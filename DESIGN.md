@@ -129,7 +129,7 @@ spacing:
   frame: "14px"
   sheet: "16px"
   panels-gap: "18px"
-  spread-gap: "28px"
+  section-gap: "44px"
   writeup-gap: "72px"
   chapter: "80px"
   end: "104px"
@@ -252,7 +252,7 @@ components:
 
 **Creative North Star: "The Black-and-White Weekly"**
 
-Every page of Vibe2Fire is a page of a weekly manga magazine: cheap newsprint white, black ink panel borders, screentone greys, speed lines, a dry-brush title face. The library is a run of two-page spreads (this week's issue first, then one per comic language, then an index of every comic): a black-and-white contents page facing a title page whose comic's cover is printed in full colour, the way a weekly prints its colour opening pages. The reader, the language pages and the 404 are pages of the same issue: a masthead strip under speed lines, then title pages, chapter headings over 3px ink rules, printed comic pages, and a closing burst.
+Every page of Vibe2Fire is a page of a weekly manga magazine: cheap newsprint white, black ink panel borders, screentone greys, speed lines, a dry-brush title face. The library is the magazine's front section: a masthead, a filter bar by comic language, the newest comic as a colour feature, then the catalogue of every comic as greyscale cards that print in colour when pointed at, the way a weekly prints its colour opening pages. The reader, the language pages and the 404 are pages of the same issue: a masthead strip under speed lines, then title pages, chapter headings over 3px ink rules, printed comic pages, and a closing burst.
 
 The one thing that carries colour is the comic. Chrome is black, white and tone; painted panels and the HTML lettering set on them are the only hue on any screen. On the contents page even the art starts in greyscale and prints in colour only while you point at or focus a panel (the colour-insert pull). Selection, the current item and the open state are solid black; secondary surfaces are screentone. Speed lines, the newsprint grain and the NEW burst are plates Codex painted, multiplied onto the paper, never drawn in CSS.
 
@@ -308,7 +308,7 @@ The lettering inks. They belong to comic content, are chosen per comic by letter
 **Character:** A rough dry brush shouts the titles the way a weekly's letterer would; a heavy, slanted Vietnamese-native grotesk carries the headlines and every set word, so diacritics stay exact at every weight.
 
 ### Hierarchy
-- **Wordmark** (brush 400, clamp(44px, 6.3vw, 104px), 0.9): top left of the first spread; the reader masthead sets it at clamp(40px, 4.6vw, 64px), 1.1. The "2" is struck harder: rotated -8deg and scaled 1.12.
+- **Wordmark** (brush 400, clamp(44px, 6.3vw, 104px), 0.9): top left of the library masthead; the reader masthead sets it at clamp(40px, 4.6vw, 64px), 1.1. The "2" is struck harder: rotated -8deg and scaled 1.12.
 - **Display** (brush 400, clamp(60px, 8.6vw, 176px), 1.12): a language's name, centred on its title page, set in that language.
 - **Title** (brush 400, clamp(38px, 4.7vw, 76px), 0.95): a comic's title in its title box. **Chapter Title** (brush 400, clamp(36px, 4.2vw, 64px), 1.15) heads each chapter. **End Line** (brush 400, up to 72px, 1.12, balanced) is the last line struck inside the closing burst.
 - **Headline** (Be Vietnam Pro 900 italic, clamp(34px, 4.4vw, 72px), 1.08, -0.025em, balanced): the reader's cold-open heading. The library headline is the same voice at clamp(26px, 3.05vw, 58px), 1.02; the 404 heading at clamp(24px, 3vw, 40px). Emphasis keeps the weight and lays a Tone 60 dot screen under the words.
@@ -316,7 +316,7 @@ The lettering inks. They belong to comic content, are chosen per comic by letter
 - **Heading** (Be Vietnam Pro 900, clamp(26px, 2.4vw, 34px), 1.2, -0.015em): write-up section heads over a 3px rule.
 - **Body** (Be Vietnam Pro 400, 17px, 1.5): the base. Long-form copy runs at 18px/1.7 (write-up, max 68ch), chapter descriptions at clamp(17px, 1.25vw, 19px)/1.7 (max 42em), the invitation at clamp(18px, 1.5vw, 22px)/1.55 (max 36em), a title box summary at clamp(15px, 1.32vw, 21px)/1.4 (max 62ch). Emphasis inside a summary is 700 upright.
 - **Label** (Be Vietnam Pro 700, 14px, 0.08em): the edition switch and the reader's masthead links. **Control** (700, 13-15px): language tabs, shortcuts, chapter tabs, Pages / Panels, transcript summaries, contents titles.
-- **Folio** (Be Vietnam Pro 400, 13px, Press Grey): the notice and colophon at the foot of the last spread and the reader's foot line.
+- **Folio** (Be Vietnam Pro 400, 13px, Press Grey): the notice and colophon at the foot of the library and the reader's foot line.
 - **Lettering** (Patrick Hand 400, clamp(12.5px, 1.4cqi, 16px), 1.25, 0.03em, uppercase in the ink preset): captions and balloons, sized in container units. Pop and manga drop the capitals; parchment switches to Georgia italic.
 - **SFX** (Bangers 400, clamp(30px, 5cqi, 60px), 1, 0.04em, rotated -9deg): sound effects; XL up to 92px.
 
@@ -329,18 +329,18 @@ The lettering inks. They belong to comic content, are chosen per comic by letter
 
 ## Layout
 
-The library is a column of spreads, `16px` from the viewport edge and `28px` apart. Each spread is a two-column grid of equal pages (head and contents left, title page right, a folio row across the foot), at least one viewport tall, edged in a 2px ink line. A 44px fold runs down the centre: a 2px ink line inside a soft gradient of shade, as the paper dips into the binding. The left page holds the masthead (first spread only) or a running head, then the contents: a two-column grid of numbered panels. A comic's chapters stretch to fill the page in rows of at least 108px; a list of comics keeps a fixed 16:10 panel over a caption (an odd count opens with one panel across both columns), and a screentone panel fills the rest of the page. After the spreads, single sheets: a language page's overflow grid, and the index of every comic (two text columns, one group per language, title, date and chapter count per row). The right page stacks the language head, a 16:9 cover bleeding to both page edges between 3px rules, a ruled title box inset about 1vw, and a strip of three panels (0.86fr, 1.05fr, 1fr) that fills the rest. Spacing inside spreads scales with the viewport in vw so the spread keeps its proportions.
+The library is one column at `min(1320px, 100% - 40px)`: the masthead (wordmark, headline, the site's pitch, Codex speed lines on the right half), the filter bar between two 3px rules (sticky at the top), the feature (a 2px-ruled box: the cover at 16:10 on 1.35fr, the title box on 1fr with brush title, meta, summary, credit, the Key Black read button and a strip of three greyscale panels), then the catalogue: a brush heading with the count over a 3px rule, and a card grid of `auto-fill, minmax(270px, 1fr)` with 22px rows and 20px columns. Every filter is its own static page, so the layout never changes with the catalogue's size: one comic is one card, two hundred are two hundred cards.
 
 The reader is one centred column family under a full-bleed masthead: masthead and cold open at `min(1240px, 100% - 40px)`, the sticky toolbar at 1400px, chapters at 1160px with 24px side padding (760px in Panels mode), `80px` between chapters, `104px` above the end burst. From 980px the cold open sets the headline and the cover side by side (1.08fr / 0.92fr, 56px gap). The printed page is a six-column grid with rows of 34cqi, `10px` gutters and a `14px` frame; panels span 2, 3, 4 or 6 columns. Panels mode stacks panels one per row at their own proportions, `18px` apart. The write-up is a 220px sticky contents column beside a 68ch prose column with a `72px` gap.
 
-Phones: below 760px a spread reads as one page (head, title page, contents, folio), the fold disappears, and contents rows become 104px. Below 720px the reader hides the Pages / Panels switch, scrolls its chapter tabs sideways, drops the printed page's frame, and turns each panel into a black card with its lettering lifted into a strip above the art so nothing covers the picture. At 860px the write-up collapses to one column.
+Phones: below 760px the filter bar scrolls sideways and drops its label, the feature stacks its cover over the title box, and the catalogue goes two cards across with 22px titles and no summary. Below 720px the reader hides the Pages / Panels switch, scrolls its chapter tabs sideways, drops the printed page's frame, and turns each panel into a black card with its lettering lifted into a strip above the art so nothing covers the picture. At 860px the write-up collapses to one column.
 
 ## Elevation & Depth
 
-Flat print with one lift. Chrome sits flat on the paper and is separated by ink rules and screentone, never by shadow. Paper objects that lie on the paper (the spread, the reader's cover, the printed page from 720px, the 404 panel) share one soft, short shadow, a page lifted off the table, not a slab. Depth inside the art comes from the plates: speed lines multiplied onto the paper converge on what matters, and the fold shades the binding. Hard offset shadows exist only as comic lettering devices.
+Flat print with one lift. Chrome sits flat on the paper and is separated by ink rules and screentone, never by shadow. Paper objects that lie on the paper (the library feature, the reader's cover, the printed page from 720px, the 404 panel) share one soft, short shadow, a page lifted off the table, not a slab. Depth inside the art comes from the plates: speed lines multiplied onto the paper converge on what matters, and the fold shades the binding. Hard offset shadows exist only as comic lettering devices.
 
 ### Shadow Vocabulary
-- **Print lift** (`box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45)`): the spread, the reader's cover, the printed page (720px and up), the 404 panel.
+- **Print lift** (`box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45)`): the library feature, the reader's cover, the printed page (720px and up), the 404 panel.
 - **Focus halo** (`box-shadow: 0 0 0 7px #fafaf7` under a 3px Key Black outline at 3px offset): every focusable element.
 - **SFX shadow** (`text-shadow: 4px 4px 0 #111`): sound effects only.
 - **Parchment edge** (`box-shadow: 0 2px 0 #6b4f26`): parchment captions only.
@@ -352,7 +352,7 @@ Flat print with one lift. Chrome sits flat on the paper and is separated by ink 
 
 ## Shapes
 
-Print geometry: every frame, tab, box, panel, cell, cover and button is square-cornered. Rule weight carries hierarchy: a 3px Key Black rule for structure (panel and cover borders, the title box, chapter headings, write-up section heads, the masthead and toolbar edges, the number box's two inner sides), a 2px line for framed controls and the spread's edge, and a 1px Tone 30 hairline only between list entries and table rows. The number box on a contents panel tucks into the top-left corner with rules on its right and bottom sides, like a panel number in a printed contents page. The only curves are comic lettering: the speech balloon is an ellipse (50% / 46%) with a two-layer clip-path tail, rounded to 1.4em in pop and a full 50% in manga; the ink caption has a rough brush edge cut with clip-path. The burst's spiky silhouette comes from its painted plate, never from a CSS shape.
+Print geometry: every frame, tab, box, panel, cell, cover and button is square-cornered. Rule weight carries hierarchy: a 3px Key Black rule for structure (panel and cover borders, the title box, chapter headings, write-up section heads, the masthead and toolbar edges, the number box's two inner sides), a 2px line for framed controls and the feature's edge, and a 1px Tone 30 hairline only between list entries and table rows. The number box on a catalogue card tucks into the top-left corner with rules on its right and bottom sides, like a panel number in a printed contents page. The only curves are comic lettering: the speech balloon is an ellipse (50% / 46%) with a two-layer clip-path tail, rounded to 1.4em in pop and a full 50% in manga; the ink caption has a rough brush edge cut with clip-path. The burst's spiky silhouette comes from its painted plate, never from a CSS shape.
 
 ### Named Rules
 **The Square Corner Rule.** No border-radius anywhere in the chrome. Rounding belongs to speech balloons.
@@ -362,29 +362,25 @@ Print geometry: every frame, tab, box, panel, cell, cover and button is square-c
 ## Components
 
 ### Wordmark
-Brush "Vibe2Fire" in Ink, the "2" rotated -8deg and scaled 1.12. Top left of the first spread, under the speed-line plate; in the reader masthead it carries the comic's own wordmark the same way.
+Brush "Vibe2Fire" in Ink, the "2" rotated -8deg and scaled 1.12. Top left of the library masthead, beside the speed-line plate; in the reader masthead it carries the comic's own wordmark the same way.
 
 ### Edition Switch and Masthead Links
 A framed bar on paper (2px Key Black border, segments split by 2px rules), Label type. Inactive links are Press Grey and turn Ink on hover; the current interface language is Ink with a 3px underline (`aria-current="page"`). The reader masthead uses the same bar for "library" and the credit link, with 7px 12px segments and a 3px underline on hover.
 
-### Language Tabs
-- **Style:** Control type, 6px 12px, Tone 10 fill inside a 3px rule, the language named in itself, its comic count in tabular figures.
-- **Hover / Current:** solid Key Black with Newsprint White text.
+### Filter Bar
+A sticky bar between two 3px rules: a 700 uppercase label, then one tab per choice ("All", then each comic language named in itself), each a 2px-ruled Tone 10 tab with its count in tabular figures; the current filter and hover are solid Key Black. Each tab is a link to a static page.
 
-### Contents Cell (signature)
-A numbered panel on the contents page: square, 3px rule, Tone 30 behind a greyscale image (`grayscale(1) contrast(1.18)`). The number sits in a Newsprint White box in the top-left corner (Numeral, 900, tabular). The title sits in a Key Black bar that slides up from the foot on hover or focus (always shown where there is no hover). **The colour-insert pull:** on hover or focus the image prints in colour (filter off over 480ms). A spread with no other comics to list shows its comic's chapters, deep-linking to each, with the title bar. **Comic cells** list comics instead: the cover panel at 16:10 over a Key Black caption that always names the comic (700) with its language and chapter count (Tone 30, 12.5px), so a catalogue reads without hover.
+### Catalogue Card (signature)
+A 3px-ruled paper card: the comic's cover panel at 16:10 in greyscale (`grayscale(1) contrast(1.18)`) with its number in a Newsprint White box top-left and, on the newest comic, a small NEW burst; then the title in brush (30px), a 700 meta line (language · chapters · date) in Press Grey, and a three-line summary. **The colour-insert pull:** on hover or focus the cover prints in colour (filter off over 480ms) and the title underlines.
 
-### Screentone Fill
-The last panel of a contents page: Tone 30 dots at 6px pitch inside a 3px rule, taking whatever height the contents leave so pages close square. It carries the way on as a Key Black tab (900): "Every comic" on the opening spread, "All N in <language>" on a language spread.
-
-### Title Page
-The language's name in Display, its interface-language name and comic count beneath in 900. Then the cover: the newest comic's cover panel at 16:9 in full colour between 3px rules, carrying its first caption or balloon in the comic's own lettering preset (tilted -4deg, bottom right), and, on the newest comic, the NEW burst breaking the top edge. Below it, the **title box**: a 3px-ruled paper box with the comic's title in brush (underlined 4px on hover), counts in 700, a summary, and the credit in Press Grey. Then the **strip** of three greyscale panels that print in colour together on hover or focus and open the first chapter.
+### Feature
+The newest comic in the current filter. The cover: the newest comic's cover panel at 16:9 in full colour between 3px rules, carrying its first caption or balloon in the comic's own lettering preset (tilted -4deg, bottom right), and, on the newest comic, the NEW burst breaking the top edge. Beside it, the **title box**: the comic's title in brush (underlined 4px on hover) under Codex corner speed lines, the meta line in 700, a summary, the credit in Press Grey, a Key Black read button (900), and the **strip** of three greyscale panels that print in colour together on hover or focus and open the first chapter.
 
 ### NEW Burst
 The painted ink starburst plate (480 / 350) with the word set over it in brush, rotated -8deg, about a fifth of the cover's width. The same plate holds the reader's end line (rotated -4deg, up to 720px wide) and the 404.
 
-### Running Head and Folio
-Spreads after the first open with a running head: "Vibe2Fire" in brush at 30px followed by the word for contents in 700 14px uppercase at 0.12em, as a magazine heads its pages. The last spread closes with a folio row: the AI-art notice and colophon under the left page, the `content.json` link in 700 Ink under the right.
+### Folio
+The page closes with a folio row over a 2px rule: the AI-art notice and colophon at the left, the `content.json` link in 700 Ink at the right.
 
 ### Reader Masthead and Cold Open
 A full-bleed strip under the top speed-line plate with a 3px rule beneath. The cold open sets the Headline, the invitation, a row of **shortcut** buttons (2px frame, paper, Control type, solid black on hover and focus), and the **editor's note** (2px frame, 14px, max 38em) that declares the fictional team and the AI art. From 980px the comic's cover panel sits beside it at 3:2 in colour, with a 3px rule, the print lift, its caption in the comic's lettering, and the corner speed-line plate on its top-right corner.
@@ -416,7 +412,7 @@ The comic closes on the burst plate with the end line in brush and one **solid a
 A sticky contents column (3px rule on top, a 900 italic title, entries split by Tone 30 hairlines with 900 tabular counters, solid black on hover) beside the prose. Section heads in Heading type over a 3px rule; asides in a 2px frame; tables ruled 2px at head and foot with Tone 30 row hairlines and tabular figures.
 
 ### Painted Plates
-`/art/newsprint-v2.webp` tiles behind the body, every spread and the toolbar. `/art/speedlines-top-v2.webp` runs across the top of the first page and the reader masthead; `/art/speedlines-corner-v2.webp` closes in on the title page's top-right corner, the reader's cover and both corners of the 404 panel. `/art/burst-v1.webp` is the burst. Each sits beside a `.json` sidecar holding the prompt Codex painted it from.
+`/art/newsprint-v2.webp` tiles behind the body, the filter bar and the toolbar. `/art/speedlines-top-v2.webp` sits on the right of the library masthead and across the reader masthead; `/art/speedlines-corner-v2.webp` closes in on the feature title box's top-right corner, the reader's cover and both corners of the 404 panel. `/art/burst-v1.webp` is the burst. Each sits beside a `.json` sidecar holding the prompt Codex painted it from.
 
 **The Plates Are Painted Rule.** Speed lines, the burst and the paper grain are Codex rasters, multiplied (`mix-blend-mode: multiply`) onto the paper or set as a contained background. They are never drawn with CSS gradients, SVG or clip-path, and every shipped plate keeps its prompt beside it.
 

@@ -1,51 +1,24 @@
-/* The library: one two-page spread per comic language (ADR 0006).
-   Left page: the masthead (first spread only) over the contents, greyscale panels that print in colour when pointed at.
-   Right page: the language's title page, its newest comic's cover in colour, a ruled title box and a strip of panels.
-   Phones read the spread as one page: head, title page, contents. */
-.spreads {
-  display: grid;
-  gap: 28px;
-  padding: 16px;
-}
-.spread {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "head title"
-    "contents title"
-    "folio folio";
-  min-height: calc(100svh - 32px);
-  border: 2px solid var(--k);
-  background: var(--paper) url("/art/newsprint-v2.webp");
-  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
-}
-/* The fold: the paper dips into the binding */
-.spread::after {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 calc(50% - 22px);
-  z-index: 4;
-  width: 44px;
-  background:
-    linear-gradient(var(--k), var(--k)) center / 2px 100% no-repeat,
-    linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.07) 35%, rgba(0, 0, 0, 0.26) 50%, rgba(0, 0, 0, 0.07) 65%, transparent);
-  pointer-events: none;
+/* The library (ADR 0006): a masthead under Codex's speed lines, a filter bar by comic language,
+   the newest comic as the issue's feature (cover in colour, title box), then the catalogue of every comic as cards.
+   Cards print greyscale and pull into colour when pointed at, like a weekly's colour insert. */
+.lib-mast,
+.filter,
+main,
+.folio {
+  width: min(1320px, calc(100% - 40px));
+  margin-inline: auto;
 }
 
-/* Left page, top: masthead and headline under Codex's speed lines */
-.leaf-head {
-  grid-area: head;
+/* Masthead: wordmark, interface switch, headline and the site's one-line pitch */
+.lib-mast {
   position: relative;
-  padding: 1.2vw 2.4vw 1.1vw 2vw;
+  padding: 22px 0 18px;
 }
-.leaf-head::before {
+.lib-mast::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  aspect-ratio: 1536 / 404;
-  background: url("/art/speedlines-top-v2.webp") top center / 100% auto no-repeat;
+  inset: 0 -20px 0 48%;
+  background: url("/art/speedlines-top-v2.webp") top right / auto 100% no-repeat;
   mix-blend-mode: multiply;
   pointer-events: none;
 }
@@ -56,22 +29,21 @@
   justify-content: space-between;
   gap: 16px;
 }
-.mast .ui-switch {
-  position: relative;
-  z-index: 1;
-  background: var(--paper);
-  border: 2px solid var(--k);
-}
 .mast .wordmark {
-  font-size: clamp(44px, 6.3vw, 104px);
+  font-size: clamp(44px, 5.4vw, 92px);
+}
+.mast .ui-switch {
+  border: 2px solid var(--k);
+  background: var(--paper);
 }
 .headline {
   position: relative;
-  margin: 0.12em 0 0;
+  max-width: 18em;
+  margin: 8px 0 0;
   font-weight: 900;
   font-style: italic;
-  font-size: clamp(26px, 3.05vw, 58px);
-  line-height: 1.02;
+  font-size: clamp(28px, 3.4vw, 54px);
+  line-height: 1.05;
   letter-spacing: -0.025em;
   text-wrap: balance;
 }
@@ -83,116 +55,176 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
-.running-head {
+.lead {
   position: relative;
-  margin: 0;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  max-width: 46em;
+  margin: 10px 0 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.55;
 }
-.running-head span {
-  font-family: var(--brush);
-  font-size: 30px;
-  letter-spacing: 0;
-  text-transform: none;
-  margin-right: 10px;
-}
-.lang-tabs + .running-head,
-.headline + .running-head {
-  margin-top: 14px;
-}
-.lang-tabs {
-  position: relative;
+
+/* The filter bar: one tab per comic language; each is its own static page */
+.filter {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
-  margin-top: 14px;
+  padding: 12px 0;
+  border-block: var(--rule);
+  background: var(--paper) url("/art/newsprint-v2.webp");
 }
-.lang-tabs a {
-  padding: 6px 12px;
-  border: var(--rule);
+.filter-label {
+  margin-right: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.filter a {
+  padding: 7px 14px;
+  border: 2px solid var(--k);
   background: var(--tone-10);
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
 }
-.lang-tabs a b {
-  font-variant-numeric: tabular-nums;
+.filter a b {
   margin-left: 4px;
+  font-variant-numeric: tabular-nums;
 }
-.lang-tabs a:hover,
-.lang-tabs a[aria-current="page"] {
+.filter a:hover,
+.filter a[aria-current="page"] {
   background: var(--k);
   color: var(--paper);
 }
 
-/* Left page: the contents. A comic's chapters stretch to fill the page; a list of comics keeps a fixed panel shape
-   and leaves the rest of the page to a screentone panel, so two comics and eight comics both read as a printed page. */
-.contents-page {
-  grid-area: contents;
+/* The feature: the newest comic in the current filter, as the issue's colour opening spread */
+.feature {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  margin-top: 28px;
+  border: 2px solid var(--k);
+  background: var(--paper);
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
+}
+.feature .cover {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  aspect-ratio: 16 / 10;
+  container-type: inline-size;
+  border-right: var(--rule);
+  background: var(--tone-30);
+}
+.feature .cover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+}
+.feature .cover-cap,
+.feature .cover-say {
+  top: auto;
+  left: auto;
+  right: 3%;
+  bottom: 6%;
+  max-width: 62%;
+  font-size: clamp(14px, 3cqi, 26px);
+  rotate: -4deg;
+}
+.feature .cover .burst {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  z-index: 3;
+  width: 19%;
+  font-size: clamp(20px, 5cqi, 46px);
+}
+.feature-text {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.75vw;
-  padding: 0 2.4vw 1.6vw 1.4vw;
+  gap: 10px;
+  padding: clamp(18px, 2.2vw, 34px);
 }
-.contents {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: minmax(108px, 1fr);
-  gap: 0.75vw 0.9vw;
+.feature-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42%;
+  aspect-ratio: 520 / 444;
+  background: url("/art/speedlines-corner-v2.webp") top right / 100% auto no-repeat;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.feature-text h2 {
+  position: relative;
   margin: 0;
-  padding: 0;
-  list-style: none;
+  font-family: var(--brush);
+  font-weight: 400;
+  font-size: clamp(42px, 4.6vw, 80px);
+  line-height: 1.1;
 }
-.has-comics .contents {
-  flex: none;
-  grid-auto-rows: auto;
-}
-/* The page's last panel: screentone filling whatever the contents leave, carrying the way on to more comics */
-.tone-fill,
-.title-page::after {
-  flex: 1;
-  min-height: 0;
-  background: radial-gradient(circle, var(--tone-30) 1.2px, transparent 1.5px) 0 0 / 6px 6px;
-  box-shadow: inset 0 0 0 3px var(--k);
-}
-a.tone-fill {
-  display: flex;
-  align-items: flex-end;
-  min-height: 72px;
-  padding: 12px;
+.feature-text h2 a {
   text-decoration: none;
 }
-a.tone-fill span {
-  padding: 8px 14px;
+.feature-text h2 a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+}
+.feature-text .meta {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(14px, 1.15vw, 17px);
+  font-variant-numeric: tabular-nums;
+}
+.feature-text .summary {
+  margin: 0;
+  max-width: 40em;
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.5;
+}
+.feature-text .summary em {
+  font-style: normal;
+  font-weight: 700;
+}
+.feature-text .credit {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.read {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 12px 22px;
   background: var(--k);
   color: var(--paper);
   font-weight: 900;
-  font-size: clamp(16px, 1.4vw, 22px);
-  line-height: 1.2;
+  font-size: 17px;
+  text-decoration: none;
 }
-a.tone-fill:hover span {
+.read:hover {
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }
-.cell {
-  position: relative;
-  display: block;
-  height: 100%;
-  overflow: hidden;
-  border: var(--rule);
-  background: var(--tone-30);
-  text-decoration: none;
-  color: var(--paper);
+.strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  gap: 8px;
+  height: clamp(90px, 8vw, 140px);
+  margin-top: auto;
+  padding-top: 8px;
 }
-.cell img {
-  position: absolute;
-  inset: 0;
-}
-.cell img,
-.strip img {
+.strip img,
+.card-art img {
   display: block;
   width: 100%;
   height: 100%;
@@ -200,431 +232,215 @@ a.tone-fill:hover span {
   object-position: var(--focus, 50% 50%);
   filter: grayscale(1) contrast(1.18);
 }
+.strip img {
+  border: var(--rule);
+}
+
+/* The catalogue: every comic in the current filter, newest first */
+.catalogue {
+  margin-top: 44px;
+}
+.catalogue-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+  border-bottom: var(--rule);
+}
+.catalogue-head h2 {
+  margin: 0;
+  font-family: var(--brush);
+  font-weight: 400;
+  font-size: clamp(36px, 3.6vw, 60px);
+  line-height: 1.15;
+}
+.catalogue-head p {
+  margin: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+  gap: 22px 20px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: var(--rule);
+  background: var(--paper);
+  text-decoration: none;
+}
+.card-art {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: var(--rule);
+  background: var(--tone-30);
+  container-type: inline-size;
+}
+.card-art img {
+  position: absolute;
+  inset: 0;
+}
 .num {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 1.35em;
-  padding: 0.04em 0.24em 0;
+  min-width: 1.4em;
+  padding: 0.05em 0.25em 0;
   border-right: var(--rule);
   border-bottom: var(--rule);
   background: var(--paper);
   color: var(--ink);
   font-weight: 900;
-  font-size: clamp(18px, 2vw, 34px);
-  line-height: 1.1;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-}
-.cell-title {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 6px 10px 7px;
-  background: var(--k);
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.3;
-  translate: 0 101%;
-}
-/* An odd count opens with one comic across both columns, so the grid always closes square */
-.has-comics .contents > li:first-child:nth-last-child(odd) {
-  grid-column: 1 / -1;
-}
-/* A comic in the contents: its cover panel over a black caption that always names it */
-.cell-comic {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  background: var(--k);
-}
-.cell-art {
-  position: relative;
-  display: block;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--tone-30);
-}
-.cell-cap {
-  display: grid;
-  gap: 1px;
-  padding: 7px 10px 8px;
-}
-.cell-cap b {
-  font-weight: 700;
-  font-size: clamp(14px, 1.1vw, 17px);
-  line-height: 1.25;
-}
-.cell-cap span {
-  color: var(--tone-30);
-  font-size: 12.5px;
-  line-height: 1.3;
-}
-.cell-comic:is(:hover, :focus-visible) .cell-cap b {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-}
-.cell-more {
-  display: grid;
-  min-height: 108px;
-  place-items: end start;
-  padding: 12px;
-  background: var(--k);
-  font-weight: 900;
   font-size: 22px;
   line-height: 1.1;
-}
-/* The colour-insert pull: a greyscale panel prints in colour while you point at it */
-.cell:is(:hover, :focus-visible) img,
-.strip:is(:hover, :focus-visible) img {
-  filter: none;
-}
-.cell:is(:hover, :focus-visible) .cell-title {
-  translate: 0 0;
-}
-@media (hover: none) {
-  .cell-title {
-    translate: 0 0;
-  }
-}
-
-/* Right page: the language's title page */
-.title-page {
-  grid-area: title;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.title-page::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  width: 34%;
-  aspect-ratio: 520 / 444;
-  background: url("/art/speedlines-corner-v2.webp") top right / 100% auto no-repeat;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
-.lang-head {
-  position: relative;
-  z-index: 2;
-  padding: 1.5vw 2vw 0.9vw;
   text-align: center;
-}
-.lang-head .lang-name {
-  margin: 0;
-  font-family: var(--brush);
-  font-weight: 400;
-  font-size: clamp(60px, 8.6vw, 176px);
-  line-height: 1.12;
-}
-.lang-head p:not(.lang-name) {
-  margin: -0.1em 0 0;
-  font-weight: 900;
-  font-size: clamp(14px, 1.5vw, 24px);
-}
-.cover {
-  position: relative;
-  z-index: 2;
-  display: block;
-  aspect-ratio: 16 / 9;
-  container-type: inline-size;
-  border-block: var(--rule);
-  background: var(--tone-30);
-}
-.cover img {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: var(--focus, 50% 50%);
-}
-.cover .cover-cap,
-.cover .cover-say {
-  top: auto;
-  left: auto;
-  right: 3%;
-  bottom: 7%;
-  max-width: 62%;
-  font-size: clamp(14px, 3.6cqi, 30px);
-  rotate: -4deg;
-}
-.cover .burst {
-  position: absolute;
-  top: -13%;
-  right: 0.5%;
-  z-index: 3;
-  width: 21%;
-  font-size: clamp(20px, 6.4cqi, 54px);
-}
-/* Pointing at the cover pulls the corner speed lines in toward it */
-.cover:is(:hover, :focus-visible) img {
-  filter: saturate(1.15) contrast(1.05);
-}
-.title-page:has(.cover:is(:hover, :focus-visible))::before {
-  scale: 1.14;
-}
-.title-box {
-  position: relative;
-  z-index: 2;
-  margin: 0.7vw 1vw 0 0.9vw;
-  padding: 0.9vw 1.3vw 1vw;
-  border: var(--rule);
-  background: var(--paper);
-}
-.title-box h2 {
-  margin: 0;
-  font-family: var(--brush);
-  font-weight: 400;
-  font-size: clamp(38px, 4.7vw, 76px);
-  line-height: 0.95;
-}
-.title-box h2 a {
-  text-decoration: none;
-}
-.title-box h2 a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 4px;
-}
-.title-box .meta {
-  margin: 0.3em 0 0.25em;
-  font-weight: 700;
-  font-size: clamp(15px, 1.45vw, 23px);
   font-variant-numeric: tabular-nums;
 }
-.title-box .summary {
-  margin: 0;
-  max-width: 62ch;
-  font-size: clamp(15px, 1.32vw, 21px);
-  line-height: 1.4;
+.card-art .burst {
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  width: 30%;
+  font-size: clamp(16px, 7cqi, 28px);
 }
-.title-box .summary em {
+.card-text {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px 16px;
+}
+.card-title {
+  font-family: var(--brush);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.15;
+}
+.card-meta {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.card-summary {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.card-summary em {
   font-style: normal;
   font-weight: 700;
 }
-.title-box .credit {
-  margin: 0.45em 0 0;
-  color: var(--muted);
-  font-size: clamp(13px, 1.05vw, 16px);
+/* The colour-insert pull: a greyscale cover prints in colour while you point at it */
+.card:is(:hover, :focus-visible) img,
+.strip:is(:hover, :focus-visible) img {
+  filter: none;
 }
-.title-page::after {
-  content: "";
-  margin: 0 1vw 0.9vw 0.9vw;
-}
-.strip {
-  display: grid;
-  grid-template-columns: 0.86fr 1.05fr 1fr;
-  grid-template-rows: minmax(0, 1fr);
-  gap: 0.55vw;
-  flex: none;
-  height: clamp(96px, 12vw, 200px);
-  margin: 0.55vw 1vw 0.9vw 0.9vw;
-}
-.strip img {
-  border: var(--rule);
+.card:is(:hover, :focus-visible) .card-title {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
 }
 
-/* The folio: the site's notice under the left page, the feed under the right, as a magazine prints its folios */
+/* The folio: the site's notice and the feed */
 .folio {
-  grid-area: folio;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  display: flex;
+  justify-content: space-between;
   align-items: end;
-  padding: 4px 0 12px;
+  gap: 24px;
+  margin-top: 48px;
+  padding: 12px 0 24px;
+  border-top: 2px solid var(--k);
   font-size: 13px;
   color: var(--muted);
 }
 .folio p {
   margin: 0;
-  padding: 0 3vw 0 2vw;
-  max-width: 78ch;
+  max-width: 90ch;
 }
 .folio a {
-  justify-self: end;
-  padding: 0 2vw;
   font-weight: 700;
   color: var(--ink);
 }
-/* Single sheets after the spreads: a language's overflow, and the index of every comic */
-.sheet {
-  position: relative;
-  border: 2px solid var(--k);
-  background: var(--paper) url("/art/newsprint-v2.webp");
-  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
-}
-.sheet-title {
-  margin: 0;
-  padding: 1.4vw 2vw 0.8vw;
-  border-bottom: var(--rule);
-  font-family: var(--brush);
-  font-weight: 400;
-  font-size: clamp(40px, 4.4vw, 76px);
-  line-height: 1.15;
-}
-.grid-more {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  grid-auto-rows: auto;
-  padding: 1.4vw 2vw 2vw;
-}
-.index-groups {
-  columns: 2 420px;
-  column-gap: 4vw;
-  padding: 1.2vw 2vw 1.6vw;
-}
-.index-group {
-  break-inside: avoid;
-  margin-bottom: 26px;
-}
-.index-group h3 {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 0 0 6px;
-  padding-bottom: 4px;
-  border-bottom: var(--rule);
-}
-.index-group h3 span {
-  font-family: var(--brush);
-  font-weight: 400;
-  font-size: clamp(28px, 2.4vw, 40px);
-  line-height: 1.2;
-}
-.index-group h3 b {
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--muted);
-}
-.index-group ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.index-group li {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 16px;
-  align-items: baseline;
-  padding: 7px 0;
-  border-bottom: 1px solid var(--tone-30);
-  font-size: 15px;
-}
-.index-group li a {
-  font-weight: 700;
-  text-decoration: none;
-}
-.index-group li a:hover {
-  text-decoration: underline;
-}
-.index-group li span {
-  color: var(--muted);
-  font-size: 13px;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.index-all {
-  display: inline-block;
-  margin-top: 10px;
-  font-weight: 700;
-  font-size: 14px;
-}
-.sheet .folio {
-  border-top: 2px solid var(--k);
-  padding-top: 10px;
-}
 .lib-empty {
-  padding: 2vw;
+  margin: 28px 0;
   font-weight: 700;
 }
 
-/* Motion: the pull of colour and the title tab, eased out; nothing moves under reduced motion */
 @media (prefers-reduced-motion: no-preference) {
-  .cell img,
-  .strip img,
-  .cover img {
+  .card-art img,
+  .strip img {
     transition: filter 480ms var(--pull);
   }
-  .cell-title {
-    transition: translate 320ms var(--pull);
-  }
-  .title-page::before {
-    transform-origin: top right;
-    transition: scale 420ms var(--pull);
+  .filter a {
+    transition:
+      background-color 160ms var(--pull),
+      color 160ms var(--pull);
   }
 }
 
-/* Phones and narrow tablets: one page, head then title page then contents */
+/* Phones: one column; the feature stacks cover over its title box; filters scroll sideways */
 @media (max-width: 760px) {
-  .spreads {
-    padding: 8px;
-    gap: 16px;
+  .lib-mast,
+  .filter,
+  main,
+  .folio {
+    width: calc(100% - 24px);
   }
-  .spread {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
-    grid-template-areas: "head" "title" "contents" "folio";
-    min-height: 0;
+  .filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
-  .spread::after {
+  .filter a {
+    white-space: nowrap;
+  }
+  .filter-label {
     display: none;
   }
-  .leaf-head {
-    padding: 14px 16px 12px;
+  .lib-mast::before {
+    left: 62%;
   }
-  .lang-head {
-    padding: 14px 16px 8px;
-  }
-  .title-box {
-    margin: 10px 10px 0;
-    padding: 12px 14px;
-  }
-  .strip {
-    gap: 6px;
-    margin: 8px 10px 14px;
-  }
-  .contents-page {
-    gap: 8px;
-    padding: 14px 10px;
-    border-top: var(--rule);
-  }
-  .contents {
-    grid-auto-rows: 104px;
-    gap: 8px;
-  }
-  div.tone-fill,
-  .title-page::after {
-    display: none;
-  }
-  .sheet-title {
-    padding: 14px 16px 8px;
-  }
-  .grid-more {
+  .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    padding: 14px 10px;
+    gap: 12px 10px;
   }
-  .index-groups {
-    padding: 14px 16px;
+  .card-text {
+    gap: 4px;
+    padding: 8px 10px 12px;
   }
-  .index-group li {
-    grid-template-columns: minmax(0, 1fr) auto;
+  .card-title {
+    font-size: 22px;
   }
-  .index-group li span:first-of-type {
+  .card-meta {
+    font-size: 12px;
+  }
+  .card-summary {
     display: none;
+  }
+  .num {
+    font-size: 17px;
+  }
+  .feature {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .feature .cover {
+    border-right: 0;
+    border-bottom: var(--rule);
   }
   .folio {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
+    align-items: start;
     gap: 8px;
-    padding: 12px 0 14px;
-    border-top: var(--rule);
-  }
-  .folio p,
-  .folio a {
-    justify-self: start;
-    padding: 0 16px;
   }
 }

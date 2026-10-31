@@ -31,7 +31,7 @@ src/pages/                 / and /vi/ (library), /[vi/]language/<code>/ (one com
 src/styles/reader.css      reader page chrome: masthead strip, title page, toolbar, chapters, end burst, write-up, folio
 src/styles/lettering.css   comic mechanics: printed page, lettering, Pages/Panels, themes (dark, light), presets (ink, pop, manga, parchment)
 src/styles/notfound.css    the 404 panel
-src/styles/library.css     library layout: one two-page spread per comic language (contents page, title page)
+src/styles/library.css     library layout: masthead, language filter bar, newest-comic feature, catalogue cards
 src/styles/magazine.css    the shared world (ADR 0006): tokens, newsprint, wordmark, focus, the NEW burst
 src/styles/fonts.css       embedded Bangers + Patrick Hand (Latin and Vietnamese), the comics' lettering
 src/styles/fonts-magazine.css  embedded Protest Revolution (dry-brush titles) + Be Vietnam Pro (set text)
