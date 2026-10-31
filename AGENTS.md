@@ -27,7 +27,8 @@ src/lib/styles.yaml        art style presets (graphic-novel, noir, ligne-claire,
 src/components/ComicPage.astro   the reader page
 src/components/Library.astro     the library page
 src/components/BrandHead.astro   favicon, touch icon, manifest and og:image tags for every <head>
-src/pages/                 / and /vi/ (library), /[vi/]language/<code>/ (one comic language), /<slug>/ (each comic), /content.json, 404
+src/lib/library.ts         library pages: filters (all, language, tag) x locales x pages of 24, and their URLs
+src/pages/                 [...lib] (every library page: /, /vi/, /language/<code>/, /tag/<tag>/, /page/<n>/), /<slug>/ (each comic), /content.json, 404
 src/styles/reader.css      reader page chrome: masthead strip, title page, toolbar, chapters, end burst, write-up, folio
 src/styles/lettering.css   comic mechanics: printed page, lettering, Pages/Panels, themes (dark, light), presets (ink, pop, manga, parchment)
 src/styles/notfound.css    the 404 panel

@@ -39,6 +39,15 @@ export interface UiStrings {
   read: string;
   /** The filter bar's first choice: every language. */
   filterAll: string;
+  /** Label of the filter row by tag. */
+  filterTags: string;
+  /** Heading of one tag's page; *em* takes screentone. */
+  tagHeading: (tag: string) => string;
+  /** Page navigation: its label, the current page, and the links to newer and older comics. */
+  pagination: string;
+  pageOf: (page: number, pages: number) => string;
+  newer: string;
+  older: string;
   notFoundTitle: string;
   notFoundHeading: string;
   notFoundLink: string;
@@ -69,6 +78,12 @@ export const UI: Record<Locale, UiStrings> = {
     catalogue: (choice) => `${choice} comics`,
     read: "Read it",
     filterAll: "All",
+    filterTags: "Topic",
+    tagHeading: (tag) => `Comics about *#${tag}*.`,
+    pagination: "Pages",
+    pageOf: (page, pages) => `Page ${page} of ${pages}`,
+    newer: "Newer",
+    older: "Older",
     notFoundTitle: "Not found · Vibe2Fire",
     notFoundHeading: "This page got laid off.",
     notFoundLink: "Back to all comics",
@@ -97,6 +112,12 @@ export const UI: Record<Locale, UiStrings> = {
     catalogue: (choice) => `Truyện · ${choice}`,
     read: "Đọc ngay",
     filterAll: "Tất cả",
+    filterTags: "Chủ đề",
+    tagHeading: (tag) => `Truyện về *#${tag}*.`,
+    pagination: "Các trang",
+    pageOf: (page, pages) => `Trang ${page}/${pages}`,
+    newer: "Mới hơn",
+    older: "Cũ hơn",
     notFoundTitle: "Không tìm thấy · Vibe2Fire",
     notFoundHeading: "Trang này đã bị cho nghỉ việc.",
     notFoundLink: "Về danh sách truyện",
@@ -117,4 +138,4 @@ export const languageName = (lang: string, locale: string) => {
 };
 
 /** Path segments a comic slug may not take, because site routes own them. */
-export const RESERVED_SLUGS = new Set<string>([...LOCALES, "language", "comics", "content.json", "404"]);
+export const RESERVED_SLUGS = new Set<string>([...LOCALES, "language", "tag", "page", "comics", "art", "brand", "content.json", "404"]);

@@ -1,0 +1,16 @@
+---
+// Every library page: all comics, one comic language (/language/<code>/) or one tag (/tag/<tag>/),
+// in each interface locale (/ and /vi/), paged by /page/<n>/. src/lib/library.ts lists them.
+import type { GetStaticPaths } from "astro";
+import Library from "../components/Library.astro";
+import { libraryPages, libraryUrl, type LibraryPage } from "../lib/library";
+
+export const getStaticPaths = (() =>
+  libraryPages().map((page) => ({
+    params: { lib: libraryUrl(page.locale, page, page.page).replace(/^\/|\/$/g, "") || undefined },
+    props: { page },
+  }))) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: LibraryPage };
+---
+<Library page={page} />

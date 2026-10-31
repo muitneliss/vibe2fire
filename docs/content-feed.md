@@ -20,6 +20,7 @@ The site publishes every comic as one JSON document so other studios can reuse i
     "date": "2026-10-30",                       // release date, or null
     "summary": "…",                             // plain text, or null
     "cover": "https://vibe2fire.dev/comics/vibe2fire/panels/c01-p1.webp",  // thumbnail panel; default the first
+    "tags": ["satire", "ai", "vibe-coding"],   // topics, lowercase-hyphenated; [] when none
     "style": "graphic-novel",                 // style preset name
     "characters": [{ "id": "boss", "name": "Sếp" }],
     "chapters": [{
@@ -50,3 +51,4 @@ Images carry no lettering: `text` is the lettering, in reading order, so a consu
 ## Changes within v1
 
 - 2026-10-30: comics moved from `/` to `/<slug>/`; `url` values changed, field meanings unchanged; added `date`, `summary`, `cover`.
+- 2026-10-31: added `tags` (the topics the library filters by at `/tag/<tag>/`).

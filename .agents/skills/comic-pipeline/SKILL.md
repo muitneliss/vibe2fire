@@ -30,12 +30,12 @@ Generation skips PNGs already on disk, so `panels` and `all` resume after a fail
 ## A new comic
 
 1. **Agree the story first**: arc, chapter list, who the characters are. A chapter is one printed page of 2–6 panels in rows that fill 6 columns.
-2. **Scaffold**: copy `templates/comic.example.yaml` to `comics/<slug>/comic.yaml`. Every comic is served at `/<slug>/` and listed in the library at `/`; set `date`, `summary` and `cover` (a panel id) so its library card is right. Every field: `references/config.md`.
+2. **Scaffold**: copy `templates/comic.example.yaml` to `comics/<slug>/comic.yaml`. Every comic is served at `/<slug>/` and listed in the library at `/`, newest first, filterable by language (`/language/<lang>/`) and by tag (`/tag/<tag>/`). Set `date` (orders the catalogue and picks the featured comic), `summary`, `cover` (a panel id) and `tags` (reuse existing topics: `grep -h "^tags:" comics/*/comic.yaml`) so its library card and filters are right. Every field: `references/config.md`.
 3. **Pick the look**: `style.preset` (see `src/lib/styles.yaml`) sets the art plus a default reader `theme` and `lettering`; override either, add mood with `style.extra`, or write a whole `style.art`. Add a preset to `styles.yaml` when a look should be reusable.
 4. **Cast**: concrete visual `look`s and a short `tag` per character; `refs` for anyone who must resemble a real person, product or earlier art. Run `cast`, open the sheet and fix it before any panel: every panel copies it.
 5. **Panels**: English `scene` with `{id}` placeholders, lettering in the comic's language under `text`. `check`, then `prompts --only` one panel and read it.
 6. **Generate, review, convert**: `panels` → `review` → look at every contact sheet → regenerate failures (`--only id --force`) → `webp`.
-7. **Letter and ship**: `bun run build && bun run preview`; screenshot each chapter at desktop width, in the "Panels" mode and at 390 px. Move lettering (`at`, `tail`, `focus`) wherever a bubble covers a face. Then the repo's check/test/build and a PR; merging it to `main` deploys (Workers Builds). The manual deploy command in AGENTS.md is the fallback.
+7. **Letter and ship**: `bun run build && bun run preview`; screenshot each chapter at desktop width, in the "Panels" mode and at 390 px, and check the comic's card on `/`, its language page and a tag page. Move lettering (`at`, `tail`, `focus`) wherever a bubble covers a face. Then the repo's check/test/build and a PR; merging it to `main` deploys (Workers Builds). The manual deploy command in AGENTS.md is the fallback.
 
 ## Extending an existing comic
 

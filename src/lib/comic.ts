@@ -71,6 +71,8 @@ export interface ComicConfig {
   summary?: string;
   /** Panel id shown as the comic's cover in the library; default the first panel. */
   cover?: string;
+  /** Topics the library filters by, each its own page at /tag/<tag>/: lowercase letters, digits and hyphens. */
+  tags?: string[];
   style?: { preset?: string; art?: string; extra?: string; sheet?: string; headroom?: string };
   reader?: { theme?: "dark" | "light"; lettering?: string; labels?: Record<string, string> };
   page?: Record<string, any>;
@@ -168,6 +170,11 @@ export function validate(comic: Comic): string[] {
   if (RESERVED_SLUGS.has(comic.slug)) errors.push(`folder name ${comic.slug} is reserved for a site route`);
   if (config.date !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(String(config.date))) errors.push(`date must be YYYY-MM-DD`);
   if (config.cover && !allPanels(comic).some((p) => p.id === config.cover)) errors.push(`cover ${config.cover} is not a panel id`);
+  if (config.tags !== undefined && !Array.isArray(config.tags)) errors.push(`tags must be a list`);
+  for (const tag of Array.isArray(config.tags) ? config.tags : [])
+    if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(String(tag)))
+      errors.push(`tag ${tag} must be lowercase letters, digits and hyphens (it is a URL)`);
+  if (Array.isArray(config.tags) && new Set(config.tags).size !== config.tags.length) errors.push(`tags must not repeat`);
   const charIds = new Set<string>();
   (config.characters ?? []).forEach((c, i) => {
     if (!c.id) errors.push(`characters[${i}] has no id`);
@@ -320,6 +327,7 @@ export function buildFeed(comics: Comic[], site = SITE, generatedAt = new Date()
         date: config.date ?? null,
         summary: config.summary ? plainText(config.summary) : null,
         cover: new URL(`${comic.panelsPath}${coverPanel(comic).id}.webp`, site).href,
+        tags: config.tags ?? [],
         style: config.style?.preset ?? "graphic-novel",
         characters: config.characters.map((c) => ({ id: c.id, name: c.name ?? c.id })),
         chapters: config.chapters.map((ch, i) => ({
