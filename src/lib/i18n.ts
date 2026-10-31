@@ -40,6 +40,12 @@ export interface UiStrings {
   credit: string;
   /** Who made the site. */
   colophon: string;
+  /** The opening spread's contents: the newest comics in every language. */
+  latest: string;
+  /** Heading of the index of every comic at the foot of the library. */
+  index: string;
+  /** Heading of the grid that continues a language's contents on its own page. */
+  moreIn: (language: string) => string;
   notFoundTitle: string;
   notFoundHeading: string;
   notFoundLink: string;
@@ -71,6 +77,9 @@ export const UI: Record<Locale, UiStrings> = {
     startReading: "Start reading",
     credit: "art painted by Codex · words written by people",
     colophon: "Designed by Claude and Codex: Codex painted the mockups and the art, Claude built the pages.",
+    latest: "Latest releases",
+    index: "Every comic",
+    moreIn: (language) => `More in ${language}`,
     notFoundTitle: "Not found · Vibe2Fire",
     notFoundHeading: "This page got laid off.",
     notFoundLink: "Back to all comics",
@@ -100,6 +109,9 @@ export const UI: Record<Locale, UiStrings> = {
     startReading: "Bắt đầu đọc",
     credit: "tranh do Codex vẽ · lời do người viết",
     colophon: "Claude và Codex cùng thiết kế: Codex vẽ bản phác và tranh, Claude dựng trang.",
+    latest: "Mới phát hành",
+    index: "Tất cả truyện",
+    moreIn: (language) => `Thêm truyện ${language.charAt(0).toLocaleLowerCase("vi")}${language.slice(1)}`,
     notFoundTitle: "Không tìm thấy · Vibe2Fire",
     notFoundHeading: "Trang này đã bị cho nghỉ việc.",
     notFoundLink: "Về danh sách truyện",
