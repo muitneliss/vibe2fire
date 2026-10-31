@@ -84,6 +84,7 @@
   box-decoration-break: clone;
 }
 .running-head {
+  position: relative;
   margin: 0;
   font-weight: 700;
   font-size: 14px;
@@ -96,6 +97,10 @@
   letter-spacing: 0;
   text-transform: none;
   margin-right: 10px;
+}
+.lang-tabs + .running-head,
+.headline + .running-head {
+  margin-top: 14px;
 }
 .lang-tabs {
   position: relative;
@@ -122,16 +127,55 @@
   color: var(--paper);
 }
 
-/* Left page: the contents, a grid of numbered panels */
-.contents {
+/* Left page: the contents. A comic's chapters stretch to fill the page; a list of comics keeps a fixed panel shape
+   and leaves the rest of the page to a screentone panel, so two comics and eight comics both read as a printed page. */
+.contents-page {
   grid-area: contents;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75vw;
+  padding: 0 2.4vw 1.6vw 1.4vw;
+}
+.contents {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-auto-rows: minmax(108px, 1fr);
   gap: 0.75vw 0.9vw;
   margin: 0;
-  padding: 0 2.4vw 1.6vw 1.4vw;
+  padding: 0;
   list-style: none;
+}
+.has-comics .contents {
+  flex: none;
+  grid-auto-rows: auto;
+}
+/* The page's last panel: screentone filling whatever the contents leave, carrying the way on to more comics */
+.tone-fill,
+.title-page::after {
+  flex: 1;
+  min-height: 0;
+  background: radial-gradient(circle, var(--tone-30) 1.2px, transparent 1.5px) 0 0 / 6px 6px;
+  box-shadow: inset 0 0 0 3px var(--k);
+}
+a.tone-fill {
+  display: flex;
+  align-items: flex-end;
+  min-height: 72px;
+  padding: 12px;
+  text-decoration: none;
+}
+a.tone-fill span {
+  padding: 8px 14px;
+  background: var(--k);
+  color: var(--paper);
+  font-weight: 900;
+  font-size: clamp(16px, 1.4vw, 22px);
+  line-height: 1.2;
+}
+a.tone-fill:hover span {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 .cell {
   position: relative;
@@ -182,8 +226,46 @@
   line-height: 1.3;
   translate: 0 101%;
 }
+/* An odd count opens with one comic across both columns, so the grid always closes square */
+.has-comics .contents > li:first-child:nth-last-child(odd) {
+  grid-column: 1 / -1;
+}
+/* A comic in the contents: its cover panel over a black caption that always names it */
+.cell-comic {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background: var(--k);
+}
+.cell-art {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--tone-30);
+}
+.cell-cap {
+  display: grid;
+  gap: 1px;
+  padding: 7px 10px 8px;
+}
+.cell-cap b {
+  font-weight: 700;
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.25;
+}
+.cell-cap span {
+  color: var(--tone-30);
+  font-size: 12.5px;
+  line-height: 1.3;
+}
+.cell-comic:is(:hover, :focus-visible) .cell-cap b {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
 .cell-more {
   display: grid;
+  min-height: 108px;
   place-items: end start;
   padding: 12px;
   background: var(--k);
@@ -231,14 +313,14 @@
   padding: 1.5vw 2vw 0.9vw;
   text-align: center;
 }
-.lang-head h2 {
+.lang-head .lang-name {
   margin: 0;
   font-family: var(--brush);
   font-weight: 400;
   font-size: clamp(60px, 8.6vw, 176px);
   line-height: 1.12;
 }
-.lang-head p {
+.lang-head p:not(.lang-name) {
   margin: -0.1em 0 0;
   font-weight: 900;
   font-size: clamp(14px, 1.5vw, 24px);
@@ -294,17 +376,17 @@
   border: var(--rule);
   background: var(--paper);
 }
-.title-box h3 {
+.title-box h2 {
   margin: 0;
   font-family: var(--brush);
   font-weight: 400;
   font-size: clamp(38px, 4.7vw, 76px);
   line-height: 0.95;
 }
-.title-box h3 a {
+.title-box h2 a {
   text-decoration: none;
 }
-.title-box h3 a:hover {
+.title-box h2 a:hover {
   text-decoration: underline;
   text-decoration-thickness: 4px;
 }
@@ -329,12 +411,17 @@
   color: var(--muted);
   font-size: clamp(13px, 1.05vw, 16px);
 }
+.title-page::after {
+  content: "";
+  margin: 0 1vw 0.9vw 0.9vw;
+}
 .strip {
   display: grid;
   grid-template-columns: 0.86fr 1.05fr 1fr;
+  grid-template-rows: minmax(0, 1fr);
   gap: 0.55vw;
-  flex: 1;
-  min-height: clamp(96px, 10.5vw, 180px);
+  flex: none;
+  height: clamp(96px, 12vw, 200px);
   margin: 0.55vw 1vw 0.9vw 0.9vw;
 }
 .strip img {
@@ -361,6 +448,93 @@
   padding: 0 2vw;
   font-weight: 700;
   color: var(--ink);
+}
+/* Single sheets after the spreads: a language's overflow, and the index of every comic */
+.sheet {
+  position: relative;
+  border: 2px solid var(--k);
+  background: var(--paper) url("/art/newsprint-v2.webp");
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
+}
+.sheet-title {
+  margin: 0;
+  padding: 1.4vw 2vw 0.8vw;
+  border-bottom: var(--rule);
+  font-family: var(--brush);
+  font-weight: 400;
+  font-size: clamp(40px, 4.4vw, 76px);
+  line-height: 1.15;
+}
+.grid-more {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-auto-rows: auto;
+  padding: 1.4vw 2vw 2vw;
+}
+.index-groups {
+  columns: 2 420px;
+  column-gap: 4vw;
+  padding: 1.2vw 2vw 1.6vw;
+}
+.index-group {
+  break-inside: avoid;
+  margin-bottom: 26px;
+}
+.index-group h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 6px;
+  padding-bottom: 4px;
+  border-bottom: var(--rule);
+}
+.index-group h3 span {
+  font-family: var(--brush);
+  font-weight: 400;
+  font-size: clamp(28px, 2.4vw, 40px);
+  line-height: 1.2;
+}
+.index-group h3 b {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--muted);
+}
+.index-group ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.index-group li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--tone-30);
+  font-size: 15px;
+}
+.index-group li a {
+  font-weight: 700;
+  text-decoration: none;
+}
+.index-group li a:hover {
+  text-decoration: underline;
+}
+.index-group li span {
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.index-all {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.sheet .folio {
+  border-top: 2px solid var(--k);
+  padding-top: 10px;
 }
 .lib-empty {
   padding: 2vw;
@@ -412,11 +586,35 @@
     gap: 6px;
     margin: 8px 10px 14px;
   }
+  .contents-page {
+    gap: 8px;
+    padding: 14px 10px;
+    border-top: var(--rule);
+  }
   .contents {
     grid-auto-rows: 104px;
     gap: 8px;
-    padding: 14px 10px 14px;
-    border-top: var(--rule);
+  }
+  div.tone-fill,
+  .title-page::after {
+    display: none;
+  }
+  .sheet-title {
+    padding: 14px 16px 8px;
+  }
+  .grid-more {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 14px 10px;
+  }
+  .index-groups {
+    padding: 14px 16px;
+  }
+  .index-group li {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .index-group li span:first-of-type {
+    display: none;
   }
   .folio {
     grid-template-columns: minmax(0, 1fr);
