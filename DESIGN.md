@@ -368,10 +368,13 @@ Brush "Vibe2Fire" in Ink, the "2" rotated -8deg and scaled 1.12. Top left of the
 A framed bar on paper (2px Key Black border, segments split by 2px rules), Label type. Inactive links are Press Grey and turn Ink on hover; the current interface language is Ink with a 3px underline (`aria-current="page"`). The reader masthead uses the same bar for "library" and the credit link, with 7px 12px segments and a 3px underline on hover.
 
 ### Filter Bar
-A sticky bar between two 3px rules: a 700 uppercase label, then one tab per choice ("All", then each comic language named in itself), each a 2px-ruled Tone 10 tab with its count in tabular figures; the current filter and hover are solid Key Black. Each tab is a link to a static page.
+A sticky bar between two 3px rules with two rows. Languages: a 700 uppercase label, then one tab per choice ("All", then each comic language named in itself), each a 2px-ruled Tone 10 tab with its count in tabular figures. Topics: `#tag` tabs, lighter (1px rule, paper fill, 14px), most used first. The current filter and hover are solid Key Black. Each tab is a link to a static page; on phones each row scrolls sideways.
+
+### Pager
+Under the catalogue, over a 3px rule, when a filter holds more than 24 comics: Key Black "Newer" and "Older" tabs at the ends and every page number between them as 2px-ruled squares, the current one solid Key Black. Card numbers continue across pages.
 
 ### Catalogue Card (signature)
-A 3px-ruled paper card: the comic's cover panel at 16:10 in greyscale (`grayscale(1) contrast(1.18)`) with its number in a Newsprint White box top-left and, on the newest comic, a small NEW burst; then the title in brush (30px), a 700 meta line (language · chapters · date) in Press Grey, and a three-line summary. **The colour-insert pull:** on hover or focus the cover prints in colour (filter off over 480ms) and the title underlines.
+A 3px-ruled paper card: the comic's cover panel at 16:10 in greyscale (`grayscale(1) contrast(1.18)`) with its number in a Newsprint White box top-left and, on the newest comic, a small NEW burst; then the title in brush (30px), a 700 meta line (language · chapters · date) in Press Grey, its `#tags` in 700 Ink, and a three-line summary. **The colour-insert pull:** on hover or focus the cover prints in colour (filter off over 480ms) and the title underlines.
 
 ### Feature
 The newest comic in the current filter. The cover: the newest comic's cover panel at 16:9 in full colour between 3px rules, carrying its first caption or balloon in the comic's own lettering preset (tilted -4deg, bottom right), and, on the newest comic, the NEW burst breaking the top edge. Beside it, the **title box**: the comic's title in brush (underlined 4px on hover) under Codex corner speed lines, the meta line in 700, a summary, the credit in Press Grey, a Key Black read button (900), and the **strip** of three greyscale panels that print in colour together on hover or focus and open the first chapter.

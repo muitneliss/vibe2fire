@@ -1,4 +1,5 @@
 title: Fixture
+tags: [noir, rain]
 style: { preset: noir }
 characters:
   - id: hero

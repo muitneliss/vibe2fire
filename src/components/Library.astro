@@ -1,8 +1,8 @@
 ---
-// The comic library, a weekly manga magazine's front section (ADR 0006): a masthead, a filter bar by comic language,
-// the newest comic as the issue's feature, then the catalogue: every comic in the current filter as a card, newest first.
-// Filtering is a set of static pages, so it needs no JavaScript and every filter has its own URL:
-// / and /vi/ show every language; /language/<code>/ and /vi/language/<code>/ show one.
+// The comic library, a weekly manga magazine's front section (ADR 0006): a masthead, filter rows by comic language and
+// by tag, the newest comic in the filter as the issue's feature, then the catalogue: the filter's comics as cards,
+// newest first, PAGE_SIZE to a page. Every filter and page is a static route (src/lib/library.ts, src/pages/[...lib].astro),
+// so filtering needs no JavaScript and every view has its own URL.
 // No JavaScript and no inline styles (CSP in public/_headers).
 import "../styles/fonts.css";
 import "../styles/fonts-magazine.css";
@@ -11,29 +11,30 @@ import "../styles/lettering.css";
 import "../styles/library.css";
 import BrandHead from "./BrandHead.astro";
 import { coverPanel, inlineMarkdown, listComics, SITE, type Comic, type Lettering, type Panel } from "../lib/comic";
-import { languageName, libraryPath, LOCALES, UI, type Locale } from "../lib/i18n";
+import { languageName, LOCALES, UI } from "../lib/i18n";
+import { langOf, libraryUrl, tagCounts, type LibraryPage } from "../lib/library";
 
 interface Props {
-  locale: Locale;
-  /** Filter to this comic language. */
-  only?: string;
+  page: LibraryPage;
 }
-const { locale, only } = Astro.props;
+const { page } = Astro.props;
+const { locale, lang, tag, matching, comics, offset, pages } = page;
+const filter = { lang, tag };
 const t = UI[locale];
 const all = listComics();
-const langOf = (c: Comic) => c.config.lang ?? "en";
-const comics = only ? all.filter((c) => langOf(c) === only) : all;
 
-// Filter choices: the reader's own language first, then the biggest languages.
+// Filter choices: the reader's own language first, then the biggest languages; tags most used first.
 const counts = new Map<string, number>();
 for (const c of all) counts.set(langOf(c), (counts.get(langOf(c)) ?? 0) + 1);
 const languages = [...counts.keys()].sort((a, b) => Number(b === locale) - Number(a === locale) || counts.get(b)! - counts.get(a)! || a.localeCompare(b));
+const tags = tagCounts(all);
 
-const feature = comics[0];
+const feature = page.page === 1 ? matching[0] : undefined;
 const newest = all[0];
-const choice = only ? languageName(only, locale) : t.filterAll;
-const title = only ? `${languageName(only, locale)} · ${t.libraryTitle}` : t.libraryTitle;
-const heading = only ? t.languageHeading(languageName(only, locale)) : t.libraryHeading;
+const choice = lang ? languageName(lang, locale) : tag ? `#${tag}` : t.filterAll;
+const pageSuffix = pages > 1 ? ` · ${t.pageOf(page.page, pages)}` : "";
+const title = `${lang || tag ? `${choice} · ` : ""}${t.libraryTitle}${pageSuffix}`;
+const heading = lang ? t.languageHeading(languageName(lang, locale)) : tag ? t.tagHeading(tag) : t.libraryHeading;
 
 const img = (comic: Comic, panel: Panel) => `${comic.panelsPath}${panel.id}.webp`;
 const panelCount = (comic: Comic) => comic.config.chapters.reduce((n, ch) => n + ch.panels.length, 0);
@@ -42,6 +43,7 @@ const dateFormat = new Intl.DateTimeFormat(locale, { day: "numeric", month: "sho
 const released = (comic: Comic) => (comic.config.date ? dateFormat.format(new Date(`${comic.config.date}T00:00:00Z`)) : "");
 const meta = (comic: Comic) =>
   [languageName(langOf(comic), locale), t.chapters(comic.config.chapters.length), released(comic)].filter(Boolean).join(" · ");
+const hashtags = (comic: Comic) => (comic.config.tags ?? []).map((x) => `#${x}`).join(" ");
 // Three panels after the cover: a taste of the first pages.
 const strip = (comic: Comic) => comic.config.chapters.flatMap((ch) => ch.panels).filter((p) => p.id !== coverPanel(comic)?.id).slice(0, 3);
 // The cover carries the cover panel's first caption or balloon, set in the comic's own lettering.
@@ -64,17 +66,17 @@ const coverText = (comic: Comic) => {
   <meta property="og:description" content={t.libraryDescription}>
   <meta property="og:type" content="website">
   <BrandHead />
-  <link rel="canonical" href={new URL(libraryPath(locale, only), SITE).href}>
-  {LOCALES.map((l) => <link rel="alternate" hreflang={l} href={new URL(libraryPath(l, only), SITE).href}>)}
+  <link rel="canonical" href={new URL(libraryUrl(locale, filter, page.page), SITE).href}>
+  {LOCALES.map((l) => <link rel="alternate" hreflang={l} href={new URL(libraryUrl(l, filter, page.page), SITE).href}>)}
   <link rel="alternate" type="application/json" href="/content.json" title="Content feed">
 </head>
 <body class="mag">
   <header class="lib-mast">
     <div class="mast">
-      <a class="wordmark" href={libraryPath(locale)}>Vibe<span>2</span>Fire</a>
+      <a class="wordmark" href={libraryUrl(locale)}>Vibe<span>2</span>Fire</a>
       <nav class="ui-switch" aria-label={t.interface}>
         {LOCALES.map((l) => (
-          <a href={libraryPath(l, only)} hreflang={l} lang={l} aria-current={l === locale ? "page" : undefined}>{l.toUpperCase()}</a>
+          <a href={libraryUrl(l, filter, page.page)} hreflang={l} lang={l} aria-current={l === locale ? "page" : undefined}>{l.toUpperCase()}</a>
         ))}
       </nav>
     </div>
@@ -82,12 +84,22 @@ const coverText = (comic: Comic) => {
     <p class="lead">{t.libraryDescription}</p>
   </header>
 
-  <nav class="filter" aria-label={t.filterBy}>
-    <span class="filter-label">{t.filterBy}</span>
-    <a href={libraryPath(locale)} aria-current={only ? undefined : "page"}>{t.filterAll} <b>{all.length}</b></a>
-    {languages.map((l) => (
-      <a href={libraryPath(locale, l)} lang={l} aria-current={l === only ? "page" : undefined}>{languageName(l, l)} <b>{counts.get(l)}</b></a>
-    ))}
+  <nav class="filter" aria-label={`${t.filterBy} · ${t.filterTags}`}>
+    <div class="filter-row">
+      <span class="filter-label">{t.filterBy}</span>
+      <a href={libraryUrl(locale)} aria-current={lang || tag ? undefined : "page"}>{t.filterAll} <b>{all.length}</b></a>
+      {languages.map((l) => (
+        <a href={libraryUrl(locale, { lang: l })} lang={l} aria-current={l === lang ? "page" : undefined}>{languageName(l, l)} <b>{counts.get(l)}</b></a>
+      ))}
+    </div>
+    {tags.length > 0 && (
+      <div class="filter-row filter-tags">
+        <span class="filter-label">{t.filterTags}</span>
+        {tags.map(([x, n]) => (
+          <a href={libraryUrl(locale, { tag: x })} aria-current={x === tag ? "page" : undefined}>#{x} <b>{n}</b></a>
+        ))}
+      </div>
+    )}
   </nav>
 
   <main>
@@ -102,6 +114,9 @@ const coverText = (comic: Comic) => {
           <h2 id="feature-title"><a href={feature.path} lang={langOf(feature)}>{feature.config.title}</a></h2>
           <p class="meta">{meta(feature)} · {t.panels(panelCount(feature))}</p>
           {feature.config.summary && <p class="summary" lang={langOf(feature)} set:html={inlineMarkdown(feature.config.summary)} />}
+          {(feature.config.tags ?? []).length > 0 && (
+            <p class="tags">{(feature.config.tags ?? []).map((x) => <a href={libraryUrl(locale, { tag: x })}>#{x}</a>)}</p>
+          )}
           <p class="credit">{t.credit}</p>
           <a class="read" href={feature.path}>{t.read}</a>
           {strip(feature).length > 0 && (
@@ -112,14 +127,14 @@ const coverText = (comic: Comic) => {
         </div>
       </section>
     ) : (
-      <p class="lib-empty">{t.empty}</p>
+      matching.length === 0 && <p class="lib-empty">{t.empty}</p>
     )}
 
     {comics.length > 0 && (
       <section class="catalogue" aria-labelledby="catalogue-title">
         <header class="catalogue-head">
           <h2 id="catalogue-title">{t.catalogue(choice)}</h2>
-          <p>{t.comics(comics.length)}</p>
+          <p>{t.comics(matching.length)}{pageSuffix}</p>
         </header>
         <ol class="cards" role="list">
           {comics.map((comic, n) => (
@@ -127,18 +142,30 @@ const coverText = (comic: Comic) => {
               <a class="card" href={comic.path}>
                 <span class="card-art">
                   {coverPanel(comic) && <img class={focusClass(coverPanel(comic))} src={img(comic, coverPanel(comic)!)} alt="" width="600" height="400" loading="lazy" decoding="async">}
-                  <span class="num" aria-hidden="true">{n + 1}</span>
+                  <span class="num" aria-hidden="true">{offset + n + 1}</span>
                   {comic === newest && <span class="burst" lang={locale}>{t.newest}</span>}
                 </span>
                 <span class="card-text">
                   <b class="card-title" lang={langOf(comic)}>{comic.config.title}</b>
                   <span class="card-meta">{meta(comic)}</span>
+                  {hashtags(comic) && <span class="card-tags">{hashtags(comic)}</span>}
                   {comic.config.summary && <span class="card-summary" lang={langOf(comic)} set:html={inlineMarkdown(comic.config.summary)} />}
                 </span>
               </a>
             </li>
           ))}
         </ol>
+        {pages > 1 && (
+          <nav class="pager" aria-label={t.pagination}>
+            {page.page > 1 ? <a class="pager-step" href={libraryUrl(locale, filter, page.page - 1)} rel="prev">{t.newer}</a> : <span aria-hidden="true" />}
+            <ol role="list">
+              {Array.from({ length: pages }, (_, i) => i + 1).map((n) => (
+                <li><a href={libraryUrl(locale, filter, n)} aria-current={n === page.page ? "page" : undefined} aria-label={t.pageOf(n, pages)}>{n}</a></li>
+              ))}
+            </ol>
+            {page.page < pages ? <a class="pager-step" href={libraryUrl(locale, filter, page.page + 1)} rel="next">{t.older}</a> : <span aria-hidden="true" />}
+          </nav>
+        )}
       </section>
     )}
   </main>

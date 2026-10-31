@@ -11,8 +11,9 @@ describe("comic model", () => {
     for (const comic of comics) expect(validate(comic)).toEqual([]);
   });
 
-  test("validate reports unknown characters and rows that do not fill six columns", () => {
+  test("validate reports unknown characters, rows that do not fill six columns and tags that cannot be URLs", () => {
     const errors = validate(loadComic("broken", fixtures));
+    expect(errors).toContain("tag Night Shift must be lowercase letters, digits and hyphens (it is a URL)");
     expect(errors).toContain("one/p1: scene placeholder {villain} is not a character");
     expect(errors).toContain("one/p2: row overflows 6 columns (the spans in a row must add up to exactly 6)");
   });
@@ -35,6 +36,7 @@ describe("comic model", () => {
     const chapter = feed.comics[0].chapters[0];
     expect(feed.schema).toBe("vibe2fire.content/v1");
     expect(feed.comics[0].cover).toBe("https://vibe2fire.dev/comics/ok/panels/p1.webp");
+    expect(feed.comics[0].tags).toEqual(["noir", "rain"]);
     expect(chapter).toMatchObject({ title: "One", url: "https://vibe2fire.dev/ok/#one", intro: ["Set in 1999."] });
     expect(chapter.panels[0]).toMatchObject({
       image: "https://vibe2fire.dev/comics/ok/panels/p1.webp",
