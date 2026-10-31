@@ -75,7 +75,7 @@ const panelClass = (span = 6, focus?: string) => ["panel", `w${span}`, focus ? `
         <h1 id="opening" set:html={inlineMarkdown(page.heading ?? config.title)} />
         {page.invitation && <p class="invitation" set:html={inlineMarkdown(page.invitation)} />}
         <nav class="shortcuts" aria-label={labels.start}>
-          {(page.shortcuts ?? [{ text: "↓", href: `#${first}` }]).map((s: { text: string; href: string }) => <a href={s.href}>{s.text}</a>)}
+          {(page.shortcuts ?? [{ text: labels.start, href: `#${first}` }]).map((s: { text: string; href: string }) => <a href={s.href}>{s.text}</a>)}
         </nav>
         {page.note && <p class="satire" set:html={inlineMarkdown(page.note)} />}
       </div>

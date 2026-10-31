@@ -78,9 +78,7 @@
 /* Emphasis takes a band of screentone under the words */
 .headline em {
   padding: 0 0.08em;
-  background: radial-gradient(circle, var(--tone-60) 1.1px, transparent 1.4px) 0 0.62em / 5px 5px repeat-x;
-  background-size: 5px 5px;
-  background-repeat: repeat;
+  background: radial-gradient(circle, var(--tone-60) 1.1px, transparent 1.4px) 0 0 / 5px 5px;
   background-clip: content-box;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
@@ -189,9 +187,9 @@
   place-items: end start;
   padding: 12px;
   background: var(--k);
-  font-family: var(--brush);
-  font-size: 26px;
-  line-height: 1.05;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1.1;
 }
 /* The colour-insert pull: a greyscale panel prints in colour while you point at it */
 .cell:is(:hover, :focus-visible) img,
@@ -281,8 +279,12 @@
   width: 21%;
   font-size: clamp(20px, 6.4cqi, 54px);
 }
-.cover:hover img {
+/* Pointing at the cover pulls the corner speed lines in toward it */
+.cover:is(:hover, :focus-visible) img {
   filter: saturate(1.15) contrast(1.05);
+}
+.title-page:has(.cover:is(:hover, :focus-visible))::before {
+  scale: 1.14;
 }
 .title-box {
   position: relative;
@@ -374,6 +376,10 @@
   }
   .cell-title {
     transition: translate 320ms var(--pull);
+  }
+  .title-page::before {
+    transform-origin: top right;
+    transition: scale 420ms var(--pull);
   }
 }
 
