@@ -73,6 +73,8 @@ export interface ComicConfig {
   cover?: string;
   /** Topics the library filters by, each its own page at /tag/<tag>/: lowercase letters, digits and hyphens. */
   tags?: string[];
+  /** Credit line on the comic's library card, in the comic's language; default the site's own ("art painted by Codex, words written by people"). */
+  credit?: string;
   style?: { preset?: string; art?: string; extra?: string; sheet?: string; headroom?: string };
   reader?: { theme?: "dark" | "light"; lettering?: string; labels?: Record<string, string> };
   page?: Record<string, any>;

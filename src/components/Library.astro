@@ -117,7 +117,7 @@ const coverText = (comic: Comic) => {
           {(feature.config.tags ?? []).length > 0 && (
             <p class="tags">{(feature.config.tags ?? []).map((x) => <a href={libraryUrl(locale, { tag: x })}>#{x}</a>)}</p>
           )}
-          <p class="credit">{t.credit}</p>
+          {feature.config.credit ? <p class="credit" lang={langOf(feature)}>{feature.config.credit}</p> : <p class="credit">{t.credit}</p>}
           <a class="read" href={feature.path}>{t.read}</a>
           {strip(feature).length > 0 && (
             <a class="strip" href={`${feature.path}#${feature.config.chapters[0]?.id ?? ""}`} aria-label={`${t.startReading}: ${feature.config.title}`}>
