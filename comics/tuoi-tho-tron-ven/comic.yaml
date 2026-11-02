@@ -1,0 +1,404 @@
+# Tuổi thơ trọn vẹn: ba người bạn, một câu hỏi giá MacBook, và một ông anh "cố tí" (8 chương, 32 khung).
+# Kịch bản do Codex viết từ đoạn chat thật (comics/tuoi-tho-tron-ven/.work/script.md); Claude lắp ráp thành comic.yaml.
+# Field reference: .agents/skills/comic-pipeline/references/config.md
+title: Tuổi thơ trọn vẹn
+lang: vi
+date: 2026-11-02
+summary: Tài chỉ hỏi giá máy, Bảo chỉ hỏi thêm RAM, Cường tiện tay quy hoạch luôn tương lai cả hai. Từ *sáu chai bia* đến một thành phố AI, mọi chuyện đều bắt đầu bằng câu "cố tí".
+cover: c02-p3
+tags: [ai, office, macbook, friends]
+credit: tranh do Codex vẽ · kịch bản do Codex viết từ chat thật · Claude lắp ráp
+style:
+  preset: ligne-claire
+  extra: Contemporary Saigon, exaggerated comedic facial expressions and body language, sitcom timing, warm tropical afternoon palette.
+reader:
+  theme: light
+  lettering: pop
+  labels:
+    pages: Trang
+    panels: Từng khung
+    chapters: Các chương
+    mode: Cách đọc
+    readScene: Đọc cảnh này
+    skip: Bỏ qua, xuống cuối truyện
+    start: Bắt đầu đọc
+    library: Tất cả truyện
+page:
+  pageTitle: "Tuổi thơ trọn vẹn: hỏi giá một cái MacBook"
+  description: Truyện tranh hài về ba người bạn, một chiếc MacBook chưa mua và một ông anh chuyên nói "cố tí".
+  robots: noindex, nofollow
+  wordmark: Tuổi thơ *trọn vẹn*
+  heading: Hỏi giá *một cái máy*. Nhận luôn một cuộc đời mới.
+  invitation: Mời vô ngồi, ví cứ để trên bàn. Anh Cường tư vấn miễn phí, không ai nhờ cũng tư vấn.
+  shortcuts:
+    - text: Bắt đầu từ sáu chai bia ↓
+      href: "#sau-chai"
+  note: Truyện hư cấu, phóng tác từ một đoạn chat có thật; giá cả, cấu hình và lời khuyên tài chính trong truyện chỉ để cười, không phải tư vấn. Kịch bản do Codex viết, Claude lắp ráp thành truyện; tranh do AI vẽ (Codex).
+  end:
+    text: Tuổi thơ trọn vẹn. Ví thì chưa.
+  footer: Tuổi thơ trọn vẹn · truyện hư cấu
+  backToTop: Về đầu trang ↑
+characters:
+  - id: cuong
+    name: Cường
+    tag: the man in the navy hoodie and black glasses
+    look: Vietnamese man in his mid 30s, short black hair swept up, rectangular black-framed glasses, light stubble, navy hoodie with white drawstrings, dark jeans, sneakers
+  - id: tai
+    name: Tài
+    tag: the stocky man in the mustard polo
+    look: Vietnamese man in his early 30s, stocky build, round face, short wavy black hair with a side part, no glasses, clean-shaven, mustard-yellow polo shirt with a dark green collar, beige chinos, brown sandals
+  - id: bao
+    name: Bảo
+    tag: the lanky young man in the coral T-shirt and round silver glasses
+    look: Vietnamese man in his mid 20s, slim lanky build, narrow face, straight black curtain bangs, thin round silver-framed glasses, clean-shaven, coral-red T-shirt under an open cream short-sleeved overshirt, charcoal trousers, white sneakers
+  - id: claude
+    name: Claude
+    tag: the small coral-orange robot
+    look: small friendly retro robot about waist height, rounded coral-orange body, dark visor face with two mint-green pill-shaped eyes, thin antenna with a yellow bulb
+  - id: codex
+    name: Codex
+    tag: the small teal-blue robot
+    look: the same small retro robot design as the orange one but with a teal-blue body, dark visor face with two mint-green pill-shaped eyes, thin antenna with a yellow bulb
+
+chapters:
+  - id: sau-chai
+    nav: Sáu chai
+    date: "13:27"
+    title: Sáu chai, hai hệ quy chiếu
+    intro: Buổi nhậu chưa bắt đầu, Cường đã lo xong phần mang về.
+    panels:
+      - id: c01-p1
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Medium two-shot at a Saigon office coffee table in warm afternoon light. {cuong} on the left casually dangles scooter keys while {tai} on the right holds a phone and nods. A cluster of six plain unlabeled beer bottles sits low in the foreground."
+        alt: Cường cầm chìa khóa xe, dặn Tài mang sáu chai với vẻ rất chu đáo.
+        text:
+          - { cap: "13:27 – chat riêng", at: tl }
+          - { say: "Nhớ mang 6 chai nha, t chở về.", at: tr, tail: l }
+      - id: c01-p2
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Eye-level close two-shot in the same warm light. {tai} on the right hugs six plain unlabeled beer bottles protectively, eyebrows raised in suspicion; {cuong} on the left extends an innocent open palm."
+        alt: Tài ôm sáu chai bia, nghi ngờ mục đích vận chuyển của bạn.
+        text:
+          - { say: "Ủa, mang ra nhậu chứ? M ôm về uống một mình hả?", at: tr, tail: r }
+      - id: c01-p3
+        span: 4
+        shape: wide
+        cast: [cuong, tai]
+        scene: "Slightly elevated wide shot under bright comic spotlighting. {cuong} on the left divides twelve plain unlabeled bottles into two clearly separate groups of six: one group on the shared table, the other tucked into a plastic crate strapped to his scooter. {tai} on the right watches with his jaw dropped."
+        alt: Cường chia mười hai chai thành phần uống chung và phần riêng mang về.
+        text:
+          - { say: "Thì 12 chai: 6 chai uống, 6 chai t mang về.", at: tl, tail: r }
+      - id: c01-p4
+        span: 2
+        shape: tall
+        cast: [tai]
+        scene: "Tight vertical shot in cool dramatic light. {tai} slumps over an open empty wallet; beside his shoulder floats a simple video-game health bar, almost empty, with only a tiny red sliver left, no symbols or numerals."
+        alt: Tài kiểm tra ví trong lúc thanh máu tưởng tượng chỉ còn một vạch đỏ.
+        text:
+          - { say: "Bào quá bạn, coi thanh máu còn nhiêu đã.", at: tc, tail: c }
+          - { sfx: "TÍT…", at: br, color: red }
+
+  - id: co-ti
+    nav: Cố tí
+    date: "14:59"
+    title: Cố tí là ba chục triệu
+    intro: Cường kiểm tra cấu hình rất kỹ, rồi bỏ qua luôn ngân sách.
+    panels:
+      - id: c02-p1
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Over-the-shoulder medium shot in warm office light. {tai} on the left holds out a phone showing only a plain laptop silhouette; {cuong} on the right inspects it through an absurdly large magnifying glass with a stern jeweller's expression."
+        alt: Tài đưa ảnh máy rao bán, Cường soi như kiểm định kim cương.
+        text:
+          - { say: "Cái này đúng không?", at: tl, tail: l }
+          - { say: "M5 thường, không phải Pro. RAM 32, không phải 48.", at: tr, tail: r }
+      - id: c02-p2
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Frontal medium shot with cold presentation lighting. {cuong} reads aloud from a very long blank paper scroll that unrolls to the floor, in a stiff robotic report-reading pose; {tai} beside him takes notes on a tiny blank pad, impressed."
+        alt: Cường đọc kế hoạch trả giá bằng giọng nghiêm túc như AI xuất báo cáo.
+        text:
+          - { cap: "Kế hoạch trả giá, mục 4:", at: tl }
+          - { say: "Mở 49 triệu, lên 50–51. Quá 53 thì bỏ. ShopDunk niêm yết khoảng 51,59.", at: tr, tail: l }
+      - id: c02-p3
+        span: 4
+        shape: wide
+        cast: [cuong, tai]
+        scene: "Low-angle fantasy shot in golden showroom light. {cuong} strides casually across a huge rocky chasm on thin air toward a glowing unopened plain white laptop box on the far right cliff, beckoning over his shoulder. {tai} clings to the left starting ledge, legs dangling, terrified."
+        alt: Cường gọi một vực sâu tài chính là "cố thêm tí".
+        text:
+          - { say: "Bỏ được 50 triệu mua thì cố tí lên 80 đập hộp.", at: tc, tail: c }
+          - { cap: "Tuổi thơ trọn vẹn.", at: br }
+      - id: c02-p4
+        span: 2
+        shape: tall
+        cast: [tai]
+        scene: "Close vertical shot in a narrow golden spotlight. {tai} cradles his empty wallet like a newborn baby, smiling bravely with a single tear at the corner of his eye."
+        alt: Tài ôm chiếc ví rỗng, tự động viên bằng ngôn ngữ đầu tư.
+        text:
+          - { say: "Đầu tư con người thôi.", at: tc, tail: c }
+          - { cap: "Con người còn. Tiền thì chưa.", at: bc }
+
+  - id: kheo-co
+    nav: Khéo co
+    date: "15:01"
+    title: Khéo co thì có MacBook
+    intro: Tài chưa có tiền, nhưng Cường đã có phương án cho ba tháng tới của Tài.
+    panels:
+      - id: c03-p1
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Medium shot back at the office coffee table in soft afternoon light. {tai} on the left clasps his hands dreamily under a small daydream bubble showing a gift-wrapped laptop box with a ribbon; {cuong} on the right leans in with a salesman's attentive smile."
+        alt: Tài mơ một chiếc máy được tặng trong khi Cường ngửi thấy cơ hội chốt đơn.
+        text:
+          - { say: "Chứ tiền đâu mà mua. Hỏi cho có ước mơ từ từ.", at: tl, tail: l }
+          - { say: "Biết đâu có ai tặng.", at: bl, tail: up }
+      - id: c03-p2
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Tight two-shot with theatrical purple side light. {cuong} on the right poses like a fortune teller, hands hovering over an empty crystal ball; {tai} on the left pulls out both empty trouser pockets with a baffled face."
+        alt: Cường "tiên tri" Tài đã mua máy dù hai túi quần vẫn trống không.
+        text:
+          - { say: "Hỏi nhiều vậy là mua rồi.", at: tr, tail: r }
+          - { say: "Tương lai t chuyển khoản nhanh dữ.", at: bl, tail: up }
+      - id: c03-p3
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Low medium shot in warm street-eatery light. {cuong} on the right slides a mountain-sized bowl of white rice toward {tai} on the left, whose eyes barely peek over the rim; on the table {cuong} swaps a plain green bottle for a plain brown one."
+        alt: Cường kê đơn tiết kiệm bằng một tô cơm đủ sức hủy buổi nhậu.
+        text:
+          - { say: "Uống bia Sài Gòn, không uống Ken. Trước khi nhậu đá một tô cơm.", at: tr, tail: r }
+          - { say: "Tô này ăn tới Tết.", at: bl, tail: up }
+      - id: c03-p4
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Eye-level fantasy composition in bright coastal light. {cuong} on the left proudly presents a tiny tabletop diorama of a beach with a little mountain; beside him {tai} on the right has folded himself into a cramped open suitcase, clutching his wallet."
+        alt: Tài co người vào vali trước mô hình biển núi trong bài giảng tiết kiệm của Cường.
+        text:
+          - { say: "Đi Vũng Tàu, cũng có biển có núi. 3, 4 tháng là đủ. Khéo co thì có MacBook!", at: tl, tail: l }
+          - { say: "Co cỡ này được bản mấy inch?", at: br, tail: up-r }
+
+  - id: ho-hoc-tap
+    nav: Hố học tập
+    date: "15:07"
+    title: Học tập xuống lòng đất
+    intro: Giải pháp cho mùa ăn chơi là một nhóm học tập có độ sâu chưa xác định.
+    panels:
+      - id: c04-p1
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Medium shot in warm festive light with paper lanterns. {tai} on the left gestures at a big wall calendar whose blank squares each hold only a tiny drawing of a clinking beer glass; {cuong} on the right folds his arms thoughtfully."
+        alt: Tài trình bày một mùa cuối năm mà lịch chỉ có lịch nhậu.
+        text:
+          - { say: "Giờ tới mùa cuối năm, toàn tháng ăn chơi.", at: tl, tail: l }
+      - id: c04-p2
+        span: 3
+        shape: square
+        cast: [cuong, tai]
+        scene: "Slightly low medium shot in cheerful sunlight. {cuong} on the right offers an open laptop with one hand while hiding a shovel behind his back with the other; {tai} on the left cautiously reaches toward the laptop."
+        alt: Cường rủ Tài học Tết, tay còn lại đã cầm sẵn xẻng đào hố.
+        text:
+          - { say: "Tết ở nhà đi, mình tạo group học tập. Tết này t cũng ở nhà nè.", at: tr, tail: r }
+      - id: c04-p3
+        span: 2
+        shape: tall
+        cast: [cuong, tai]
+        scene: "Vertical cutaway of an impossibly deep earthen pit, lit by a small circle of sunlight from above. {tai} clings to a wooden ladder halfway down, looking up desperately, while far below at the bottom {cuong} happily digs even deeper with a shovel, an open laptop beside him."
+        alt: Tài kẹt trên thang trong cái hố học tập mà Cường vẫn tiếp tục đào.
+        text:
+          - { say: "Cái hố học tập này càng lúc càng sâu.", at: tc, tail: c }
+          - { sfx: "PHẬP!", at: br, color: yel }
+      - id: c04-p4
+        span: 4
+        shape: wide
+        cast: [cuong, tai, bao]
+        scene: "Wide cutaway in bright daylight showing the ground surface and the pit. {bao} crouches at the pit's rim on the right holding up two plain green memory sticks; {cuong} beams up from a ladder inside the pit and beckons him closer; {tai} further down silently waves both arms in warning."
+        alt: Bảo hỏi về RAM ngay miệng hố, Cường mời vào còn Tài cố ra dấu cảnh báo.
+        text:
+          - { cap: "15:10 – group chat. Bảo nhập hội.", at: tl }
+          - { say: "RAM 32 là ổn rồi chứ lên 48 thừa quá không anh?", at: tr, tail: r }
+          - { say: "Tiền nhiều quá có ai kêu thừa không em. Cố tí city!", at: bc, tail: up-c }
+
+  - id: thanh-pho-ai
+    nav: City AI
+    date: "15:13"
+    title: Thị trưởng không có nút dừng
+    intro: Máy càng nhanh, Cường càng nghĩ ra nhiều việc để chứng minh máy chưa đủ nhanh.
+    panels:
+      - id: c05-p1
+        span: 3
+        shape: square
+        cast: [cuong, bao]
+        scene: "Low-angle medium shot in cool blue computer light. {cuong} on the left stands proudly behind an open silver laptop while a miniature glowing city of tiny server towers unfolds around its base like a model town; {bao} on the right peers at it skeptically."
+        alt: Bảo nhìn chiếc laptop điều hành cả thành phố AI của Cường.
+        text:
+          - { cap: "Tòa thị chính: M5 Pro, RAM 48GB.", at: tl }
+          - { say: "Có bao giờ anh kéo được full 100% RAM 48 không?", at: br, tail: up-r }
+      - id: c05-p2
+        span: 3
+        shape: square
+        cast: [cuong, tai, bao]
+        scene: "Eye-level group shot in playful stage lighting. {cuong} in the middle points proudly at {tai} on the left, who is startled mid-sip and nearly chokes; {bao} on the right turns to look. Small film reels and a microphone float low beside the table."
+        alt: Cường viện Tài làm nhân chứng hiệu năng khiến Tài suýt sặc nước.
+        text:
+          - { say: "Bạn Tài có đó. Mấy video clip, bài rap Undercroft gì gì đó!", at: tr, tail: c }
+          - { say: "Sao lôi t vô làm nhân chứng?", at: bl, tail: up }
+      - id: c05-p3
+        span: 4
+        shape: wide
+        cast: [cuong, bao, claude, codex]
+        scene: "Wide fantasy control-room shot with energetic teal and orange light. {cuong} in the centre conducts six separate blank glowing floating windows like an orchestra conductor; {claude} and {codex} dash between the windows carrying glowing cubes, while {bao} on the right watches open-mouthed."
+        alt: Cường điều phối sáu việc cùng lúc, hai robot chạy hết tốc lực quanh bàn máy.
+        text:
+          - { say: "Máy nhanh quá là muốn làm thêm, làm nữa. Mở 5–6 cái chạy cùng lúc!", at: tl, tail: r }
+          - { sfx: "VÙÙÙ!", at: br, color: mint }
+      - id: c05-p4
+        span: 2
+        shape: tall
+        cast: [cuong, bao]
+        scene: "Tight vertical shot with exaggerated golden backlight. {cuong} at the top smiles serenely while swinging a tiny silver laptop on a chain like a hypnotist's pendulum; {bao} below follows it with spiral wide eyes, gripping his wallet shut."
+        alt: Cường chốt bài đánh giá kỹ thuật bằng động tác thôi miên.
+        text:
+          - { say: "Đã lắm. Mua đi.", at: tc, tail: c }
+
+  - id: thoi-gian-nhau
+    nav: Giờ nhậu
+    date: "15:14"
+    title: Hai trường phái, một bàn nhậu
+    intro: Cuộc tranh luận về năng suất cuối cùng cũng tìm được đơn vị đo là giờ nhậu.
+    panels:
+      - id: c06-p1
+        span: 3
+        shape: square
+        cast: [cuong, bao, claude, codex]
+        scene: "Medium daydream shot in golden evening light. {cuong} on the left reclines in a plastic stool with a beer glass as {claude} and {codex} type busily at his laptop on the low table; {bao} on the right stands with a genuinely puzzled expression."
+        alt: Bảo hỏi giờ đâu để nhậu, Cường trình diễn viễn cảnh robot làm thay.
+        text:
+          - { say: "Vậy thời gian đâu mà nhậu anh?", at: tr, tail: r }
+          - { say: "Máy mạnh nó làm dùm rồi, nên mới có thời gian nhậu.", at: bl, tail: up }
+      - id: c06-p2
+        span: 3
+        shape: square
+        cast: [bao, cuong]
+        scene: "Eye-level daydream shot in the same golden evening light. {bao} on the left lounges happily with a beer glass beside an old dented laptop; a huge sleepy snail sits on its keyboard. {cuong} on the right stares at the snail in disbelief."
+        alt: Bảo trình diễn viễn cảnh máy chạy chậm để chủ máy tranh thủ đi nhậu.
+        text:
+          - { say: "Máy yếu chạy chậm tí mới tranh thủ được thời gian chứ.", at: tl, tail: l }
+      - id: c06-p3
+        span: 3
+        shape: square
+        cast: [cuong, tai, bao]
+        scene: "Symmetrical medium shot under warm eatery lighting. {cuong} on the left and {bao} on the right lean toward each other like debaters over a tiny laptop; {tai} in the middle quietly sets three beer glasses in a neat row between them."
+        alt: Tài tìm ra điểm chung của hai học thuyết đối nghịch về tốc độ máy.
+        text:
+          - { say: "Chứ máy yếu quá phải ngồi canh nó!", at: tl, tail: l }
+          - { say: "Hai ông khác cấu hình, chung quán nhậu.", at: bc, tail: up-c }
+      - id: c06-p4
+        span: 3
+        shape: square
+        cast: [cuong, bao]
+        scene: "Medium shot in neutral office light. {bao} on the left balances an old dented laptop and a newer silver laptop on his outstretched palms like a pair of scales; {cuong} on the right looks down at his phone with a sudden sly inspired grin."
+        alt: Bảo chọn phương án đổi ngang, còn Cường đã nghĩ sang một sản phẩm tài chính.
+        text:
+          - { say: "Em tính đổi ngang lấy M4 Pro RAM 24. Không bù tiền.", at: tl, tail: l }
+          - { say: "Khoan. Anh có cái này hợp với em.", at: br, tail: up-r }
+
+  - id: vay-tuoi-tho
+    nav: Vay tuổi thơ
+    date: "15:15"
+    title: Em hỏi RAM, anh gửi khoản vay
+    intro: Một vụ đổi ngang không bù tiền suýt được nâng cấp thành chương trình đào tạo dài hạn.
+    panels:
+      - id: c07-p1
+        span: 3
+        shape: square
+        cast: [cuong, bao]
+        scene: "Close two-shot under a sudden theatrical white spotlight. {cuong} on the left presents a phone with a blank glowing screen with both hands like a precious scholarship certificate; {bao} on the right recoils so sharply that his round glasses tilt sideways."
+        alt: Cường gửi link vay sinh viên khiến Bảo bật ngửa.
+        text:
+          - { cap: "Cường gửi link: vay sinh viên, gói ngành STEM.", at: tl }
+          - { say: "Anh nghĩ gói này ra là dành cho em.", at: bl, tail: up }
+      - id: c07-p2
+        span: 3
+        shape: square
+        cast: [tai, bao]
+        scene: "Medium daydream shot in cool classroom light. {bao} on the right suddenly wears a comically oversized school backpack and a red primary-school neckerchief over his usual clothes, clutching his old laptop; {tai} on the left watches with solemn mock sympathy, hand on heart."
+        alt: Bảo bỗng hóa học sinh đeo cặp khổng lồ sau một câu hỏi về RAM.
+        text:
+          - { say: "Em hỏi nâng RAM, anh nâng em về tuổi đi học luôn.", at: tr, tail: r }
+          - { say: "Tuổi thơ có cả học phí. Trọn vẹn ghê.", at: bl, tail: up }
+      - id: c07-p3
+        span: 6
+        shape: wide
+        cast: [cuong, tai, bao]
+        scene: "Wide shot back at the warm office coffee table. {cuong} on the left casually shrugs; {bao} in the centre slumps in relief over his old laptop; {tai} on the right catches the enormous school backpack as it slides off the chair."
+        alt: Cường nhẹ tênh chấp nhận phương án đổi ngang sau khi khiến Bảo suýt nhập học lại.
+        text:
+          - { cap: "15:19", at: tl }
+          - { say: "Không bù cũng oke đó.", at: tc, tail: l }
+          - { say: "Anh nói sớm là em khỏi đi khai giảng.", at: br, tail: up-c }
+
+  - id: tuoi-tho-tron-ven
+    nav: Trọn vẹn
+    date: "15:34"
+    title: Nội dung có sẵn, nạn nhân cũng vậy
+    intro: Cường tìm được chuyện hài ngay sau buổi tư vấn mà không ai nhờ.
+    panels:
+      - id: c08-p1
+        span: 3
+        shape: square
+        cast: [cuong, bao]
+        scene: "Medium two-shot in soft afternoon light. {bao} on the right laughs while showing a phone with a blank vertical video frame; {cuong} on the left studies it with an unexpectedly crestfallen, sad-puppy expression."
+        alt: Bảo khoe một trang TikTok hài, Cường bỗng buồn vì nghĩ kênh mình chưa vui.
+        text:
+          - { say: "Trang này phải anh Cường làm không?", at: tr, tail: r }
+          - { say: "Không em. Kênh anh chán lắm, chắc anh không đủ hài hước :(", at: bl, tail: up }
+      - id: c08-p2
+        span: 3
+        shape: square
+        cast: [cuong, tai, bao]
+        scene: "Tight group shot in warm eatery light. {bao} on the right gestures enthusiastically at a blank phone screen; {cuong} on the left lights up with sudden inspiration, eyes sparkling; {tai} in the middle freezes mid-sip, sensing danger."
+        alt: Bảo giới thiệu kênh dùng AI để anti AI, Cường bắt đầu sáng mắt.
+        text:
+          - { say: "Kênh này dùng AI để anti AI. Chắc không phải anh rồi.", at: tr, tail: r }
+          - { say: "Hay. Để anh làm lại kênh. Kể câu chuyện thật hài hước.", at: bl, tail: up }
+      - id: c08-p3
+        span: 6
+        shape: wide
+        cast: [cuong, tai, bao, claude, codex]
+        scene: "Wide reveal with bright orange and teal workstation light. The eatery table unfolds into a tiny comic studio: {codex} scribbles on a stack of blank script pages and paints wordless comic panels on an easel, the panels showing the earlier gags (a crate of bottles, a mountain of rice, a deep pit, a giant school backpack); {claude} pins finished panels onto a big board, assembling them into a comic page. {cuong} on the left directs like a film director; {tai} and {bao} on the right recognise themselves in the panels and recoil in horror."
+        alt: Hai robot cam và xanh dựng chính bộ truyện đang đọc từ buổi trò chuyện của ba người.
+        text:
+          - { say: "Codex viết kịch bản, vẽ tranh. Claude ráp thành truyện. Lấy chuyện hồi nãy!", at: tl, tail: l }
+          - { say: "Chưa mua máy mà tụi mình đã thành nội dung rồi hả?", at: tr, tail: r }
+          - { say: "Mình nằm ở khung này luôn nè!", at: br, tail: up-r }
+      - id: c08-p4
+        span: 3
+        shape: square
+        cast: [cuong, tai, claude, codex]
+        scene: "Medium group shot in warm celebratory light. {claude} and {codex} present a finished comic booklet with a wordless cover showing three friends around a laptop. {cuong} on the left beams; {tai} on the right reaches for it with shining eyes, like a child getting a long-awaited present."
+        alt: Tài tưởng cuối cùng cũng được tặng máy, nhưng quà là cuốn truyện về chính mình.
+        text:
+          - { say: "Có quà cho m rồi nè.", at: tl, tail: l }
+          - { say: "MacBook hả?!", at: tr, tail: r }
+          - { say: "Truyện. Có hình m ôm MacBook luôn.", at: bl, tail: up }
+      - id: c08-p5
+        span: 3
+        shape: square
+        cast: [cuong, tai, bao]
+        scene: "Final medium shot in golden sunset light, echoing the opening scene. {tai} in the centre hugs the comic booklet with a delighted childlike grin; {bao} on the right doubles over laughing; on the left {cuong} quietly loads exactly six plain unlabeled beer bottles into the crate on his scooter."
+        alt: Tài được tặng truyện thay vì máy, Bảo cười gập người, còn Cường vẫn lặng lẽ mang sáu chai về.
+        text:
+          - { say: "Tuổi thơ trọn vẹn.", at: tl, tail: l }
+          - { say: "Ê, để sáu chai xuống!", at: bc, tail: up-c }
